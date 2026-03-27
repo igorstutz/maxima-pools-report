@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Report · Maxima Pools · Google Ads · Mar 27, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --g-blue: #1a73e8;
+  --g-blue-light: #e8f0fe;
+  --g-green: #34a853;
+  --g-green-dark: #137333;
+  --g-green-light: #e6f4ea;
+  --g-red: #d93025;
+  --g-red-light: #fce8e6;
+  --g-yellow-dark: #7d5200;
+  --phase-yellow: #f9ab00;
+  --phase-yellow-bg: #fef7e0;
+  --phase-blue: #1a73e8;
+  --phase-blue-bg: #e8f0fe;
+  --phase-green: #34a853;
+  --phase-green-bg: #e6f4ea;
+  --bg: #f1f3f4;
+  --white: #ffffff;
+  --text: #202124;
+  --text2: #5f6368;
+  --text3: #9aa0a6;
+  --border: #dadce0;
+  --border-light: #e8eaed;
+  --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* TOPBAR */
+.g-topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 64px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 16px;
+  z-index: 200;
+}
+.g-logo {
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 16px 0 8px;
+  border-right: 1px solid var(--border);
+  margin-right: 8px; text-decoration: none;
+}
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+
+.g-account-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 5px 12px 5px 5px; border-radius: 24px;
+  cursor: pointer; transition: background .15s; margin-left: 4px;
+}
+.g-account-chip:hover { background: var(--hover); }
+.g-account-logo {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #e8f4fb;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; overflow: hidden;
+  border: 1px solid var(--border);
+}
+.g-account-logo img { width: 28px; height: 28px; object-fit: contain; }
+.g-account-info { line-height: 1.3; }
+.g-account-name { font-family: var(--font); font-size: 13px; font-weight: 500; color: var(--text); }
+.g-account-id { font-size: 11px; color: var(--text2); font-family: var(--font-body); }
+.g-chevron { width: 16px; height: 16px; fill: var(--text2); margin-left: 2px; }
+
+.g-topbar-spacer { flex: 1; }
+
+.lang-toggle {
+  display: flex; border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden; margin-right: 8px;
+}
+.lang-btn {
+  border: none; background: transparent;
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  color: var(--text2); padding: 5px 14px; cursor: pointer; transition: all .15s;
+}
+.lang-btn.active { background: var(--g-blue-light); color: var(--g-blue); }
+
+/* SUBNAV */
+.g-subnav {
+  position: fixed; top: 64px; left: 0; right: 0;
+  height: 48px; background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; padding: 0 24px;
+  z-index: 190;
+}
+.g-breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--text2); font-family: var(--font-body);
+}
+.g-breadcrumb a { color: var(--g-blue); text-decoration: none; }
+.g-breadcrumb a:hover { text-decoration: underline; }
+.g-breadcrumb-sep { color: var(--text3); font-size: 16px; }
+.g-breadcrumb strong { color: var(--text); font-weight: 500; }
+.g-subnav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.g-date-label { font-size: 11px; color: var(--text3); font-family: var(--font-body); }
+.g-live-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--phase-blue-bg); color: var(--g-blue);
+  font-size: 11px; font-weight: 500; font-family: var(--font);
+  padding: 4px 12px; border-radius: 12px;
+}
+.g-live-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--g-blue);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+/* PAGE */
+.page { max-width: 1060px; margin: 0 auto; padding: 128px 24px 80px; }
+
+/* HEADER CARD */
+.header-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px 28px 22px; margin-bottom: 16px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.header-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text3);
+  margin-bottom: 6px; font-family: var(--font-body);
+}
+.header-title {
+  font-family: var(--font); font-size: 28px; font-weight: 400;
+  color: var(--text); line-height: 1.2; margin-bottom: 6px;
+}
+.header-title strong { font-weight: 700; color: var(--g-blue); }
+.header-sub { font-size: 13px; color: var(--text2); font-family: var(--font-body); line-height: 1.5; }
+.status-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--phase-blue-bg); color: var(--g-blue);
+  font-size: 11px; font-weight: 500; font-family: var(--font);
+  padding: 3px 10px; border-radius: 12px; margin-top: 10px;
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--g-blue);
+  animation: pulse 2s infinite;
+}
+.header-right { text-align: right; flex-shrink: 0; margin-left: 28px; }
+.hstat-row { display: flex; gap: 28px; margin-bottom: 10px; }
+.hstat { text-align: right; }
+.hstat-label { font-size: 11px; color: var(--text3); font-family: var(--font-body); margin-bottom: 2px; }
+.hstat-value { font-family: var(--font); font-size: 15px; font-weight: 500; color: var(--text); }
+.hstat-email { font-size: 12px; color: var(--text2); font-family: var(--font-body); text-align: right; }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 11px; font-weight: 500; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--text3);
+  margin-bottom: 10px; margin-top: 20px;
+  font-family: var(--font-body); padding-left: 2px;
+}
+
+/* METRICS */
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+.metric-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+.metric-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.mi-y { background: var(--phase-yellow-bg); }
+.mi-b { background: var(--phase-blue-bg); }
+.mi-g { background: var(--phase-green-bg); }
+.mi-r { background: var(--g-red-light); }
+.metric-value { font-family: var(--font); font-size: 22px; font-weight: 500; color: var(--text); line-height: 1; margin-bottom: 3px; }
+.metric-label { font-size: 11px; color: var(--text2); font-family: var(--font-body); line-height: 1.4; }
+
+/* TABLE CARD */
+.table-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 20px 24px 16px; margin-bottom: 16px;
+  overflow-x: auto;
+}
+.table-card-title {
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  color: var(--text); margin-bottom: 14px;
+}
+.g-table { width: 100%; border-collapse: collapse; font-size: 12px; font-family: var(--font-body); }
+.g-table th {
+  text-align: left; padding: 8px 10px; font-weight: 500;
+  color: var(--text2); font-size: 11px; border-bottom: 2px solid var(--border);
+  white-space: nowrap; font-family: var(--font);
+}
+.g-table td {
+  padding: 10px; border-bottom: 1px solid var(--border-light);
+  color: var(--text); vertical-align: middle;
+}
+.g-table tr:last-child td { border-bottom: none; }
+.g-table tr:hover td { background: var(--hover); }
+.g-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.g-table .bold { font-weight: 500; }
+
+/* STATUS BADGES */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 500; font-family: var(--font);
+  padding: 2px 8px; border-radius: 10px; white-space: nowrap;
+}
+.badge-green { background: var(--g-green-light); color: var(--g-green-dark); }
+.badge-yellow { background: var(--phase-yellow-bg); color: var(--g-yellow-dark); }
+.badge-red { background: var(--g-red-light); color: var(--g-red); }
+.badge-blue { background: var(--phase-blue-bg); color: var(--g-blue); }
+
+/* ACTION LIST */
+.action-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 20px 24px; margin-bottom: 16px;
+}
+.action-card-title {
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  color: var(--text); margin-bottom: 14px;
+}
+.action-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--border-light);
+  font-size: 12.5px; color: var(--text2); line-height: 1.5;
+  font-family: var(--font-body);
+}
+.action-item:last-child { border-bottom: none; }
+.action-num {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; font-family: var(--font);
+  color: #fff;
+}
+.an-high { background: var(--g-red); }
+.an-med { background: var(--phase-yellow); }
+.an-low { background: var(--g-blue); }
+.action-item strong { color: var(--text); font-weight: 500; }
+
+/* NEGATIVE LIST */
+.neg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.neg-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px 18px;
+}
+.neg-card-title {
+  font-family: var(--font); font-size: 12px; font-weight: 600;
+  color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+}
+.neg-card-title .badge { font-size: 9px; padding: 1px 6px; }
+.neg-list { list-style: none; }
+.neg-list li {
+  font-size: 11.5px; color: var(--text2); padding: 3px 0 3px 12px;
+  position: relative; font-family: 'Roboto Mono', monospace; line-height: 1.5;
+}
+.neg-list li::before {
+  content: '−'; position: absolute; left: 0; color: var(--g-red); font-weight: 700;
+}
+
+/* NOTE */
+.note-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 3px solid var(--g-blue);
+  border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 16px;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.note-icon-wrap { width: 32px; height: 32px; border-radius: 50%; background: var(--g-blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.note-icon-wrap svg { width: 16px; height: 16px; fill: var(--g-blue); }
+.note-text { font-size: 12.5px; color: var(--text2); line-height: 1.65; font-family: var(--font-body); }
+.note-text strong { color: var(--text); font-weight: 500; }
+
+.note-warn {
+  border-left-color: var(--phase-yellow);
+}
+.note-warn .note-icon-wrap { background: var(--phase-yellow-bg); }
+.note-warn .note-icon-wrap svg { fill: var(--phase-yellow); }
+
+.note-alert {
+  border-left-color: var(--g-red);
+}
+.note-alert .note-icon-wrap { background: var(--g-red-light); }
+.note-alert .note-icon-wrap svg { fill: var(--g-red); }
+
+/* FOOTER */
+.doc-footer { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+.doc-footer-left { font-size: 12px; color: var(--text2); font-family: var(--font-body); line-height: 1.6; }
+.doc-footer-left strong { color: var(--text); font-weight: 500; }
+.g-ads-badge { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); font-family: var(--font); }
+.g-ads-dots { display: flex; gap: 3px; }
+.g-ads-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* BILINGUAL */
+body.lang-pt [data-en] { display: none !important; }
+body.lang-en [data-pt] { display: none !important; }
+
+/* TABLET */
+@media (max-width: 768px) {
+  .page { padding: 120px 16px 60px; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .neg-grid { grid-template-columns: 1fr; }
+  .header-card { flex-direction: column; gap: 16px; }
+  .header-right { text-align: left; margin-left: 0; width: 100%; }
+  .hstat-row { justify-content: flex-start; gap: 32px; }
+  .hstat { text-align: left; }
+  .doc-footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+/* MOBILE */
+@media (max-width: 540px) {
+  .page { padding: 108px 12px 48px; }
+  .g-logo-wordmark { display: none; }
+  .g-account-name { display: none; }
+  .g-breadcrumb { display: none; }
+  .header-title { font-size: 22px; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .neg-grid { grid-template-columns: 1fr; }
+  .g-table { font-size: 11px; }
+}
+
+/* PRINT */
+@media print {
+  .g-topbar, .g-subnav, .lang-toggle { display: none !important; }
+  .page { padding: 0; max-width: 100%; }
+  body { background: #fff; }
+  .header-card, .table-card, .action-card, .neg-card, .note-card, .metric-card, .doc-footer {
+    break-inside: avoid; box-shadow: none; border: 1px solid #ddd;
+  }
+}
+</style>
+</head>
+<body class="lang-en">
+
+<!-- TOPBAR -->
+<div class="g-topbar">
+  <a class="g-logo" href="#">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285F4"></div>
+      <div class="g-logo-dot" style="background:#EA4335"></div>
+      <div class="g-logo-dot" style="background:#FBBC04"></div>
+      <div class="g-logo-dot" style="background:#34A853"></div>
+    </div>
+    <span class="g-logo-wordmark"><strong>Google</strong> Ads</span>
+  </a>
+
+  <div class="g-account-chip">
+    <div class="g-account-logo">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="#1a73e8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </div>
+    <div class="g-account-info">
+      <div class="g-account-name">Maxima Pools</div>
+      <div class="g-account-id">116-346-1847</div>
+    </div>
+    <svg class="g-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+  </div>
+
+  <div class="g-topbar-spacer"></div>
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<!-- SUBNAV -->
+<div class="g-subnav">
+  <div class="g-breadcrumb">
+    <a href="#" data-en>All campaigns</a><a href="#" data-pt>Todas as campanhas</a>
+    <span class="g-breadcrumb-sep">&rsaquo;</span>
+    <a href="#" data-en>Account overview</a><a href="#" data-pt>Vis&atilde;o geral da conta</a>
+    <span class="g-breadcrumb-sep">&rsaquo;</span>
+    <strong data-en>Performance report</strong><strong data-pt>Relat&oacute;rio de performance</strong>
+  </div>
+  <div class="g-subnav-right">
+    <span class="g-date-label">Mar 5 &ndash; 27, 2026</span>
+    <div class="g-live-badge">
+      <div class="g-live-dot"></div>
+      <span data-en>Phase 2 active</span><span data-pt>Fase 2 ativa</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header-card">
+    <div>
+      <div class="header-eyebrow">
+        <span data-en>Performance report &middot; Phase 1 (Mar 5&ndash;18) + Phase 2 (Mar 19&ndash;27) &middot; Mar 27, 2026</span>
+        <span data-pt>Relat&oacute;rio de performance &middot; Fase 1 (5&ndash;18 Mar) + Fase 2 (19&ndash;27 Mar) &middot; 27 mar. 2026</span>
+      </div>
+      <div class="header-title">
+        <span data-en>Account <strong>Performance Review</strong></span>
+        <span data-pt>Revis&atilde;o de <strong>Performance da Conta</strong></span>
+      </div>
+      <div class="header-sub">
+        <span data-en>Full analysis of campaigns, keywords, search terms, locations, devices and competitors &mdash; Maxima Pools, Columbus Ohio.</span>
+        <span data-pt>An&aacute;lise completa de campanhas, keywords, termos de busca, localiza&ccedil;&otilde;es, dispositivos e concorrentes &mdash; Maxima Pools, Columbus Ohio.</span>
+      </div>
+      <div class="status-chip">
+        <div class="status-dot"></div>
+        <span data-en>Phase 1: Mar 5&ndash;18 (Launch) &middot; Phase 2: Mar 19&ndash;present (Optimization) &middot; 21 conversions &middot; $2,748 spent</span>
+        <span data-pt>Fase 1: 5&ndash;18 Mar (Lan&ccedil;amento) &middot; Fase 2: 19 Mar&ndash;presente (Otimiza&ccedil;&atilde;o) &middot; 21 convers&otilde;es &middot; $2.748 gastos</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="hstat-row">
+        <div class="hstat">
+          <div class="hstat-label"><span data-en>Account ID</span><span data-pt>ID da conta</span></div>
+          <div class="hstat-value">116-346-1847</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-label"><span data-en>Period</span><span data-pt>Per&iacute;odo</span></div>
+          <div class="hstat-value">Mar 5&ndash;27</div>
+        </div>
+      </div>
+      <div class="hstat-label" style="text-align:right; margin-bottom:2px"><span data-en>Optimization score</span><span data-pt>Score de otimiza&ccedil;&atilde;o</span></div>
+      <div class="hstat-value" style="text-align:right; color:#1a73e8">97.44%</div>
+    </div>
+  </div>
+
+  <!-- KEY METRICS -->
+  <div class="section-label"><span data-en>Key metrics &middot; Mar 5&ndash;27, 2026</span><span data-pt>M&eacute;tricas-chave &middot; 5&ndash;27 Mar 2026</span></div>
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-icon mi-b">&#128200;</div>
+      <div>
+        <div class="metric-value">21</div>
+        <div class="metric-label"><span data-en>Conversions (leads)</span><span data-pt>Convers&otilde;es (leads)</span></div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon mi-y">&#128176;</div>
+      <div>
+        <div class="metric-value">$130.87</div>
+        <div class="metric-label"><span data-en>Cost per conversion</span><span data-pt>Custo por convers&atilde;o</span></div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon mi-g">&#128073;</div>
+      <div>
+        <div class="metric-value">448</div>
+        <div class="metric-label"><span data-en>Clicks &middot; 5.70% CTR</span><span data-pt>Cliques &middot; 5,70% CTR</span></div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon mi-r">&#128065;</div>
+      <div>
+        <div class="metric-value">14.16%</div>
+        <div class="metric-label"><span data-en>Impression share (low)</span><span data-pt>Parcela de impress&otilde;es (baixa)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERT: LIMITED BY BUDGET -->
+  <div class="note-card note-alert">
+    <div class="note-icon-wrap">
+      <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+    </div>
+    <div class="note-text">
+      <span data-en><strong>Pool Installation campaign is limited by budget.</strong> This is your best-performing campaign ($82.56 CPA, 12 conversions) but Google is capping impressions because the $45/day budget runs out. Increasing to $65/day would capture an estimated 5&ndash;8 additional conversions per month. Your impression share is only 14.16% &mdash; meaning your ads show in just 1 out of 7 eligible searches.</span>
+      <span data-pt><strong>A campanha Pool Installation est&aacute; limitada por or&ccedil;amento.</strong> &Eacute; a melhor campanha ($82,56 CPA, 12 convers&otilde;es) mas o Google limita impress&otilde;es porque o budget de $45/dia acaba. Aumentar para $65/dia capturaria ~5&ndash;8 convers&otilde;es adicionais por m&ecirc;s. Sua parcela de impress&otilde;es &eacute; de apenas 14,16% &mdash; seus an&uacute;ncios aparecem em apenas 1 de cada 7 buscas eleg&iacute;veis.</span>
+    </div>
+  </div>
+
+  <!-- CAMPAIGN PERFORMANCE TABLE -->
+  <div class="section-label"><span data-en>Campaign performance</span><span data-pt>Performance por campanha</span></div>
+  <div class="table-card">
+    <table class="g-table">
+      <thead>
+        <tr>
+          <th><span data-en>Campaign</span><span data-pt>Campanha</span></th>
+          <th class="num"><span data-en>Budget/day</span><span data-pt>Budget/dia</span></th>
+          <th class="num"><span data-en>Spend</span><span data-pt>Gasto</span></th>
+          <th class="num"><span data-en>Clicks</span><span data-pt>Cliques</span></th>
+          <th class="num">CTR</th>
+          <th class="num">CPC</th>
+          <th class="num"><span data-en>Conv.</span><span data-pt>Conv.</span></th>
+          <th class="num">CPA</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">Pool Installation</td>
+          <td class="num">$45</td>
+          <td class="num bold">$990.67</td>
+          <td class="num">154</td>
+          <td class="num">5.66%</td>
+          <td class="num">$6.43</td>
+          <td class="num bold">12</td>
+          <td class="num" style="color:#137333;font-weight:500">$82.56</td>
+          <td><span class="badge badge-red" data-en>Limited budget</span><span class="badge badge-red" data-pt>Limitado por budget</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Fiberglass Pools</td>
+          <td class="num">$35</td>
+          <td class="num">$742.28</td>
+          <td class="num">136</td>
+          <td class="num" style="color:#137333">9.02%</td>
+          <td class="num">$5.46</td>
+          <td class="num">5</td>
+          <td class="num">$148.46</td>
+          <td><span class="badge badge-yellow" data-en>Monitor</span><span class="badge badge-yellow" data-pt>Monitorar</span></td>
+        </tr>
+        <tr>
+          <td class="bold">High-Ticket Pools</td>
+          <td class="num">$15</td>
+          <td class="num">$496.44</td>
+          <td class="num">52</td>
+          <td class="num">4.55%</td>
+          <td class="num" style="color:#d93025">$9.55</td>
+          <td class="num">1</td>
+          <td class="num" style="color:#d93025;font-weight:500">$496.44</td>
+          <td><span class="badge badge-red" data-en>Restructure</span><span class="badge badge-red" data-pt>Reestruturar</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Broad Discovery</td>
+          <td class="num">$12</td>
+          <td class="num">$270.13</td>
+          <td class="num">73</td>
+          <td class="num">3.62%</td>
+          <td class="num">$3.70</td>
+          <td class="num">2</td>
+          <td class="num" style="color:#d93025">$135.06</td>
+          <td><span class="badge badge-red" data-en>Pause</span><span class="badge badge-red" data-pt>Pausar</span></td>
+        </tr>
+        <tr>
+          <td class="bold">Brand Protection</td>
+          <td class="num">$12</td>
+          <td class="num">$31.63</td>
+          <td class="num">10</td>
+          <td class="num" style="color:#137333">22.22%</td>
+          <td class="num" style="color:#137333">$3.16</td>
+          <td class="num">1</td>
+          <td class="num" style="color:#137333;font-weight:500">$31.63</td>
+          <td><span class="badge badge-green" data-en>OK</span><span class="badge badge-green" data-pt>OK</span></td>
+        </tr>
+        <tr style="background:var(--hover);font-weight:500">
+          <td>TOTAL</td>
+          <td class="num">$119</td>
+          <td class="num bold">$2,748.23</td>
+          <td class="num bold">448</td>
+          <td class="num">5.70%</td>
+          <td class="num">$6.13</td>
+          <td class="num bold">21</td>
+          <td class="num bold">$130.87</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AD GROUP PERFORMANCE -->
+  <div class="section-label"><span data-en>Ad group performance</span><span data-pt>Performance por grupo de an&uacute;ncios</span></div>
+  <div class="table-card">
+    <table class="g-table">
+      <thead>
+        <tr>
+          <th><span data-en>Ad Group</span><span data-pt>Grupo de An&uacute;ncios</span></th>
+          <th><span data-en>Campaign</span><span data-pt>Campanha</span></th>
+          <th class="num"><span data-en>Spend</span><span data-pt>Gasto</span></th>
+          <th class="num"><span data-en>Clicks</span><span data-pt>Cliques</span></th>
+          <th class="num">CTR</th>
+          <th class="num"><span data-en>Conv.</span><span data-pt>Conv.</span></th>
+          <th class="num">CPA</th>
+          <th class="num"><span data-en>Conv. rate</span><span data-pt>Taxa conv.</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">&#128308; Pool Contractors Group</td>
+          <td>Pool Installation</td>
+          <td class="num">$381.51</td>
+          <td class="num">42</td>
+          <td class="num">5.22%</td>
+          <td class="num bold">6</td>
+          <td class="num" style="color:#137333;font-weight:700">$63.60</td>
+          <td class="num" style="color:#137333;font-weight:700">14.28%</td>
+        </tr>
+        <tr>
+          <td class="bold">Pool Installation Core</td>
+          <td>Pool Installation</td>
+          <td class="num">$609.16</td>
+          <td class="num">112</td>
+          <td class="num">5.85%</td>
+          <td class="num bold">6</td>
+          <td class="num">$101.50</td>
+          <td class="num">5.36%</td>
+        </tr>
+        <tr>
+          <td class="bold">Fiberglass Pool Builder</td>
+          <td>Fiberglass Pools</td>
+          <td class="num">$742.28</td>
+          <td class="num">136</td>
+          <td class="num" style="color:#137333">9.02%</td>
+          <td class="num">5</td>
+          <td class="num">$148.46</td>
+          <td class="num">3.68%</td>
+        </tr>
+        <tr>
+          <td class="bold">High-Ticket Custom Pools</td>
+          <td>High-Ticket Pools</td>
+          <td class="num">$496.44</td>
+          <td class="num">52</td>
+          <td class="num">4.55%</td>
+          <td class="num">1</td>
+          <td class="num" style="color:#d93025">$496.44</td>
+          <td class="num" style="color:#d93025">1.92%</td>
+        </tr>
+        <tr>
+          <td class="bold">Open Keywords (Broad)</td>
+          <td>Broad Discovery</td>
+          <td class="num">$270.13</td>
+          <td class="num">73</td>
+          <td class="num">3.62%</td>
+          <td class="num">2</td>
+          <td class="num" style="color:#d93025">$135.06</td>
+          <td class="num">2.74%</td>
+        </tr>
+        <tr>
+          <td class="bold">Brand Protection Group</td>
+          <td>Brand Protection</td>
+          <td class="num">$31.63</td>
+          <td class="num">10</td>
+          <td class="num" style="color:#137333">22.22%</td>
+          <td class="num">1</td>
+          <td class="num" style="color:#137333">$31.63</td>
+          <td class="num">10.00%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DEVICE BREAKDOWN -->
+  <div class="section-label"><span data-en>Device breakdown</span><span data-pt>Dispositivos</span></div>
+  <div class="metrics-row" style="grid-template-columns: repeat(3,1fr)">
+    <div class="metric-card">
+      <div class="metric-icon mi-b">&#128241;</div>
+      <div>
+        <div class="metric-value" style="font-size:18px">327 clicks &middot; 15 conv</div>
+        <div class="metric-label"><span data-en>Mobile &middot; 78% of spend &middot; $131.93 CPA</span><span data-pt>Mobile &middot; 78% do gasto &middot; $131,93 CPA</span></div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon mi-g">&#128187;</div>
+      <div>
+        <div class="metric-value" style="font-size:18px">95 clicks &middot; 5 conv</div>
+        <div class="metric-label"><span data-en>Desktop &middot; 21% of spend &middot; $107.61 CPA</span><span data-pt>Desktop &middot; 21% do gasto &middot; $107,61 CPA</span></div>
+      </div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-icon mi-y">&#128195;</div>
+      <div>
+        <div class="metric-value" style="font-size:18px">3 clicks &middot; 0 conv</div>
+        <div class="metric-label"><span data-en>Tablet &middot; 1% of spend &middot; No conversions</span><span data-pt>Tablet &middot; 1% do gasto &middot; Sem convers&otilde;es</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUCTION INSIGHTS -->
+  <div class="section-label"><span data-en>Auction insights &middot; Competitor analysis</span><span data-pt>Insights de leil&atilde;o &middot; An&aacute;lise de concorrentes</span></div>
+  <div class="table-card">
+    <table class="g-table">
+      <thead>
+        <tr>
+          <th><span data-en>Competitor</span><span data-pt>Concorrente</span></th>
+          <th class="num"><span data-en>Imp. share</span><span data-pt>Parcela imp.</span></th>
+          <th class="num"><span data-en>Overlap</span><span data-pt>Sobreposi&ccedil;&atilde;o</span></th>
+          <th class="num"><span data-en>Top of page</span><span data-pt>Topo da p&aacute;gina</span></th>
+          <th class="num"><span data-en>Abs. top</span><span data-pt>Topo absoluto</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold" style="color:#1a73e8">Maxima Pools (you)</td>
+          <td class="num bold">14.16%</td>
+          <td class="num">&mdash;</td>
+          <td class="num">64.93%</td>
+          <td class="num">22.94%</td>
+        </tr>
+        <tr>
+          <td class="bold">kayakpoolsmidwest.com</td>
+          <td class="num" style="color:#d93025">13.48%</td>
+          <td class="num">18.15%</td>
+          <td class="num" style="color:#d93025;font-weight:500">78.23%</td>
+          <td class="num" style="color:#d93025;font-weight:500">43.52%</td>
+        </tr>
+        <tr>
+          <td class="bold">blueworldpools.com</td>
+          <td class="num">11.43%</td>
+          <td class="num">10.12%</td>
+          <td class="num">66.69%</td>
+          <td class="num">18.57%</td>
+        </tr>
+        <tr>
+          <td class="bold">premierpoolsandspas.com</td>
+          <td class="num">&lt; 10%</td>
+          <td class="num">11.02%</td>
+          <td class="num">78.41%</td>
+          <td class="num">21.79%</td>
+        </tr>
+        <tr>
+          <td class="bold">abovegroundpoolgurus.com</td>
+          <td class="num">11.66%</td>
+          <td class="num">10.38%</td>
+          <td class="num">58.22%</td>
+          <td class="num">15.24%</td>
+        </tr>
+        <tr>
+          <td class="bold">aquaticcreationsohio.com</td>
+          <td class="num">&lt; 10%</td>
+          <td class="num">10.93%</td>
+          <td class="num">77.35%</td>
+          <td class="num" style="color:#d93025;font-weight:500">36.99%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WASTED SPEND ALERT -->
+  <div class="note-card note-warn">
+    <div class="note-icon-wrap">
+      <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+    </div>
+    <div class="note-text">
+      <span data-en><strong>$350+ wasted monthly on irrelevant searches.</strong> Competitor name searches alone wasted $270+. Repair/maintenance terms, hot tub/spa terms, and out-of-state searches are consuming budget with zero conversion potential. Adding the negative keywords listed below will immediately reclaim this budget for high-intent searches.</span>
+      <span data-pt><strong>$350+ desperdi&ccedil;ados por m&ecirc;s em buscas irrelevantes.</strong> Somente buscas por nomes de concorrentes desperdi&ccedil;aram $270+. Termos de reparo/manuten&ccedil;&atilde;o, spa/hot tub e buscas de outros estados consomem budget sem potencial de convers&atilde;o. Adicionar os negativos listados abaixo ir&aacute; recuperar este budget imediatamente.</span>
+    </div>
+  </div>
+
+  <!-- NEGATIVE KEYWORDS TO ADD -->
+  <div class="section-label"><span data-en>Negative keywords to add &middot; Priority</span><span data-pt>Negativos para adicionar &middot; Prioridade</span></div>
+  <div class="neg-grid">
+    <div class="neg-card">
+      <div class="neg-card-title">
+        <span data-en>Competitor Names</span><span data-pt>Nomes de Concorrentes</span>
+        <span class="badge badge-red">$270+</span>
+      </div>
+      <ul class="neg-list">
+        <li>"leisure pools"</li>
+        <li>"litehouse pools"</li>
+        <li>"polaris pools"</li>
+        <li>"next level pools"</li>
+        <li>"scioto valley pools"</li>
+        <li>"clearwater pools"</li>
+        <li>"classic pools"</li>
+        <li>"kayak pools"</li>
+        <li>"mirage pools"</li>
+        <li>"new era pools"</li>
+        <li>"paradise pools"</li>
+        <li>"premier pools"</li>
+        <li>"blue world pools"</li>
+        <li>"bullfrog spa"</li>
+        <li><span data-en>+ 25 more (see full report)</span><span data-pt>+ 25 mais (ver relat&oacute;rio completo)</span></li>
+      </ul>
+    </div>
+    <div class="neg-card">
+      <div class="neg-card-title">
+        <span data-en>Repair / Maintenance / Spa</span><span data-pt>Reparo / Manuten&ccedil;&atilde;o / Spa</span>
+        <span class="badge badge-yellow">$40+</span>
+      </div>
+      <ul class="neg-list">
+        <li>liner replacement</li>
+        <li>liner installation</li>
+        <li>pool remodeling</li>
+        <li>pool resurfacing</li>
+        <li>pool opening service</li>
+        <li>pool plaster</li>
+        <li>pool maintenance</li>
+        <li>pool cleaning</li>
+        <li>pool leak</li>
+        <li>hot tub</li>
+        <li>swim spa</li>
+        <li>spa near me</li>
+        <li>jacuzzi</li>
+      </ul>
+    </div>
+    <div class="neg-card">
+      <div class="neg-card-title">
+        <span data-en>Other States / DIY / Retail</span><span data-pt>Outros Estados / DIY / Varejo</span>
+        <span class="badge badge-yellow">$30+</span>
+      </div>
+      <ul class="neg-list">
+        <li>"maryland"</li>
+        <li>"california"</li>
+        <li>"florida"</li>
+        <li>"texas"</li>
+        <li>"virginia"</li>
+        <li>"west virginia"</li>
+        <li>"kentucky"</li>
+        <li>"michigan"</li>
+        <li>"indiana"</li>
+        <li>pool supply</li>
+        <li>pool store</li>
+        <li>pool equipment</li>
+        <li>stock tank</li>
+        <li>estimate calculator</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRIORITY ACTIONS -->
+  <div class="section-label"><span data-en>Priority actions &middot; Google Ads Editor</span><span data-pt>A&ccedil;&otilde;es priorit&aacute;rias &middot; Google Ads Editor</span></div>
+  <div class="action-card">
+    <div class="action-card-title">
+      <span data-en>High impact &mdash; do this week</span><span data-pt>Alto impacto &mdash; fazer esta semana</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-high">1</div>
+      <div>
+        <strong data-en>Add ~40 competitor negative keywords</strong><strong data-pt>Adicionar ~40 negativos de concorrentes</strong><br>
+        <span data-en>Saves $270+/month. Add as phrase match negatives in "Global Negatives" list via Google Ads Editor &rarr; Keywords, Negative &rarr; Make Multiple Changes.</span>
+        <span data-pt>Economiza $270+/m&ecirc;s. Adicionar como phrase match negativas na lista "Global Negatives" via Google Ads Editor &rarr; Keywords, Negative &rarr; Make Multiple Changes.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-high">2</div>
+      <div>
+        <strong data-en>Increase Pool Installation budget: $45 &rarr; $65/day</strong><strong data-pt>Aumentar budget Pool Installation: $45 &rarr; $65/dia</strong><br>
+        <span data-en>Best campaign is budget-limited. Expected: +5&ndash;8 conversions/month. Google Ads Editor &rarr; Campaigns &rarr; Select &rarr; Change Budget.</span>
+        <span data-pt>Melhor campanha limitada por budget. Estimativa: +5&ndash;8 convers&otilde;es/m&ecirc;s. Google Ads Editor &rarr; Campaigns &rarr; Selecionar &rarr; Alterar Budget.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-high">3</div>
+      <div>
+        <strong data-en>Pause Broad Discovery campaign</strong><strong data-pt>Pausar campanha Broad Discovery</strong><br>
+        <span data-en>$270 spent, only 2 conversions ($135 CPA). Uses broad match (violates strategy). Saves ~$270/month. Google Ads Editor &rarr; Campaigns &rarr; Pause.</span>
+        <span data-pt>$270 gastos, apenas 2 convers&otilde;es ($135 CPA). Usa broad match (viola estrat&eacute;gia). Economiza ~$270/m&ecirc;s. Google Ads Editor &rarr; Campaigns &rarr; Pausar.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-high">4</div>
+      <div>
+        <strong data-en>Add 9 converting search terms as keywords</strong><strong data-pt>Adicionar 9 termos que converteram como keywords</strong><br>
+        <span data-en>[fiberglass pools columbus ohio], "fiberglass pool shell factory direct", "fiberglass pool sales", "pool installation zanesville ohio", "best pool contractors near me", "inground pool inserts", [pool companies columbus ohio], [swimming pool companies near me], [pool companies near me]. Google Ads Editor &rarr; Keywords &rarr; Make Multiple Changes.</span>
+        <span data-pt>[fiberglass pools columbus ohio], "fiberglass pool shell factory direct", "fiberglass pool sales", "pool installation zanesville ohio", "best pool contractors near me", "inground pool inserts", [pool companies columbus ohio], [swimming pool companies near me], [pool companies near me]. Google Ads Editor &rarr; Keywords &rarr; Make Multiple Changes.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-high">5</div>
+      <div>
+        <strong data-en>Add repair/spa/state negative keywords</strong><strong data-pt>Adicionar negativos de reparo/spa/estados</strong><br>
+        <span data-en>See cards above. Add via Google Ads Editor &rarr; Keywords, Negative. Saves ~$70+/month.</span>
+        <span data-pt>Ver cards acima. Adicionar via Google Ads Editor &rarr; Keywords, Negative. Economiza ~$70+/m&ecirc;s.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-card">
+    <div class="action-card-title">
+      <span data-en>Medium impact &mdash; do in 1&ndash;2 weeks</span><span data-pt>M&eacute;dio impacto &mdash; fazer em 1&ndash;2 semanas</span>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-med">6</div>
+      <div>
+        <strong data-en>Pause "custom pool builder" and "fiberglass pool company" keywords</strong><strong data-pt>Pausar keywords "custom pool builder" e "fiberglass pool company"</strong><br>
+        <span data-en>$823 spent, only 2 conversions (CPA &gt;$400 each). Pause via Google Ads Editor &rarr; Keywords &rarr; Change status to Paused.</span>
+        <span data-pt>$823 gastos, apenas 2 convers&otilde;es (CPA &gt;$400 cada). Pausar via Google Ads Editor &rarr; Keywords &rarr; Alterar status para Paused.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-med">7</div>
+      <div>
+        <strong data-en>Pause 33 keywords with zero impressions</strong><strong data-pt>Pausar 33 keywords sem impress&otilde;es</strong><br>
+        <span data-en>These "rarely served" keywords add clutter. Clean up via Google Ads Editor &rarr; Keywords &rarr; Filter by Impressions = 0.</span>
+        <span data-pt>Essas keywords "rarely served" s&oacute; geram ru&iacute;do. Limpar via Google Ads Editor &rarr; Keywords &rarr; Filtrar por Impress&otilde;es = 0.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-med">8</div>
+      <div>
+        <strong data-en>Adjust location bids</strong><strong data-pt>Ajustar bids por localiza&ccedil;&atilde;o</strong><br>
+        <span data-en>Reduce: Marion County &minus;50%, Pickaway &minus;30%, Knox &minus;50%. Increase: Powell +25%, Upper Arlington +25%, Hilliard +25%, Worthington +20%. Via Google Ads Editor &rarr; Locations.</span>
+        <span data-pt>Reduzir: Marion County &minus;50%, Pickaway &minus;30%, Knox &minus;50%. Aumentar: Powell +25%, Upper Arlington +25%, Hilliard +25%, Worthington +20%. Via Google Ads Editor &rarr; Locations.</span>
+      </div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num an-med">9</div>
+      <div>
+        <strong data-en>Add Desktop bid adjustment &minus;30% for High-Ticket &amp; Broad Discovery</strong><strong data-pt>Adicionar ajuste de bid &minus;30% Desktop para High-Ticket e Broad Discovery</strong><br>
+        <span data-en>$164 spent on Desktop across these campaigns with zero conversions. Via Google Ads Editor &rarr; Devices.</span>
+        <span data-pt>$164 gastos no Desktop nestas campanhas sem convers&otilde;es. Via Google Ads Editor &rarr; Devices.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERTING SEARCH TERMS -->
+  <div class="section-label"><span data-en>Search terms that converted</span><span data-pt>Termos de busca que converteram</span></div>
+  <div class="table-card">
+    <table class="g-table">
+      <thead>
+        <tr>
+          <th><span data-en>Search term</span><span data-pt>Termo de busca</span></th>
+          <th class="num"><span data-en>Conv.</span><span data-pt>Conv.</span></th>
+          <th class="num">CPA</th>
+          <th class="num"><span data-en>Spend</span><span data-pt>Gasto</span></th>
+          <th><span data-en>Campaign</span><span data-pt>Campanha</span></th>
+          <th><span data-en>Action</span><span data-pt>A&ccedil;&atilde;o</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">quality pools columbus ohio</td>
+          <td class="num bold" style="color:#137333">2</td>
+          <td class="num" style="color:#137333;font-weight:700">$13.28</td>
+          <td class="num">$26.56</td>
+          <td>Pool Installation</td>
+          <td><span class="badge badge-green" data-en>Already keyword</span><span class="badge badge-green" data-pt>J&aacute; &eacute; keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">inground pool inserts</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num" style="color:#137333;font-weight:700">$2.75</td>
+          <td class="num">$2.75</td>
+          <td>Broad Discovery</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">fiberglass pool shell factory direct</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num" style="color:#137333;font-weight:700">$5.25</td>
+          <td class="num">$5.25</td>
+          <td>Fiberglass Pools</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">pool installation zanesville ohio</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num" style="color:#137333;font-weight:700">$6.82</td>
+          <td class="num">$6.82</td>
+          <td>Pool Installation</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">fiberglass pool sales</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num" style="color:#137333;font-weight:700">$9.31</td>
+          <td class="num">$9.31</td>
+          <td>Fiberglass Pools</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">best pool contractors near me</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num" style="color:#137333">$13.47</td>
+          <td class="num">$13.47</td>
+          <td>Pool Installation</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">fiberglass pools columbus ohio</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num">$25.08</td>
+          <td class="num">$25.08</td>
+          <td>Fiberglass Pools</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+        <tr>
+          <td class="bold">pool companies columbus ohio</td>
+          <td class="num bold" style="color:#137333">1</td>
+          <td class="num">$56.47</td>
+          <td class="num">$56.47</td>
+          <td>Pool Installation</td>
+          <td><span class="badge badge-blue" data-en>Add as keyword</span><span class="badge badge-blue" data-pt>Adicionar keyword</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FINAL NOTE -->
+  <div class="note-card">
+    <div class="note-icon-wrap">
+      <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-4h2v4zm0-6H9V5h2v2z"/></svg>
+    </div>
+    <div class="note-text">
+      <span data-en><strong>Phase 2 Optimization is producing results.</strong> The account generated 21 leads at $130.87 CPA in 22 days. The Pool Contractors Group is the standout performer at $63.60 CPA with a 14.28% conversion rate. By implementing the actions above &mdash; adding negative keywords, increasing budget on Pool Installation, and pausing wasteful campaigns &mdash; we project CPA can be reduced to &lt;$80 and conversions increased by 40&ndash;50%. The full detailed report with all keyword lists is available as a companion document.</span>
+      <span data-pt><strong>A Otimiza&ccedil;&atilde;o da Fase 2 est&aacute; produzindo resultados.</strong> A conta gerou 21 leads a $130,87 CPA em 22 dias. O Pool Contractors Group &eacute; o destaque com $63,60 CPA e 14,28% de taxa de convers&atilde;o. Implementando as a&ccedil;&otilde;es acima &mdash; adicionando negativos, aumentando budget na Pool Installation e pausando campanhas com desperd&iacute;cio &mdash; projetamos redu&ccedil;&atilde;o do CPA para &lt;$80 e aumento de 40&ndash;50% nas convers&otilde;es. O relat&oacute;rio detalhado completo com todas as listas de keywords est&aacute; dispon&iacute;vel como documento complementar.</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="doc-footer-left">
+      <span data-en><strong>Data-driven. Actionable. Precise.</strong> &middot; Maxima Pools &middot; 116-346-1847<br>maximapools@gmail.com &middot; Report generated Mar 27, 2026 &middot; Phase 1: Mar 5&ndash;18 &middot; Phase 2: Mar 19&ndash;present</span>
+      <span data-pt><strong>Baseado em dados. Acion&aacute;vel. Preciso.</strong> &middot; Maxima Pools &middot; 116-346-1847<br>maximapools@gmail.com &middot; Relat&oacute;rio gerado em 27/03/2026 &middot; Fase 1: 5&ndash;18 Mar &middot; Fase 2: 19 Mar&ndash;presente</span>
+    </div>
+    <div class="g-ads-badge">
+      <div class="g-ads-dots">
+        <div class="g-ads-dot" style="background:#4285F4"></div>
+        <div class="g-ads-dot" style="background:#EA4335"></div>
+        <div class="g-ads-dot" style="background:#FBBC04"></div>
+        <div class="g-ads-dot" style="background:#34A853"></div>
+      </div>
+      <span data-en>Google Ads &middot; Performance Report</span>
+      <span data-pt>Google Ads &middot; Relat&oacute;rio de Performance</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick*="' + lang + '"]').classList.add('active');
+}
+</script>
+</body>
+</html>
