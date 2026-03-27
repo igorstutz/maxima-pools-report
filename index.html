@@ -284,6 +284,8 @@ tr:hover { background: var(--hover); }
     <button class="tab-btn active" onclick="showTab(this,'tab-negatives')">&#128683; Negative Keywords</button>
     <button class="tab-btn" onclick="showTab(this,'tab-newkw')">&#10133; Add Keywords</button>
     <button class="tab-btn" onclick="showTab(this,'tab-keywords')">&#128270; Keyword Actions</button>
+    <button class="tab-btn" onclick="showTab(this,'tab-waste')">&#128176; Wasted Search Terms</button>
+    <button class="tab-btn" onclick="showTab(this,'tab-locations')">&#128205; Locations</button>
     <button class="tab-btn" onclick="showTab(this,'tab-budget')">&#128176; Budget &amp; Strategy</button>
   </div>
 
@@ -413,16 +415,148 @@ tr:hover { background: var(--hover); }
     </div>
   </div>
 
+  <!-- TAB: WASTED SEARCH TERMS -->
+  <div id="tab-waste" class="tab-content">
+    <div class="card-body">
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>$630 wasted</strong> on search terms with clicks but 0 conversions across Pool Installation, Fiberglass Pools &amp; Brand Protection. Terms from Broad Discovery and High-Ticket are excluded (campaigns being paused).</p>
+
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);">Competitor Brand Searches ($170+ wasted)</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Action</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools marion ohio</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$56.19</td><td><span class="badge badge-red">Add [leisure pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools columbus ohio</td><td>Fiberglass Pools</td><td class="text-right">2</td><td class="text-right">$33.88</td><td><span class="badge badge-red">Add [leisure pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>scioto valley pools hilliard ohio</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$20.04</td><td><span class="badge badge-red">Add [scioto valley pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>polaris pools columbus ohio</td><td>Pool Installation</td><td class="text-right">3</td><td class="text-right">$23.73</td><td><span class="badge badge-red">Add [polaris pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>kayak pool installers near me</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$7.99</td><td><span class="badge badge-red">Add [kayak pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools cincinnati</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$6.81</td><td><span class="badge badge-red">Add [leisure pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>new era pools</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.87</td><td><span class="badge badge-red">Add [new era pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>premier pools and spas</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.06</td><td><span class="badge badge-red">Add [premier pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>latham pools near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.81</td><td><span class="badge badge-red">Add [latham pools] negative</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>junie depriest pools</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.72</td><td><span class="badge badge-red">Add [junie depriest] negative</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">Wrong Service / Product Intent</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Problem</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool manufacturer</td><td>Fiberglass Pools</td><td class="text-right">2</td><td class="text-right">$21.30</td><td><span class="badge badge-red">Manufacturing, not install</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pools columbus ohio</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$16.65</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pool builders near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.92</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pool contractor</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$4.81</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>concrete pool builders near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$5.64</td><td><span class="badge badge-yellow">Concrete &ne; fiberglass</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool manufacturing companies</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$3.42</td><td><span class="badge badge-red">Manufacturing intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool heater installation near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.71</td><td><span class="badge badge-red">Equipment install, not pool</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool deck installers near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$4.61</td><td><span class="badge badge-red">Deck, not pool install</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>indoor pool installers near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.68</td><td><span class="badge badge-yellow">Indoor pools &ne; core service</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool kits</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$4.66</td><td><span class="badge badge-red">DIY kit intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool with hot tub</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$0.35</td><td><span class="badge badge-yellow">Hot tub intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>saltwater pool installation near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.01</td><td><span class="badge badge-yellow">Saltwater specific</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>radiant semi inground pool installation</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.49</td><td><span class="badge badge-red">Semi-inground brand</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">Out-of-Geography Searches</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Problem</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool builders dayton ohio</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$19.16</td><td><span class="badge badge-red">Dayton &mdash; 70mi from Columbus</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pools charlotte</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$8.37</td><td><span class="badge badge-red">Charlotte, NC</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pittsburgh pool installation</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.70</td><td><span class="badge badge-red">Pittsburgh, PA</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool installation bloomington il</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$2.54</td><td><span class="badge badge-red">Bloomington, IL</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pools dayton ohio</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$2.04</td><td><span class="badge badge-yellow">Dayton, OH</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool companies in kentucky</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.49</td><td><span class="badge badge-red">Kentucky</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground pool companies michigan</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$0.66</td><td><span class="badge badge-red">Michigan</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--text2);">Low Intent / Research / Price Shopping</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Problem</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool price list</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$3.50</td><td><span class="badge badge-yellow">Price shopping</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool sizes and prices</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$1.78</td><td><span class="badge badge-yellow">Research intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>12 x24 inground fiberglass pool cost</td><td>Fiberglass Pools</td><td class="text-right">2</td><td class="text-right">$4.50</td><td><span class="badge badge-yellow">Cost research</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground pool estimate calculator</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$2.74</td><td><span class="badge badge-red">Calculator &mdash; research only</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground pool costs near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$5.86</td><td><span class="badge badge-yellow">Cost research</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>best inground pool prices</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$2.48</td><td><span class="badge badge-yellow">Price shopping</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>underground pool cost</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$2.11</td><td><span class="badge badge-yellow">Cost research</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>in ground pool cost</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.70</td><td><span class="badge badge-yellow">Cost research</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>build your own inground pool</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.05</td><td><span class="badge badge-red">DIY intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>discount inground pools</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.71</td><td><span class="badge badge-red">Discount seeker</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pools for sale</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$1.15</td><td><span class="badge badge-yellow">Retail/sale intent</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground fiberglass pool shells for sale</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$2.88</td><td><span class="badge badge-yellow">Shell sale, not install</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>where to buy fiberglass pool shell</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$2.71</td><td><span class="badge badge-yellow">Buy shell, not install</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>buy fiberglass pools direct</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$4.77</td><td><span class="badge badge-yellow">Direct buy, not install</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground fiberglass pools for sale</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$1.52</td><td><span class="badge badge-yellow">Sale intent, not service</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">Relevant but Not Converting (monitor &mdash; don't block yet)</h4>
+      <table><thead><tr><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Notes</th></tr></thead><tbody>
+        <tr><td>inground pool installers near me</td><td>Pool Installation</td><td class="text-right">5</td><td class="text-right">$39.76</td><td><span class="badge badge-blue">Relevant, add as keyword</span></td></tr>
+        <tr><td>fiberglass pools</td><td>Fiberglass Pools</td><td class="text-right">12</td><td class="text-right">$34.88</td><td><span class="badge badge-yellow">Generic, watch CTR</span></td></tr>
+        <tr><td>inground pool</td><td>Pool Installation</td><td class="text-right">7</td><td class="text-right">$21.23</td><td><span class="badge badge-yellow">Very generic</span></td></tr>
+        <tr><td>inground pool installation near me</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$19.59</td><td><span class="badge badge-blue">Relevant, add as keyword</span></td></tr>
+        <tr><td>fiberglass pool installation</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$14.24</td><td><span class="badge badge-blue">Core term, keep</span></td></tr>
+        <tr><td>fiberglass pools ohio</td><td>Combined</td><td class="text-right">5</td><td class="text-right">$17.18</td><td><span class="badge badge-blue">Geo-relevant, add as kw</span></td></tr>
+        <tr><td>fiberglass pools near me</td><td>Combined</td><td class="text-right">3</td><td class="text-right">$10.91</td><td><span class="badge badge-blue">Add as keyword</span></td></tr>
+        <tr><td>fiberglass pool shell</td><td>Fiberglass Pools</td><td class="text-right">4</td><td class="text-right">$5.96</td><td><span class="badge badge-blue">Product term</span></td></tr>
+        <tr><td>pool installs near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$8.43</td><td><span class="badge badge-blue">Relevant variant</span></td></tr>
+        <tr><td>pool company</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$8.29</td><td><span class="badge badge-yellow">Too generic</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <!-- TAB: LOCATIONS -->
+  <div id="tab-locations" class="tab-content">
+    <div class="card-body">
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>Location targeting review.</strong> Maxima serves Columbus metro area. Distant locations with 0 conversions waste budget and should be excluded.</p>
+
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-green);">Locations with Conversions (KEEP)</h4>
+      <table><thead><tr><th>Location</th><th class="text-right">Conv.</th><th class="text-right">Cost</th><th class="text-right">CPA</th><th class="text-right">Clicks</th><th>Distance</th></tr></thead><tbody>
+        <tr class="highlight-row"><td><strong>Columbus</strong></td><td class="text-right">4</td><td class="text-right">$225.94</td><td class="text-right">$56.49</td><td class="text-right">34</td><td>Center</td></tr>
+        <tr><td><strong>Hilliard</strong></td><td class="text-right">1</td><td class="text-right">$18.47</td><td class="text-right">$18.47</td><td class="text-right">2</td><td>~10 mi</td></tr>
+        <tr><td><strong>Westerville</strong></td><td class="text-right">1</td><td class="text-right">$56.47</td><td class="text-right">$56.47</td><td class="text-right">4</td><td>~12 mi</td></tr>
+        <tr><td><strong>Delaware County</strong></td><td class="text-right">1</td><td class="text-right">$12.75</td><td class="text-right">$12.75</td><td class="text-right">13</td><td>~25 mi</td></tr>
+        <tr><td><strong>Richland County</strong> (Mansfield)</td><td class="text-right">1</td><td class="text-right">$31.35</td><td class="text-right">$31.35</td><td class="text-right">7</td><td>~65 mi</td></tr>
+        <tr><td><strong>Champaign County</strong> (Urbana)</td><td class="text-right">1</td><td class="text-right">$15.12</td><td class="text-right">$15.12</td><td class="text-right">6</td><td>~55 mi</td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">Locations to EXCLUDE (distant, 0 conversions)</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Location</th><th class="text-right">Clicks</th><th class="text-right">Impr.</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th>Distance</th><th>Action</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Marion County</strong></td><td class="text-right">3</td><td class="text-right">57</td><td class="text-right">$79.48</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Knox County</strong> (Mt Vernon)</td><td class="text-right">2</td><td class="text-right">56</td><td class="text-right">$10.49</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Crawford County</strong> (Bucyrus)</td><td class="text-right">1</td><td class="text-right">27</td><td class="text-right">$3.05</td><td class="text-right">0</td><td>~70 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Hardin County</strong> (Kenton)</td><td class="text-right">0</td><td class="text-right">16</td><td class="text-right">$0.00</td><td class="text-right">0</td><td>~70 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Wyandot County</strong> (Upper Sandusky)</td><td class="text-right">1</td><td class="text-right">16</td><td class="text-right">$1.18</td><td class="text-right">0</td><td>~75 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Logan County</strong> (Bellefontaine)</td><td class="text-right">2</td><td class="text-right">20</td><td class="text-right">$7.40</td><td class="text-right">0</td><td>~60 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Morrow County</strong></td><td class="text-right">0</td><td class="text-right">12</td><td class="text-right">$0.00</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Cardington</strong></td><td class="text-right">1</td><td class="text-right">7</td><td class="text-right">$3.81</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">Locations to MONITOR (some spend, 0 conv but closer)</h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Location</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th>Distance</th><th>Action</th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Pickaway County</td><td class="text-right">5</td><td class="text-right">$43.98</td><td class="text-right">0</td><td>~35 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Licking County (Newark)</td><td class="text-right">5</td><td class="text-right">$41.36</td><td class="text-right">0</td><td>~35 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Clark County (Springfield)</td><td class="text-right">5</td><td class="text-right">$19.93</td><td class="text-right">0</td><td>~45 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-green);">Columbus Metro &mdash; Core Service Area (keep all)</h4>
+      <p style="font-size:13px;color:var(--text2);line-height:1.8;">Columbus, Dublin, Hilliard, Westerville, Gahanna, Reynoldsburg, Grove City, Upper Arlington, Worthington, Pickerington, New Albany, Powell, Groveport, Lewis Center, Sunbury, Pataskala, Galena, Plain City, Etna, Blacklick, Galloway, West Jefferson, Johnstown, Franklin County, Fairfield County, Madison County, Buckeye Lake, Lithopolis</p>
+    </div>
+  </div>
+
   <!-- TAB: BUDGET -->
   <div id="tab-budget" class="tab-content">
     <div class="card-body">
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-blue);">Budget Reallocation</h4>
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-blue);">Budget Reallocation ($120/day total)</h4>
       <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Campaign</th><th class="text-right">Current</th><th class="text-right">Recommended</th><th>Reason</th><th>Impact</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td>Pool Installation</td><td class="text-right">$45/day</td><td class="text-right"><strong>$65/day</strong></td><td>Best CPA ($82.56), limited by budget, 12 conv</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td>High-Ticket Pools</td><td class="text-right">$15/day</td><td class="text-right"><strong>$10/day</strong></td><td>$496 CPA, only 1 conv &mdash; cut losses</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td>Broad Discovery</td><td class="text-right">$12/day</td><td class="text-right"><strong>$10/day</strong></td><td>Too much waste on irrelevant terms</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td>Fiberglass Pools</td><td class="text-right">$35/day</td><td class="text-right"><strong>$35/day</strong></td><td>Good CTR, hold stable while CPA improves</td><td><span class="priority-low">HOLD</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Pool Installation</strong></td><td class="text-right">$45/day</td><td class="text-right"><strong>$60/day</strong></td><td>Best CPA ($82.56), limited by budget, 12 conv &mdash; deserves more</td><td><span class="priority-high">HIGH</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Fiberglass Pools</strong></td><td class="text-right">$35/day</td><td class="text-right"><strong>$35/day</strong></td><td>Best CTR (9.02%), hold stable while negatives improve CPA</td><td><span class="priority-low">HOLD</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Brand Protection</strong></td><td class="text-right">$12/day</td><td class="text-right"><strong>$12/day</strong></td><td>Efficient ($31.63 CPA), keep protecting brand</td><td><span class="priority-low">HOLD</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-red)"><strong>High-Ticket Pools</strong></td><td class="text-right">$15/day</td><td class="text-right"><strong>PAUSE</strong></td><td>$496 CPA for 1 conversion. Reallocate $15 to Pool Installation</td><td><span class="priority-high">HIGH</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-red)"><strong>Broad Discovery</strong></td><td class="text-right">$12/day</td><td class="text-right"><strong>PAUSE</strong></td><td>High waste from irrelevant terms, only 2 conv at $135 CPA</td><td><span class="priority-high">HIGH</span></td></tr>
       </tbody></table>
+      <div style="margin-top:16px;padding:16px;background:var(--g-blue-light);border-radius:8px;">
+        <p style="font-size:14px;font-family:var(--font);margin-bottom:8px;"><strong>Budget Summary After Changes:</strong></p>
+        <table style="width:auto;">
+          <tr><td style="padding:4px 16px 4px 0;">Pool Installation</td><td class="text-right" style="padding:4px 0;"><strong>$60/day</strong></td></tr>
+          <tr><td style="padding:4px 16px 4px 0;">Fiberglass Pools</td><td class="text-right" style="padding:4px 0;">$35/day</td></tr>
+          <tr><td style="padding:4px 16px 4px 0;">Brand Protection</td><td class="text-right" style="padding:4px 0;">$12/day</td></tr>
+          <tr style="font-weight:600;border-top:2px solid var(--border);"><td style="padding:8px 16px 4px 0;">TOTAL</td><td class="text-right" style="padding:8px 0 4px;">$107/day ($13 buffer)</td></tr>
+        </table>
+        <p style="font-size:12px;color:var(--text2);margin-top:8px;">The $13/day buffer allows Pool Installation to occasionally exceed $60 on high-conversion days. Or add to Fiberglass if results improve.</p>
+      </div>
 
       <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">Landing Page Insights</h4>
       <table><thead><tr><th>Landing Page</th><th class="text-right">Clicks</th><th class="text-right">CTR</th><th class="text-right">Spend</th><th>Notes</th></tr></thead><tbody>
@@ -524,7 +658,7 @@ function exportApproved() {
   });
   if (!approved.length) { alert('No actions approved. Check items first.'); return; }
   let t = 'MAXIMA POOLS - APPROVED ACTIONS\nDate: ' + new Date().toLocaleDateString() + '\n' + '='.repeat(50) + '\n\n';
-  const labels = { negative: 'NEGATIVE KEYWORDS', 'add-keyword': 'NEW KEYWORDS', 'pause-keyword': 'KEYWORDS TO PAUSE', 'remove-keyword': 'KEYWORDS TO REMOVE', budget: 'BUDGET CHANGES' };
+  const labels = { negative: 'NEGATIVE KEYWORDS', 'add-keyword': 'NEW KEYWORDS', 'pause-keyword': 'KEYWORDS TO PAUSE', 'remove-keyword': 'KEYWORDS TO REMOVE', budget: 'BUDGET CHANGES', 'waste-negative': 'WASTED SEARCH TERMS - ADD AS NEGATIVES', 'exclude-location': 'LOCATIONS TO EXCLUDE', 'reduce-bid-location': 'LOCATIONS TO REDUCE BID' };
   const groups = {};
   approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i.values); });
   Object.keys(groups).forEach(a => { t += '\n' + (labels[a]||a) + '\n' + '-'.repeat(40) + '\n'; groups[a].forEach(v => t += '  [x] ' + v.join(' | ') + '\n'); });
