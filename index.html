@@ -124,7 +124,7 @@ tr:hover { background: var(--hover); }
   </a>
   <span class="g-topbar-title">Maxima Pools &mdash; Phase 2 Review</span>
   <div class="g-topbar-spacer"></div>
-  <span class="g-topbar-badge badge-blue">Report: Mar 27, 2026</span>
+  <span class="g-topbar-badge badge-green">62 Actions Approved &mdash; Mar 31</span>
 </div>
 
 <div class="g-main">
@@ -646,7 +646,12 @@ function exportApproved() {
 }
 const SK = 'maxima-approvals-phase2';
 function saveState() { const s = {}; checkboxes.forEach((c,i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
-function loadState() { const s = localStorage.getItem(SK); if(s){const d=JSON.parse(s);checkboxes.forEach((c,i)=>{if(d[i]){c.checked=true;c.closest('tr').classList.add('approved');}});updateCount();}}
+function loadState() {
+  // Approved actions from client review (Mar 31, 2026) — 62 actions total
+  const approved = [2,3,4,5,6,7,8,9,10,12,16,17,18,20,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,45,46,47,48,49,50,51,52,56,59,65,67,68,69,72,77,78,80,82,84,85,86,88,89,101,102,103];
+  approved.forEach(i => { if(checkboxes[i]){checkboxes[i].checked=true;checkboxes[i].closest('tr').classList.add('approved');} });
+  updateCount();
+}
 loadState();
 </script>
 </body>
