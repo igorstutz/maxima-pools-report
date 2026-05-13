@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google Ads Report · Maxima Pools · Phase 2 Review (Mar 27)</title>
+<title>Google Ads Report · Maxima Pools · Phase 3 Review (May 13)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -26,12 +26,16 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .g-logo-wordmark strong { font-weight: 500; color: var(--text); }
 .g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
 .g-topbar-spacer { flex: 1; }
-.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
 .g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 80px; }
 .phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
 .phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
 .phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
-.phase-banner p { font-size: 14px; opacity: .9; line-height: 1.5; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
 .timeline { display: flex; gap: 0; margin-bottom: 24px; background: var(--white); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
 .timeline-item { flex: 1; padding: 16px 20px; border-right: 1px solid var(--border); position: relative; }
 .timeline-item:last-child { border-right: none; }
@@ -48,13 +52,15 @@ body { font-family: var(--font-body); background: var(--bg); color: var(--text);
 .card-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 .card-header h3 { font-family: var(--font); font-size: 16px; font-weight: 500; }
 .card-body { padding: 20px 24px; }
-.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
 .kpi-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
 .kpi-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .3px; }
 .kpi-value { font-family: var(--font); font-size: 28px; font-weight: 500; color: var(--text); }
 .kpi-sub { font-size: 12px; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
 .kpi-neutral { color: var(--text2); }
-.kpi-same { color: var(--g-yellow-dark); }
+.kpi-good { color: var(--g-green-dark); }
+.kpi-bad { color: var(--g-red); }
+.kpi-warn { color: var(--g-yellow-dark); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { text-align: left; padding: 10px 12px; font-weight: 500; color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; border-bottom: 2px solid var(--border); background: var(--hover); }
 td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); }
@@ -95,6 +101,15 @@ tr:hover { background: var(--hover); }
 .tab-btn:hover:not(.active) { color: var(--text); background: var(--hover); }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
+.callout { padding: 16px; border-radius: 8px; margin-bottom: 16px; font-size: 13px; line-height: 1.6; }
+.callout-red { background: var(--g-red-light); border-left: 4px solid var(--g-red); color: #6e1313; }
+.callout-green { background: var(--g-green-light); border-left: 4px solid var(--g-green); color: var(--g-green-dark); }
+.callout-blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); color: #0d3a91; }
+.callout-yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); color: var(--g-yellow-dark); }
+/* Language toggling */
+.lang-pt { display: none; }
+html[data-lang="pt"] .lang-en { display: none; }
+html[data-lang="pt"] .lang-pt { display: inline; }
 @media (max-width: 768px) {
   .kpi-row { grid-template-columns: repeat(2, 1fr); }
   .timeline { flex-direction: column; }
@@ -103,6 +118,7 @@ tr:hover { background: var(--hover); }
   td, th { padding: 8px 6px; }
   .phase-banner { flex-direction: column; text-align: center; }
   .approval-bar { gap: 12px; padding: 10px 16px; }
+  .g-topbar-title { display: none; }
 }
 @media print {
   .g-topbar, .approval-bar { display: none; }
@@ -122,9 +138,13 @@ tr:hover { background: var(--hover); }
     </div>
     <span class="g-logo-wordmark"><strong>Google</strong> Ads</span>
   </a>
-  <span class="g-topbar-title">Maxima Pools &mdash; Phase 2 Review</span>
+  <span class="g-topbar-title"><span class="lang-en">Maxima Pools &mdash; Phase 3 Review</span><span class="lang-pt">Maxima Pools &mdash; Revisão Fase 3</span></span>
   <div class="g-topbar-spacer"></div>
-  <span class="g-topbar-badge badge-green">62 Actions Approved &mdash; Mar 31</span>
+  <span class="g-topbar-badge badge-blue"><span class="lang-en">Report: May 13, 2026</span><span class="lang-pt">Relatório: 13 Maio, 2026</span></span>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
 </div>
 
 <div class="g-main">
@@ -133,138 +153,217 @@ tr:hover { background: var(--hover); }
 <div class="phase-banner">
   <div class="phase-icon">&#128202;</div>
   <div>
-    <h2>Phase 2 Review &mdash; Analyzing Optimization Results</h2>
-    <p>Data period: Mar 5&ndash;27, 2026 (full account data)<br>
-    Phase 1 (Mar 5&ndash;18): Initial campaign activation, broad targeting<br>
-    Phase 2 (Mar 19&ndash;27): First optimizations applied &mdash; new keywords, location adjustments<br>
-    <strong>Today (Mar 27):</strong> Reviewing Phase 2 results + preparing next round of adjustments for review on Apr 3</p>
+    <h2><span class="lang-en">Phase 3 Review &mdash; Expansion Results</span><span class="lang-pt">Revisão Fase 3 &mdash; Resultados da Expansão</span></h2>
+    <p>
+      <span class="lang-en">Data period: Mar 28 &ndash; May 13, 2026 (47 days)<br>
+      Phase 2 (Mar 5&ndash;27): Optimization &mdash; baseline of 21 conv, $130.87 CPA, 14.16% Impression Share<br>
+      Phase 3 (Mar 28&ndash;May 13): Expansion &mdash; 62 client-approved actions applied + Pool Installation budget raised to $60/day<br>
+      <strong>Today (May 13):</strong> Mixed results &mdash; visibility doubled but CPA jumped. Preparing refinement plan for next cycle.</span>
+      <span class="lang-pt">Período: 28 mar &ndash; 13 maio, 2026 (47 dias)<br>
+      Fase 2 (5&ndash;27 mar): Otimização &mdash; baseline de 21 conv, CPA $130,87, IS 14,16%<br>
+      Fase 3 (28 mar&ndash;13 maio): Expansão &mdash; 62 ações aprovadas pelo cliente aplicadas + budget Pool Installation aumentado para $60/dia<br>
+      <strong>Hoje (13 mai):</strong> Resultados mistos &mdash; visibilidade dobrou mas CPA disparou. Plano de refinamento para o próximo ciclo.</span>
+    </p>
   </div>
 </div>
 
 <!-- TIMELINE -->
 <div class="timeline">
   <div class="timeline-item completed">
-    <div class="timeline-label">&#10003; Phase 1 &mdash; Complete</div>
-    <div class="timeline-title">Initial Activation</div>
+    <div class="timeline-label">&#10003; <span class="lang-en">Phase 1</span><span class="lang-pt">Fase 1</span></div>
+    <div class="timeline-title"><span class="lang-en">Initial Activation</span><span class="lang-pt">Ativação Inicial</span></div>
     <div class="timeline-dates">Mar 5 &ndash; 18</div>
-    <div class="timeline-desc">Campaign setup, broad targeting, baseline data collection</div>
+    <div class="timeline-desc"><span class="lang-en">Campaign setup, broad targeting, baseline data</span><span class="lang-pt">Configuração inicial, segmentação ampla, dados base</span></div>
+  </div>
+  <div class="timeline-item completed">
+    <div class="timeline-label">&#10003; <span class="lang-en">Phase 2</span><span class="lang-pt">Fase 2</span></div>
+    <div class="timeline-title"><span class="lang-en">First Optimizations</span><span class="lang-pt">Primeiras Otimizações</span></div>
+    <div class="timeline-dates">Mar 19 &ndash; 27</div>
+    <div class="timeline-desc"><span class="lang-en">New keywords, location adjustments</span><span class="lang-pt">Novas keywords, ajustes geográficos</span></div>
   </div>
   <div class="timeline-item active">
-    <div class="timeline-label">&#9679; Phase 2 &mdash; In Review</div>
-    <div class="timeline-title">First Optimizations</div>
-    <div class="timeline-dates">Mar 19 &ndash; 27</div>
-    <div class="timeline-desc">New keywords added, location adjustments, reviewing results today</div>
+    <div class="timeline-label">&#9679; <span class="lang-en">Phase 3 &mdash; In Review</span><span class="lang-pt">Fase 3 &mdash; Em Revisão</span></div>
+    <div class="timeline-title"><span class="lang-en">Expansion</span><span class="lang-pt">Expansão</span></div>
+    <div class="timeline-dates">Mar 28 &ndash; May 13</div>
+    <div class="timeline-desc"><span class="lang-en">62 actions applied + budget increase &mdash; reviewing today</span><span class="lang-pt">62 ações aplicadas + aumento de budget &mdash; revisando hoje</span></div>
   </div>
   <div class="timeline-item next">
-    <div class="timeline-label">&#9654; Next Review</div>
-    <div class="timeline-title">Measure Adjustments</div>
-    <div class="timeline-dates">Apr 3, 2026</div>
-    <div class="timeline-desc">Verify if today's approved changes had positive impact</div>
+    <div class="timeline-label">&#9654; <span class="lang-en">Next Review</span><span class="lang-pt">Próxima Revisão</span></div>
+    <div class="timeline-title"><span class="lang-en">Refinement</span><span class="lang-pt">Refinamento</span></div>
+    <div class="timeline-dates">~Jun 27, 2026</div>
+    <div class="timeline-desc"><span class="lang-en">Measure impact of budget reallocation + keyword pruning</span><span class="lang-pt">Medir impacto da realocação de budget + poda de keywords</span></div>
   </div>
 </div>
 
-<!-- KPIs (FULL PERIOD) -->
+<!-- KPIs WITH BASELINE COMPARISON -->
 <div class="kpi-row">
   <div class="kpi-card">
-    <div class="kpi-label">Total Conversions</div>
-    <div class="kpi-value">21</div>
-    <div class="kpi-sub kpi-neutral">Mar 5&ndash;27 (22 days)</div>
+    <div class="kpi-label"><span class="lang-en">Total Conversions</span><span class="lang-pt">Total de Conversões</span></div>
+    <div class="kpi-value">26</div>
+    <div class="kpi-sub kpi-good">&uarr; +24% <span class="lang-en">vs Phase 2 (21)</span><span class="lang-pt">vs Fase 2 (21)</span></div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">Cost / Conversion</div>
-    <div class="kpi-value">$130.87</div>
-    <div class="kpi-sub kpi-neutral">Account level CPA</div>
+    <div class="kpi-label">Cost / Conversion (CPA)</div>
+    <div class="kpi-value">$223.04</div>
+    <div class="kpi-sub kpi-bad">&uarr; +70% <span class="lang-en">vs $130.87</span><span class="lang-pt">vs $130,87</span></div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">Total Spend</div>
-    <div class="kpi-value">$2,748</div>
-    <div class="kpi-sub kpi-neutral">~$125/day average</div>
-  </div>
-  <div class="kpi-card">
-    <div class="kpi-label">CTR</div>
-    <div class="kpi-value">5.70%</div>
-    <div class="kpi-sub kpi-neutral">448 clicks / 7,860 impr</div>
+    <div class="kpi-label"><span class="lang-en">Total Spend</span><span class="lang-pt">Gasto Total</span></div>
+    <div class="kpi-value">$5,799</div>
+    <div class="kpi-sub kpi-neutral"><span class="lang-en">~$123/day &middot; 47 days</span><span class="lang-pt">~$123/dia &middot; 47 dias</span></div>
   </div>
   <div class="kpi-card">
     <div class="kpi-label">Impression Share</div>
-    <div class="kpi-value">14.16%</div>
-    <div class="kpi-sub kpi-same">&#9888; Significant room to grow</div>
+    <div class="kpi-value">33.48%</div>
+    <div class="kpi-sub kpi-good">&uarr; +136% <span class="lang-en">vs 14.16%</span><span class="lang-pt">vs 14,16%</span></div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">Avg. CPC</div>
-    <div class="kpi-value">$6.13</div>
-    <div class="kpi-sub kpi-neutral">Account average</div>
+    <div class="kpi-label">CTR</div>
+    <div class="kpi-value">5.32%</div>
+    <div class="kpi-sub kpi-good"><span class="lang-en">&uarr; vs 4.5% baseline</span><span class="lang-pt">&uarr; vs 4,5% baseline</span></div>
   </div>
+  <div class="kpi-card">
+    <div class="kpi-label"><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></div>
+    <div class="kpi-value">$9.83</div>
+    <div class="kpi-sub kpi-neutral"><span class="lang-en">Stable vs Phase 2</span><span class="lang-pt">Estável vs Fase 2</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label"><span class="lang-en">Conversion Rate</span><span class="lang-pt">Taxa de Conversão</span></div>
+    <div class="kpi-value">4.41%</div>
+    <div class="kpi-sub kpi-bad"><span class="lang-en">&darr; -39% vs 7.2%</span><span class="lang-pt">&darr; -39% vs 7,2%</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label"><span class="lang-en">Conv./Day</span><span class="lang-pt">Conv./Dia</span></div>
+    <div class="kpi-value">0.55</div>
+    <div class="kpi-sub kpi-bad"><span class="lang-en">&darr; -39% vs 0.91</span><span class="lang-pt">&darr; -39% vs 0,91</span></div>
+  </div>
+</div>
+
+<!-- DIAGNOSIS CALLOUT -->
+<div class="callout callout-yellow">
+  <span class="lang-en"><strong>Diagnosis:</strong> Extra budget bought visibility (IS doubled) but landed in generic keywords that don't convert. Pool Installation campaign consumed 54% of spend with the worst CPA ($345). The keyword <strong>"professional pool contractors"</strong> alone burned <strong>$721 (12.6% of total)</strong> with zero conversions in 47 days. <strong>High-Ticket Pools</strong> has the best efficiency ($155 CPA, 14.85% CTR) and deserves more budget.</span>
+  <span class="lang-pt"><strong>Diagnóstico:</strong> O budget extra comprou visibilidade (IS dobrou) mas caiu em keywords genéricas que não convertem. A campanha Pool Installation consumiu 54% do gasto com o pior CPA ($345). A keyword <strong>"professional pool contractors"</strong> sozinha queimou <strong>$721 (12,6% do total)</strong> com zero conversões em 47 dias. A <strong>High-Ticket Pools</strong> tem a melhor eficiência (CPA $155, CTR 14,85%) e merece mais budget.</span>
 </div>
 
 <!-- CAMPAIGN PERFORMANCE -->
 <div class="card">
-  <div class="card-header"><h3>&#128200; Campaign Performance</h3><span class="badge badge-blue">5 Active Campaigns</span></div>
+  <div class="card-header">
+    <h3>&#128200; <span class="lang-en">Campaign Performance</span><span class="lang-pt">Performance por Campanha</span></h3>
+    <span class="badge badge-blue"><span class="lang-en">4 Active Campaigns</span><span class="lang-pt">4 Campanhas Ativas</span></span>
+  </div>
   <div class="card-body" style="overflow-x:auto">
     <table>
-      <thead><tr><th>Campaign</th><th class="text-right">Budget/Day</th><th class="text-right">Clicks</th><th class="text-right">Impr.</th><th class="text-right">CTR</th><th class="text-right">CPC</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th>Status</th></tr></thead>
+      <thead><tr>
+        <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+        <th class="text-right">% Budget</th>
+        <th class="text-right">Clicks</th>
+        <th class="text-right">Impr.</th>
+        <th class="text-right">CTR</th>
+        <th class="text-right">CPC</th>
+        <th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+        <th class="text-right">Conv.</th>
+        <th class="text-right">CPA</th>
+        <th>Status</th>
+      </tr></thead>
       <tbody>
-        <tr class="highlight-row"><td><strong>Pool Installation</strong></td><td class="text-right">$45.00</td><td class="text-right">154</td><td class="text-right">2,719</td><td class="text-right">5.66%</td><td class="text-right">$6.43</td><td class="text-right">$990.67</td><td class="text-right"><strong>12</strong></td><td class="text-right"><strong>$82.56</strong></td><td><span class="badge badge-green">&#9733; Best CPA</span></td></tr>
-        <tr><td><strong>Fiberglass Pools</strong></td><td class="text-right">$35.00</td><td class="text-right">136</td><td class="text-right">1,507</td><td class="text-right">9.02%</td><td class="text-right">$5.46</td><td class="text-right">$742.28</td><td class="text-right">5</td><td class="text-right">$148.46</td><td><span class="badge badge-green">Best CTR</span></td></tr>
-        <tr><td><strong>Broad Discovery</strong></td><td class="text-right">$12.00</td><td class="text-right">73</td><td class="text-right">2,015</td><td class="text-right">3.62%</td><td class="text-right">$3.70</td><td class="text-right">$270.13</td><td class="text-right">2</td><td class="text-right">$135.06</td><td><span class="badge badge-yellow">Monitor</span></td></tr>
-        <tr class="waste-row"><td><strong>High-Ticket Pools</strong></td><td class="text-right">$15.00</td><td class="text-right">52</td><td class="text-right">1,143</td><td class="text-right">4.55%</td><td class="text-right">$9.55</td><td class="text-right">$496.44</td><td class="text-right">1</td><td class="text-right"><strong>$496.44</strong></td><td><span class="badge badge-red">&#9888; High CPA</span></td></tr>
-        <tr><td><strong>Brand Protection</strong></td><td class="text-right">$12.00</td><td class="text-right">10</td><td class="text-right">45</td><td class="text-right">22.22%</td><td class="text-right">$3.16</td><td class="text-right">$31.63</td><td class="text-right">1</td><td class="text-right">$31.63</td><td><span class="badge badge-green">Efficient</span></td></tr>
+        <tr class="waste-row"><td><strong>Pool Installation</strong></td><td class="text-right">54%</td><td class="text-right">270</td><td class="text-right">4,487</td><td class="text-right">6.02%</td><td class="text-right">$11.51</td><td class="text-right">$3,108.62</td><td class="text-right">9</td><td class="text-right"><strong>$345.40</strong></td><td><span class="badge badge-red"><span class="lang-en">Worst CPA</span><span class="lang-pt">Pior CPA</span></span></td></tr>
+        <tr><td><strong>Fiberglass Pools</strong></td><td class="text-right">28%</td><td class="text-right">185</td><td class="text-right">2,793</td><td class="text-right">6.62%</td><td class="text-right">$8.71</td><td class="text-right">$1,612.04</td><td class="text-right">9</td><td class="text-right">$179.12</td><td><span class="badge badge-yellow"><span class="lang-en">Acceptable</span><span class="lang-pt">Aceitável</span></span></td></tr>
+        <tr class="highlight-row"><td><strong>High-Ticket Pools</strong></td><td class="text-right">16%</td><td class="text-right">94</td><td class="text-right">633</td><td class="text-right"><strong>14.85%</strong></td><td class="text-right">$9.90</td><td class="text-right">$931.01</td><td class="text-right">6</td><td class="text-right"><strong>$155.17</strong></td><td><span class="badge badge-green">&#9733; <span class="lang-en">Best Performance</span><span class="lang-pt">Melhor Performance</span></span></td></tr>
+        <tr><td><strong>Brand Protection</strong></td><td class="text-right">1%</td><td class="text-right">26</td><td class="text-right">80</td><td class="text-right">32.50%</td><td class="text-right">$3.02</td><td class="text-right">$78.41</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="badge badge-green"><span class="lang-en">Defense OK</span><span class="lang-pt">Defesa OK</span></span></td></tr>
       </tbody>
-      <tfoot><tr style="font-weight:600;background:var(--hover);"><td>TOTAL</td><td class="text-right">~$119/day</td><td class="text-right">448</td><td class="text-right">7,860</td><td class="text-right">5.70%</td><td class="text-right">$6.13</td><td class="text-right">$2,748</td><td class="text-right">21</td><td class="text-right">$130.87</td><td></td></tr></tfoot>
+      <tfoot><tr style="font-weight:600;background:var(--hover);"><td>TOTAL</td><td class="text-right">100%</td><td class="text-right">575</td><td class="text-right">7,993</td><td class="text-right">5.39%</td><td class="text-right">$9.97</td><td class="text-right">$5,730</td><td class="text-right">24</td><td class="text-right">$238.75</td><td></td></tr></tfoot>
     </table>
+    <p style="margin-top:12px;font-size:12px;color:var(--text3)"><span class="lang-en">*Account total includes additional AI Max matches: 26 conv, $5,798.94 cost, $223.04 CPA</span><span class="lang-pt">*Total da conta inclui matches adicionais via AI Max: 26 conv, custo $5.798,94, CPA $223,04</span></p>
+  </div>
+</div>
+
+<!-- WEEKLY TREND -->
+<div class="card">
+  <div class="card-header"><h3>&#128197; <span class="lang-en">Weekly Performance Trend</span><span class="lang-pt">Tendência Semanal de Performance</span></h3></div>
+  <div class="card-body" style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th><span class="lang-en">Week</span><span class="lang-pt">Semana</span></th>
+        <th class="text-right">Impr.</th>
+        <th class="text-right">Clicks</th>
+        <th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+        <th class="text-right">Conv.</th>
+        <th class="text-right">CPA</th>
+        <th><span class="lang-en">Note</span><span class="lang-pt">Nota</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Mar 30 &ndash; Apr 5</td><td class="text-right">1,643</td><td class="text-right">90</td><td class="text-right">$812</td><td class="text-right">2</td><td class="text-right">$406</td><td><span class="badge badge-red"><span class="lang-en">Worst</span><span class="lang-pt">Pior</span></span></td></tr>
+        <tr><td>Apr 6 &ndash; Apr 12</td><td class="text-right">1,661</td><td class="text-right">79</td><td class="text-right">$905</td><td class="text-right">4</td><td class="text-right">$226</td><td></td></tr>
+        <tr class="highlight-row"><td>Apr 13 &ndash; Apr 19</td><td class="text-right">1,410</td><td class="text-right">83</td><td class="text-right">$849</td><td class="text-right">6</td><td class="text-right"><strong>$141</strong></td><td><span class="badge badge-green"><span class="lang-en">Beat baseline</span><span class="lang-pt">Bateu baseline</span></span></td></tr>
+        <tr><td>Apr 20 &ndash; Apr 26</td><td class="text-right">1,857</td><td class="text-right">96</td><td class="text-right">$930</td><td class="text-right">4</td><td class="text-right">$233</td><td></td></tr>
+        <tr><td>Apr 27 &ndash; May 3</td><td class="text-right">1,757</td><td class="text-right">91</td><td class="text-right">$894</td><td class="text-right">2</td><td class="text-right">$447</td><td><span class="badge badge-red"><span class="lang-en">Worst</span><span class="lang-pt">Pior</span></span></td></tr>
+        <tr class="highlight-row"><td>May 4 &ndash; May 10</td><td class="text-right">1,401</td><td class="text-right">77</td><td class="text-right">$812</td><td class="text-right">6</td><td class="text-right"><strong>$135</strong></td><td><span class="badge badge-green"><span class="lang-en">Beat baseline</span><span class="lang-pt">Bateu baseline</span></span></td></tr>
+        <tr><td>May 11 &ndash; May 13*</td><td class="text-right">635</td><td class="text-right">37</td><td class="text-right">$401</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="badge badge-gray"><span class="lang-en">Incomplete</span><span class="lang-pt">Incompleta</span></span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;font-size:13px;color:var(--text2)">
+      <span class="lang-en"><strong>Insight:</strong> CPA is highly volatile (range $135 &ndash; $447), signaling that good and bad keywords are mixed. Pruning the bad ones should stabilize CPA closer to the good weeks.</span>
+      <span class="lang-pt"><strong>Insight:</strong> O CPA é muito volátil (range $135 &ndash; $447), sinalizando que keywords boas e ruins estão misturadas. Podar as ruins deve estabilizar o CPA próximo das semanas boas.</span>
+    </p>
   </div>
 </div>
 
 <!-- AD GROUP PERFORMANCE -->
 <div class="card">
-  <div class="card-header"><h3>&#128221; Ad Group Performance</h3></div>
+  <div class="card-header"><h3>&#128221; <span class="lang-en">Ad Group Performance</span><span class="lang-pt">Performance por Ad Group</span></h3></div>
   <div class="card-body" style="overflow-x:auto">
     <table>
-      <thead><tr><th>Ad Group</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">CTR</th><th class="text-right">CPC</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th>Verdict</th></tr></thead>
+      <thead><tr>
+        <th>Ad Group</th>
+        <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+        <th class="text-right">Clicks</th>
+        <th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+        <th class="text-right">Conv.</th>
+        <th class="text-right">CPA</th>
+        <th><span class="lang-en">Verdict</span><span class="lang-pt">Veredito</span></th>
+      </tr></thead>
       <tbody>
-        <tr class="highlight-row"><td>Pool Contractors Group</td><td>Pool Installation</td><td class="text-right">42</td><td class="text-right">5.22%</td><td class="text-right">$9.08</td><td class="text-right">$381.51</td><td class="text-right"><strong>6</strong></td><td class="text-right"><strong>$63.60</strong></td><td><span class="badge badge-green">&#9733; Best CPA</span></td></tr>
-        <tr><td>Pool Installation Core</td><td>Pool Installation</td><td class="text-right">112</td><td class="text-right">5.85%</td><td class="text-right">$5.44</td><td class="text-right">$609.16</td><td class="text-right">6</td><td class="text-right">$101.50</td><td><span class="badge badge-green">Strong</span></td></tr>
-        <tr><td>Fiberglass Pool Builder</td><td>Fiberglass Pools</td><td class="text-right">136</td><td class="text-right">9.02%</td><td class="text-right">$5.46</td><td class="text-right">$742.28</td><td class="text-right">5</td><td class="text-right">$148.46</td><td><span class="badge badge-yellow">High CTR, watch CPA</span></td></tr>
-        <tr><td>Open Keywords</td><td>Broad Discovery</td><td class="text-right">73</td><td class="text-right">3.62%</td><td class="text-right">$3.70</td><td class="text-right">$270.13</td><td class="text-right">2</td><td class="text-right">$135.06</td><td><span class="badge badge-yellow">Tighten negatives</span></td></tr>
-        <tr class="waste-row"><td>High-Ticket Custom</td><td>High-Ticket Pools</td><td class="text-right">52</td><td class="text-right">4.55%</td><td class="text-right">$9.55</td><td class="text-right">$496.44</td><td class="text-right">1</td><td class="text-right">$496.44</td><td><span class="badge badge-red">Needs restructure</span></td></tr>
-        <tr><td>Brand Protection</td><td>Brand Protection</td><td class="text-right">10</td><td class="text-right">22.22%</td><td class="text-right">$3.16</td><td class="text-right">$31.63</td><td class="text-right">1</td><td class="text-right">$31.63</td><td><span class="badge badge-green">Efficient</span></td></tr>
+        <tr class="highlight-row"><td>High-Ticket | Custom Pools</td><td>High-Ticket Pools</td><td class="text-right">94</td><td class="text-right">$931.01</td><td class="text-right">6</td><td class="text-right"><strong>$155.17</strong></td><td><span class="badge badge-green">&#9733; <span class="lang-en">Scale up</span><span class="lang-pt">Escalar</span></span></td></tr>
+        <tr><td>Fiberglass Pool Builder</td><td>Fiberglass Pools</td><td class="text-right">185</td><td class="text-right">$1,612.04</td><td class="text-right">9</td><td class="text-right">$179.12</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr class="waste-row"><td>Pool Installation Core</td><td>Pool Installation</td><td class="text-right">163</td><td class="text-right">$1,623.66</td><td class="text-right">5</td><td class="text-right">$324.73</td><td><span class="badge badge-yellow"><span class="lang-en">Prune keywords</span><span class="lang-pt">Podar keywords</span></span></td></tr>
+        <tr class="waste-row"><td>Pool Contractors Group</td><td>Pool Installation</td><td class="text-right">107</td><td class="text-right">$1,484.96</td><td class="text-right">4</td><td class="text-right"><strong>$371.24</strong></td><td><span class="badge badge-red"><span class="lang-en">Pause "professional pool contractors"</span><span class="lang-pt">Pausar "professional pool contractors"</span></span></td></tr>
+        <tr><td>Brand Protection Group</td><td>Brand Protection</td><td class="text-right">26</td><td class="text-right">$78.41</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="badge badge-blue"><span class="lang-en">Defense</span><span class="lang-pt">Defesa</span></span></td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- DEVICE PERFORMANCE -->
-<div class="card">
-  <div class="card-header"><h3>&#128241; Device Performance</h3></div>
-  <div class="card-body" style="overflow-x:auto">
-    <table>
-      <thead><tr><th>Device</th><th class="text-right">Clicks</th><th class="text-right">Impr.</th><th class="text-right">CTR</th><th class="text-right">CPC</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th class="text-right">% Budget</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Mobile</strong></td><td class="text-right">327</td><td class="text-right">5,753</td><td class="text-right">5.68%</td><td class="text-right">$6.07</td><td class="text-right">$1,979</td><td class="text-right"><strong>15</strong></td><td class="text-right">$131.93</td><td class="text-right">78%</td></tr>
-        <tr><td><strong>Desktop</strong></td><td class="text-right">95</td><td class="text-right">1,611</td><td class="text-right">5.90%</td><td class="text-right">$5.66</td><td class="text-right">$538</td><td class="text-right"><strong>5</strong></td><td class="text-right">$107.61</td><td class="text-right">21%</td></tr>
-        <tr><td><strong>Tablet</strong></td><td class="text-right">3</td><td class="text-right">64</td><td class="text-right">4.69%</td><td class="text-right">$4.70</td><td class="text-right">$14</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td class="text-right">1%</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:12px;font-size:13px;color:var(--text2)"><strong>Insight:</strong> Desktop CPA ($107.61) is 18% better than mobile ($131.93). Consider testing a +15% desktop bid adjustment on Pool Installation.</p>
-  </div>
-</div>
-
-<!-- COMPETITOR ANALYSIS -->
+<!-- AUCTION INSIGHTS -->
 <div class="card">
   <div class="card-header"><h3>&#127942; Auction Insights</h3></div>
   <div class="card-body" style="overflow-x:auto">
     <table>
-      <thead><tr><th>Competitor</th><th class="text-right">Impr. Share</th><th class="text-right">Overlap</th><th class="text-right">Position Above</th><th class="text-right">Top of Page</th><th class="text-right">Abs. Top</th></tr></thead>
+      <thead><tr>
+        <th><span class="lang-en">Competitor</span><span class="lang-pt">Concorrente</span></th>
+        <th class="text-right">Impr. Share</th>
+        <th class="text-right">Top of Page</th>
+        <th class="text-right">Abs. Top</th>
+        <th><span class="lang-en">Note</span><span class="lang-pt">Nota</span></th>
+      </tr></thead>
       <tbody>
-        <tr style="background:var(--g-blue-light);"><td><strong>Maxima Pools (You)</strong></td><td class="text-right"><strong>14.16%</strong></td><td class="text-right">&mdash;</td><td class="text-right">&mdash;</td><td class="text-right">64.93%</td><td class="text-right">22.94%</td></tr>
-        <tr><td>kayakpoolsmidwest.com</td><td class="text-right">13.48%</td><td class="text-right">18.15%</td><td class="text-right priority-high">64.37%</td><td class="text-right">78.23%</td><td class="text-right">43.52%</td></tr>
-        <tr><td>blueworldpools.com</td><td class="text-right">11.43%</td><td class="text-right">10.12%</td><td class="text-right">39.38%</td><td class="text-right">66.69%</td><td class="text-right">18.57%</td></tr>
-        <tr><td>premierpoolsandspas.com</td><td class="text-right">&lt;10%</td><td class="text-right">11.02%</td><td class="text-right priority-high">50.50%</td><td class="text-right">78.41%</td><td class="text-right">21.79%</td></tr>
-        <tr><td>abovegroundpoolgurus.com</td><td class="text-right">11.66%</td><td class="text-right">10.38%</td><td class="text-right">40.88%</td><td class="text-right">58.22%</td><td class="text-right">15.24%</td></tr>
-        <tr><td>aquaticcreationsohio.com</td><td class="text-right">&lt;10%</td><td class="text-right">10.93%</td><td class="text-right priority-high">65.21%</td><td class="text-right">77.35%</td><td class="text-right">36.99%</td></tr>
+        <tr style="background:var(--g-blue-light);"><td><strong>Maxima Pools (<span class="lang-en">You</span><span class="lang-pt">Você</span>)</strong></td><td class="text-right"><strong>33.48%</strong></td><td class="text-right">61.23%</td><td class="text-right">29.03%</td><td><span class="badge badge-green">&#9733; <span class="lang-en">Market Leader</span><span class="lang-pt">Líder de Mercado</span></span></td></tr>
+        <tr><td>kayakpoolsmidwest.com</td><td class="text-right">15.57%</td><td class="text-right">75.96%</td><td class="text-right">33.37%</td><td><span class="badge badge-gray"><span class="lang-en">Above-ground</span><span class="lang-pt">Acima do solo</span></span></td></tr>
+        <tr><td>leisurepoolscolumbusoh.com</td><td class="text-right">13.53%</td><td class="text-right">70.72%</td><td class="text-right">38.24%</td><td><span class="badge badge-red"><span class="lang-en">Direct competitor</span><span class="lang-pt">Concorrente direto</span></span></td></tr>
+        <tr><td>aquaticcreationsohio.com</td><td class="text-right">11.84%</td><td class="text-right">77.58%</td><td class="text-right">29.82%</td><td><span class="badge badge-red"><span class="lang-en">Direct competitor</span><span class="lang-pt">Concorrente direto</span></span></td></tr>
+        <tr><td>riverpoolsandspas.com</td><td class="text-right">10.80%</td><td class="text-right">82.82%</td><td class="text-right">18.79%</td><td><span class="badge badge-red"><span class="lang-en">Direct competitor</span><span class="lang-pt">Concorrente direto</span></span></td></tr>
+        <tr><td>premierpoolsandspas.com</td><td class="text-right">&lt;10%</td><td class="text-right">77.20%</td><td class="text-right">21.40%</td><td><span class="badge badge-gray">Premium</span></td></tr>
+        <tr><td>omnipoolsandscapes.com</td><td class="text-right">&lt;10%</td><td class="text-right">90.88%</td><td class="text-right">72.49%</td><td><span class="badge badge-yellow"><span class="lang-en">Aggressive bids</span><span class="lang-pt">Lances agressivos</span></span></td></tr>
+        <tr><td>blueworldpools.com</td><td class="text-right">&lt;10%</td><td class="text-right">65.39%</td><td class="text-right">17.10%</td><td><span class="badge badge-gray"><span class="lang-en">National</span><span class="lang-pt">Nacional</span></span></td></tr>
+        <tr><td>luxurypoolsandliving.com</td><td class="text-right">&lt;10%</td><td class="text-right">73.81%</td><td class="text-right">21.69%</td><td><span class="badge badge-gray">Luxury</span></td></tr>
+        <tr><td>sapphirepoolsohio.com</td><td class="text-right">&lt;10%</td><td class="text-right">47.24%</td><td class="text-right">23.07%</td><td><span class="badge badge-gray"><span class="lang-en">Local</span><span class="lang-pt">Local</span></span></td></tr>
+        <tr><td>poolprosohio.com</td><td class="text-right">&lt;10%</td><td class="text-right">78.12%</td><td class="text-right">19.00%</td><td><span class="badge badge-gray"><span class="lang-en">Local</span><span class="lang-pt">Local</span></span></td></tr>
+        <tr><td>abovegroundpoolgurus.com</td><td class="text-right">&lt;10%</td><td class="text-right">61.03%</td><td class="text-right">12.00%</td><td><span class="badge badge-gray"><span class="lang-en">Above-ground</span><span class="lang-pt">Acima do solo</span></span></td></tr>
       </tbody>
     </table>
-    <p style="margin-top:12px;font-size:13px;color:var(--text2)"><strong>Key:</strong> Kayak Pools and Aquatic Creations appear above us ~64% of the time. Increasing bids on top converters can help.</p>
+    <p style="margin-top:12px;font-size:13px;color:var(--text2)">
+      <span class="lang-en"><strong>Key:</strong> Maxima jumped to #1 IS in the Columbus fiberglass niche (+136% vs Phase 2). Abs. Top of Page is 29% &mdash; room to grow on top-converters like "custom pool builder" and "inground fiberglass pools".</span>
+      <span class="lang-pt"><strong>Chave:</strong> Maxima saltou para #1 em IS no nicho fiberglass de Columbus (+136% vs Fase 2). Abs. Top de Página em 29% &mdash; espaço para crescer em top-converters como "custom pool builder" e "inground fiberglass pools".</span>
+    </p>
   </div>
 </div>
 
@@ -274,202 +373,182 @@ tr:hover { background: var(--hover); }
 <div class="section-header" style="margin-top:32px;">
   <div class="section-icon" style="background:var(--g-green-light);">&#9989;</div>
   <div>
-    <h2>Action Items &mdash; Client Approval</h2>
-    <p>Check the items you approve. Click "Export Approved" to download a summary. Your selections are saved automatically.</p>
+    <h2><span class="lang-en">Action Items &mdash; Client Approval</span><span class="lang-pt">Ações Recomendadas &mdash; Aprovação do Cliente</span></h2>
+    <p><span class="lang-en">Check the items you approve. Click "Export Approved" to download a summary. Your selections are saved automatically.</span><span class="lang-pt">Marque os itens que aprova. Clique em "Exportar Aprovadas" para baixar um resumo. Suas seleções são salvas automaticamente.</span></p>
   </div>
 </div>
 
 <div class="card">
   <div class="tab-container">
-    <button class="tab-btn active" onclick="showTab(this,'tab-negatives')">&#128683; Negative Keywords</button>
-    <button class="tab-btn" onclick="showTab(this,'tab-newkw')">&#10133; Add Keywords</button>
-    <button class="tab-btn" onclick="showTab(this,'tab-keywords')">&#128270; Keyword Actions</button>
-    <button class="tab-btn" onclick="showTab(this,'tab-waste')">&#128176; Wasted Search Terms</button>
-    <button class="tab-btn" onclick="showTab(this,'tab-locations')">&#128205; Locations</button>
-    <button class="tab-btn" onclick="showTab(this,'tab-budget')">&#128176; Budget &amp; Strategy</button>
+    <button class="tab-btn active" onclick="showTab(this,'tab-keywords')">&#128270; <span class="lang-en">Keyword Actions</span><span class="lang-pt">Ações de Keywords</span></button>
+    <button class="tab-btn" onclick="showTab(this,'tab-newkw')">&#10133; <span class="lang-en">Add Keywords</span><span class="lang-pt">Adicionar Keywords</span></button>
+    <button class="tab-btn" onclick="showTab(this,'tab-negatives')">&#128683; <span class="lang-en">Negative Keywords</span><span class="lang-pt">Negativas</span></button>
+    <button class="tab-btn" onclick="showTab(this,'tab-locations')">&#128205; <span class="lang-en">Locations</span><span class="lang-pt">Localizações</span></button>
+    <button class="tab-btn" onclick="showTab(this,'tab-budget')">&#128176; <span class="lang-en">Budget &amp; Strategy</span><span class="lang-pt">Budget &amp; Estratégia</span></button>
   </div>
 
-  <!-- TAB: NEGATIVES -->
-  <div id="tab-negatives" class="tab-content active">
+  <!-- TAB: KEYWORD ACTIONS -->
+  <div id="tab-keywords" class="tab-content active">
     <div class="card-body">
-      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>Estimated savings: $260&ndash;$350/month</strong> by blocking irrelevant terms wasting budget.</p>
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);">Competitor Brands (~$262 wasted, 0 conversions)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Negative Keyword</th><th>Match</th><th class="text-right">Wasted</th><th>Apply To</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[leisure pools marion], [leisure pools columbus], [leisure pools cincinnati]</td><td>Exact</td><td class="text-right">$96.88</td><td>All campaigns</td><td><span class="priority-high">HIGH</span> (brand-specific only)</td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[polaris pools]</td><td>Exact</td><td class="text-right">$24.11</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[litehouse pools]</td><td>Exact</td><td class="text-right">$26.73</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[next level pools]</td><td>Exact</td><td class="text-right">$20.68</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[scioto valley pools]</td><td>Exact</td><td class="text-right">$20.04</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[clearwater pools]</td><td>Exact</td><td class="text-right">$18.42</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[classic pools and spas]</td><td>Exact</td><td class="text-right">$13.29</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[kayak pools]</td><td>Exact</td><td class="text-right">$7.99</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[mirage pools]</td><td>Exact</td><td class="text-right">$7.18</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[new era pools]</td><td>Exact</td><td class="text-right">$6.87</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[paradise pools]</td><td>Exact</td><td class="text-right">$6.33</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[premier pools and spas]</td><td>Exact</td><td class="text-right">$6.06</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[poolbrokersusa]</td><td>Exact</td><td class="text-right">$4.69</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[marzetti pools]</td><td>Exact</td><td class="text-right">$4.13</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[latham pools]</td><td>Exact</td><td class="text-right">$1.81</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[serenity pools]</td><td>Exact</td><td class="text-right">$1.45</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
+      <div class="callout callout-red">
+        <span class="lang-en"><strong>CRITICAL:</strong> One keyword burned <strong>$721.44 (12.6% of total budget)</strong> with ZERO conversions in 47 days. Pausing this single keyword is the highest-impact action of this cycle.</span>
+        <span class="lang-pt"><strong>CRÍTICO:</strong> Uma keyword queimou <strong>$721,44 (12,6% do budget total)</strong> com ZERO conversões em 47 dias. Pausar essa única keyword é a ação de maior impacto deste ciclo.</span>
+      </div>
+
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);">&#128721; <span class="lang-en">Pause Immediately (highest impact)</span><span class="lang-pt">Pausar Imediatamente (maior impacto)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="text-right">Clicks</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="text-right">Conv.</th><th><span class="lang-en">Action</span><span class="lang-pt">Ação</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td><strong>"professional pool contractors"</strong></td><td>Phrase</td><td>Pool Installation</td><td class="text-right">53</td><td class="text-right"><strong>$721.44</strong></td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">PAUSE</span><span class="lang-pt">PAUSAR</span></span> <span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">Wrong Service / Product Intent</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Negative Keyword</th><th>Match</th><th class="text-right">Wasted</th><th>Apply To</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool liner replacement"</td><td>Phrase</td><td class="text-right">$13.82</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"bullfrog spa"</td><td>Phrase</td><td class="text-right">$12.18</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool deck installers"</td><td>Phrase</td><td class="text-right">$4.61</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool restoration"</td><td>Phrase</td><td class="text-right">$3.76</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool heater installation"</td><td>Phrase</td><td class="text-right">$3.71</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"hot tub"</td><td>Phrase</td><td class="text-right">$3.55</td><td>All campaigns</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool opening service"</td><td>Phrase</td><td class="text-right">$2.64</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool supply"</td><td>Phrase</td><td class="text-right">$2.58</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"swim spa"</td><td>Phrase</td><td class="text-right">$0.92</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">&#9888; <span class="lang-en">Reduce Bid -30% (poor CPA but some signal)</span><span class="lang-pt">Reduzir Lance -30% (CPA ruim mas com algum sinal)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th class="text-right">Clicks</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th><span class="lang-en">Reason</span><span class="lang-pt">Motivo</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>"fiberglass pool company"</td><td>Phrase</td><td class="text-right">25</td><td class="text-right">$238.23</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="lang-en">High spend, no conv</span><span class="lang-pt">Alto gasto, sem conv</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>"pool installation companies"</td><td>Phrase</td><td class="text-right">22</td><td class="text-right">$217.05</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="lang-en">High spend, no conv</span><span class="lang-pt">Alto gasto, sem conv</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>"pool installation"</td><td>Phrase</td><td class="text-right">40</td><td class="text-right">$392.55</td><td class="text-right">1</td><td class="text-right">$392.55</td><td><span class="lang-en">Too generic</span><span class="lang-pt">Muito genérica</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>[custom pool builder near me]</td><td>Exact</td><td class="text-right">7</td><td class="text-right">$80.91</td><td class="text-right">0</td><td class="text-right">&mdash;</td><td><span class="lang-en">Monitor 2 more weeks</span><span class="lang-pt">Monitorar mais 2 semanas</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>"pool contractors columbus ohio"</td><td>Phrase</td><td class="text-right">19</td><td class="text-right">$391.10</td><td class="text-right">2</td><td class="text-right">$195.55</td><td><span class="lang-en">Geo kw, expected better CPA</span><span class="lang-pt">Geo kw, esperava CPA melhor</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid"></td><td>"residential pool installation"</td><td>Phrase</td><td class="text-right">36</td><td class="text-right">$348.46</td><td class="text-right">2</td><td class="text-right">$174.23</td><td><span class="lang-en">Concentrates too much spend</span><span class="lang-pt">Concentra muito gasto</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">Out-of-Geography</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Negative Keyword</th><th>Match</th><th class="text-right">Wasted</th><th>Apply To</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"charlotte"</td><td>Phrase</td><td class="text-right">$8.37</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"california"</td><td>Phrase</td><td class="text-right">$6.13</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pittsburgh"</td><td>Phrase</td><td class="text-right">$3.70</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"bloomington il"</td><td>Phrase</td><td class="text-right">$2.54</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"kentucky"</td><td>Phrase</td><td class="text-right">$1.49</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"michigan"</td><td>Phrase</td><td class="text-right">$0.66</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-green);">&#11088; <span class="lang-en">Top Performers (keep &amp; amplify)</span><span class="lang-pt">Top Performers (manter &amp; amplificar)</span></h4>
+      <table><thead><tr><th>Keyword</th><th>Match</th><th class="text-right">Clicks</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th>Status</th></tr></thead><tbody>
+        <tr><td>"ohio pool contractors"</td><td>Phrase</td><td class="text-right">11</td><td class="text-right">$131.44</td><td class="text-right">2</td><td class="text-right"><strong>$65.72</strong></td><td><span class="badge badge-green">&#11088; <span class="lang-en">Star of the month</span><span class="lang-pt">Estrela do mês</span></span></td></tr>
+        <tr><td>"fiberglass pools columbus ohio"</td><td>Phrase</td><td class="text-right">10</td><td class="text-right">$189.78</td><td class="text-right">2</td><td class="text-right">$94.89</td><td><span class="badge badge-green">&#11088; <span class="lang-en">Excellent</span><span class="lang-pt">Excelente</span></span></td></tr>
+        <tr><td>"pool installation columbus ohio"</td><td>Phrase</td><td class="text-right">17</td><td class="text-right">$223.16</td><td class="text-right">2</td><td class="text-right">$111.58</td><td><span class="badge badge-green"><span class="lang-en">Strong</span><span class="lang-pt">Forte</span></span></td></tr>
+        <tr><td>"concrete pool"</td><td>Phrase</td><td class="text-right">15</td><td class="text-right">$114.86</td><td class="text-right">1</td><td class="text-right">$114.86</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr><td>"fiberglass pools near me"</td><td>Phrase</td><td class="text-right">23</td><td class="text-right">$117.54</td><td class="text-right">1</td><td class="text-right">$117.54</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr class="highlight-row"><td>"custom pool builder"</td><td>Phrase</td><td class="text-right">62</td><td class="text-right">$641.70</td><td class="text-right"><strong>5</strong></td><td class="text-right">$128.34</td><td><span class="badge badge-green">&#11088; <span class="lang-en">Top converter</span><span class="lang-pt">Maior conversor</span></span></td></tr>
+        <tr class="highlight-row"><td>"inground fiberglass pools"</td><td>Phrase</td><td class="text-right">60</td><td class="text-right">$533.22</td><td class="text-right">4</td><td class="text-right">$133.31</td><td><span class="badge badge-green">&#11088; <span class="lang-en">Volume + efficiency</span><span class="lang-pt">Volume + eficiência</span></span></td></tr>
       </tbody></table>
-
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--text2);">Low Intent / DIY / Generic</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Negative Keyword</th><th>Match</th><th class="text-right">Wasted</th><th>Apply To</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"gunite pool"</td><td>Phrase</td><td class="text-right">$16.65</td><td>Fiberglass Pools</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"concrete pool"</td><td>Phrase</td><td class="text-right">$13.84</td><td>Fiberglass Pools</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"cheapest inground pool"</td><td>Phrase</td><td class="text-right">$4.82</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"build your own"</td><td>Phrase</td><td class="text-right">$3.05</td><td>All campaigns</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"estimate calculator"</td><td>Phrase</td><td class="text-right">$2.74</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"discount inground"</td><td>Phrase</td><td class="text-right">$1.71</td><td>All campaigns</td><td><span class="priority-low">LOW</span></td></tr>
-      </tbody></table>
+      <p style="margin-top:12px;font-size:13px;color:var(--text2)">
+        <span class="lang-en"><strong>Pattern:</strong> Keywords with <strong>geo (Columbus/Ohio)</strong> or <strong>technical specificity (fiberglass, inground, custom)</strong> convert. Generic ones ("pool installation", "pool installation companies", "professional pool contractors") drain budget.</span>
+        <span class="lang-pt"><strong>Padrão:</strong> Keywords com <strong>localização (Columbus/Ohio)</strong> ou <strong>especificidade técnica (fiberglass, inground, custom)</strong> convertem. As genéricas ("pool installation", "pool installation companies", "professional pool contractors") drenam budget.</span>
+      </p>
     </div>
   </div>
 
   <!-- TAB: ADD KEYWORDS -->
   <div id="tab-newkw" class="tab-content">
     <div class="card-body">
-      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>These search terms converted but are NOT keywords yet.</strong> Adding them gives the algorithm better signal and allows direct bid control.</p>
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-green);">Converting Terms &mdash; Add Immediately</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"inground pool inserts"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">1</td><td class="text-right">$2.75</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pool shell factory direct"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">1</td><td class="text-right">$5.25</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool installation zanesville ohio"</td><td>Phrase</td><td>Pool Installation Core</td><td class="text-right">1</td><td class="text-right">$6.82</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pool sales"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">1</td><td class="text-right">$9.31</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[best pool contractors near me]</td><td>Exact</td><td>Pool Contractors Group</td><td class="text-right">1</td><td class="text-right">$13.47</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[swimming pool companies near me]</td><td>Exact</td><td>Pool Installation Core</td><td class="text-right">1</td><td class="text-right">$18.47</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pools columbus ohio"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">1</td><td class="text-right">$25.08</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[pool companies near me]</td><td>Exact</td><td>Pool Installation Core</td><td class="text-right">1</td><td class="text-right">$25.90</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[pool companies columbus ohio]</td><td>Exact</td><td>Pool Contractors Group</td><td class="text-right">1</td><td class="text-right">$56.47</td><td><span class="priority-medium">MED</span></td></tr>
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)">
+        <span class="lang-en"><strong>Strategy:</strong> Convert proven search terms into direct keywords (better bid control), plus add 11 new keywords to scale the campaigns that already perform best.</span>
+        <span class="lang-pt"><strong>Estratégia:</strong> Converter search terms que já provaram retorno em keywords diretas (melhor controle de lance), além de adicionar 11 novas keywords para escalar as campanhas que já performam melhor.</span>
+      </p>
+
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-green);">&#9989; <span class="lang-en">Converting Terms &mdash; Add Now</span><span class="lang-pt">Termos que Converteram &mdash; Adicionar Agora</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th class="text-right">Conv.</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool companies in columbus ohio"</td><td>Phrase</td><td>Pool Installation Core</td><td class="text-right">1</td><td class="text-right">$62.28</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool installers ohio"</td><td>Phrase</td><td>Pool Contractors</td><td class="text-right">1</td><td class="text-right">$68.70</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"in ground pool fiberglass"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">1</td><td class="text-right">$6.11</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"quality pools"</td><td>Phrase</td><td>High-Ticket | Custom Pools</td><td class="text-right">1</td><td class="text-right">$61.75</td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">High-Click Terms Worth Testing</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th class="text-right">Clicks</th><th>Rationale</th><th>Priority</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"inground pool installers near me"</td><td>Phrase</td><td>Pool Installation Core</td><td class="text-right">5</td><td>Strong intent, relevant</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pools ohio"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">5</td><td>Geo-relevant</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool installers near me"</td><td>Phrase</td><td>Pool Installation Core</td><td class="text-right">4</td><td>High volume intent</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pool shell"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">4</td><td>Low CPC, product intent</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pools near me"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">3</td><td>"Near me" converts well</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"inground fiberglass pools"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td class="text-right">3</td><td>Product-specific</td><td><span class="priority-medium">MED</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"ohio pool contractors"</td><td>Phrase</td><td>Pool Contractors Group</td><td class="text-right">2</td><td>Geo + service</td><td><span class="priority-medium">MED</span></td></tr>
-      </tbody></table>
-    </div>
-  </div>
-
-  <!-- TAB: KEYWORD ACTIONS -->
-  <div id="tab-keywords" class="tab-content">
-    <div class="card-body">
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);">Keywords to Pause (high spend, poor conversion)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th>Action</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td>"custom pool builder" (phrase)</td><td>High-Ticket Pools</td><td class="text-right">44</td><td class="text-right">$408.27</td><td class="text-right">1</td><td><span class="badge badge-red">Pause or restructure</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td>[custom pool builder near me]</td><td>High-Ticket Pools</td><td class="text-right">8</td><td class="text-right">$88.17</td><td class="text-right">0</td><td><span class="badge badge-red">Pause</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td>"pool builder services"</td><td>Pool Installation</td><td class="text-right">4</td><td class="text-right">$53.01</td><td class="text-right">0</td><td><span class="badge badge-red">Pause</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td>"pool installation near me" (phrase)</td><td>Pool Installation</td><td class="text-right">15</td><td class="text-right">$73.61</td><td class="text-right">0</td><td><span class="badge badge-yellow">Pause (exact match version is better)</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="pause-keyword"></td><td>"pool installation companies"</td><td>Pool Installation</td><td class="text-right">3</td><td class="text-right">$28.41</td><td class="text-right">0</td><td><span class="badge badge-yellow">Monitor 1 more week</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">&#127919; <span class="lang-en">Scale High-Ticket Pools (best campaign &mdash; CPA $155, CTR 14.85%)</span><span class="lang-pt">Escalar High-Ticket Pools (melhor campanha &mdash; CPA $155, CTR 14,85%)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th><span class="lang-en">Intent</span><span class="lang-pt">Intenção</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"luxury pool builder columbus"</td><td>Phrase</td><td>High-Ticket | Custom Pools</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"high end pool builder"</td><td>Phrase</td><td>High-Ticket | Custom Pools</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[luxury inground pool]</td><td>Exact</td><td>High-Ticket | Custom Pools</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"luxury fiberglass pool"</td><td>Phrase</td><td>High-Ticket | Custom Pools</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"premium pool construction"</td><td>Phrase</td><td>High-Ticket | Custom Pools</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--text2);">Keywords to Remove (rarely served / low quality)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Campaign</th><th>Reason</th><th>Action</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="remove-keyword"></td><td>[pool contractors near me ohio]</td><td>Pool Installation</td><td>Rarely served</td><td><span class="badge badge-gray">Remove</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="remove-keyword"></td><td>"quality pools columbus ohio"</td><td>Pool Installation</td><td>Low quality flag</td><td><span class="badge badge-gray">Remove</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="remove-keyword"></td><td>"custom fiber glass pools"</td><td>High-Ticket</td><td>Rarely served (typo)</td><td><span class="badge badge-gray">Remove</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="remove-keyword"></td><td>"fiberglass pool installation columbus ohio"</td><td>Pool Installation</td><td>Rarely served</td><td><span class="badge badge-gray">Remove</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="remove-keyword"></td><td>[maxima pools reviews]</td><td>Brand Protection</td><td>Rarely served</td><td><span class="badge badge-gray">Remove</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">&#127968; <span class="lang-en">Scale Fiberglass Pools (CPA $179)</span><span class="lang-pt">Escalar Fiberglass Pools (CPA $179)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th><span class="lang-en">Intent</span><span class="lang-pt">Intenção</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pool installation columbus"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[fiberglass pool columbus]</td><td>Exact</td><td>Fiberglass Pool Builder</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"fiberglass pool contractor"</td><td>Phrase</td><td>Fiberglass Pool Builder</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-green);">Top Performers (keep &amp; invest)</h4>
-      <table><thead><tr><th>Keyword</th><th>Campaign</th><th class="text-right">Conv.</th><th class="text-right">CPA</th><th>Status</th></tr></thead><tbody>
-        <tr><td>"pool contractors columbus ohio"</td><td>Pool Installation</td><td class="text-right">3</td><td class="text-right"><strong>$35.73</strong></td><td><span class="badge badge-green">&#9733; Star</span></td></tr>
-        <tr><td>[pool installation near me]</td><td>Pool Installation</td><td class="text-right">3</td><td class="text-right"><strong>$47.61</strong></td><td><span class="badge badge-green">&#9733; Star</span></td></tr>
-        <tr><td>"fiberglass pool builder"</td><td>Fiberglass Pools</td><td class="text-right">3</td><td class="text-right">$93.47</td><td><span class="badge badge-green">Keep</span></td></tr>
-        <tr><td>"pool installation"</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$147.43</td><td><span class="badge badge-green">Keep (volume)</span></td></tr>
-        <tr><td>[pool contractor near me]</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right"><strong>$36.68</strong></td><td><span class="badge badge-green">&#9733; Star</span></td></tr>
-        <tr><td>"backyard pool installation"</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right"><strong>$38.01</strong></td><td><span class="badge badge-green">&#9733; Star</span></td></tr>
-        <tr><td>"fiberglass pool builder near me"</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right"><strong>$8.08</strong></td><td><span class="badge badge-green">&#9733; Expand</span></td></tr>
-        <tr><td>[pool builders in columbus ohio]</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$56.47</td><td><span class="badge badge-green">Keep</span></td></tr>
-        <tr><td>[maxima pools]</td><td>Brand Protection</td><td class="text-right">1</td><td class="text-right">$31.63</td><td><span class="badge badge-green">Keep</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">&#127919; <span class="lang-en">Replace pruned generic keywords in Pool Installation</span><span class="lang-pt">Substituir keywords genéricas podadas em Pool Installation</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Keyword</th><th>Match</th><th>Ad Group</th><th><span class="lang-en">Intent</span><span class="lang-pt">Intenção</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool installation columbus"</td><td>Phrase</td><td>Pool Installation Core</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>[pool builders columbus ohio]</td><td>Exact</td><td>Pool Contractors</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"pool companies columbus"</td><td>Phrase</td><td>Pool Installation Core</td><td><span class="badge badge-green"><span class="lang-en">High</span><span class="lang-pt">Alta</span></span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>"central ohio pool builder"</td><td>Phrase</td><td>Pool Contractors</td><td><span class="badge badge-yellow"><span class="lang-en">Med</span><span class="lang-pt">Média</span></span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
     </div>
   </div>
 
-  <!-- TAB: WASTED SEARCH TERMS -->
-  <div id="tab-waste" class="tab-content">
+  <!-- TAB: NEGATIVES -->
+  <div id="tab-negatives" class="tab-content">
     <div class="card-body">
-      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>$630 wasted</strong> on search terms with clicks but 0 conversions across Pool Installation, Fiberglass Pools &amp; Brand Protection. Terms from Broad Discovery and High-Ticket are excluded (campaigns being paused).</p>
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)">
+        <span class="lang-en"><strong>Estimated monthly savings: ~$200&ndash;300</strong> by blocking irrelevant terms that wasted budget in this cycle.</span>
+        <span class="lang-pt"><strong>Economia mensal estimada: ~$200&ndash;300</strong> bloqueando termos irrelevantes que queimaram budget neste ciclo.</span>
+      </p>
 
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);">Competitor Brand Searches ($170+ wasted)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Action</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools marion ohio</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$56.19</td><td><span class="badge badge-red">Brand: Leisure Pools&trade; &mdash; add [leisure pools marion] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools columbus ohio</td><td>Fiberglass Pools</td><td class="text-right">2</td><td class="text-right">$33.88</td><td><span class="badge badge-red">Brand: Leisure Pools&trade; &mdash; add [leisure pools columbus] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>scioto valley pools hilliard ohio</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$20.04</td><td><span class="badge badge-red">Add [scioto valley pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>polaris pools columbus ohio</td><td>Pool Installation</td><td class="text-right">3</td><td class="text-right">$23.73</td><td><span class="badge badge-red">Add [polaris pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>kayak pool installers near me</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$7.99</td><td><span class="badge badge-red">Add [kayak pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>leisure pools cincinnati</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$6.81</td><td><span class="badge badge-red">Brand: Leisure Pools&trade; &mdash; add [leisure pools cincinnati] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>new era pools</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.87</td><td><span class="badge badge-red">Add [new era pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>premier pools and spas</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.06</td><td><span class="badge badge-red">Add [premier pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>latham pools near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.81</td><td><span class="badge badge-red">Add [latham pools] negative</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>junie depriest pools</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.72</td><td><span class="badge badge-red">Add [junie depriest] negative</span></td></tr>
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-red);"><span class="lang-en">DIY / Cost / Price Intent (wasted $216.71, 0 conv)</span><span class="lang-pt">DIY / Custo / Preço (queimou $216,71, 0 conv)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th><span class="lang-en">Apply To</span><span class="lang-pt">Aplicar Em</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"cost"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"prices"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"how much"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"average cost"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"fiberglass pool cost"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"fiberglass pool kits"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool kits"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"inground pool cost"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"cheapest"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"how to"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"diy"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"estimate"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">Wrong Service / Product Intent</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Problem</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pools columbus ohio</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$16.65</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pool builders near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$6.92</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>gunite pool contractor</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$4.81</td><td><span class="badge badge-yellow">Gunite &ne; fiberglass</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>concrete pool builders near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$5.64</td><td><span class="badge badge-yellow">Concrete &ne; fiberglass</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool heater installation near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.71</td><td><span class="badge badge-red">Equipment install, not pool</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool deck installers near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$4.61</td><td><span class="badge badge-red">Deck, not pool install</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>indoor pool installers near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.68</td><td><span class="badge badge-yellow">Indoor pools &ne; core service</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pool kits</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$4.66</td><td><span class="badge badge-red">DIY kit intent</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>saltwater pool installation near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.01</td><td><span class="badge badge-yellow">Saltwater specific</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>radiant semi inground pool installation</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.49</td><td><span class="badge badge-red">Semi-inground brand</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);"><span class="lang-en">Repair / Service (wasted $54.55)</span><span class="lang-pt">Reparo / Serviço (queimou $54,55)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th><span class="lang-en">Apply To</span><span class="lang-pt">Aplicar Em</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"repair"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"leveling"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"liner installation"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"pool liner"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"maintenance"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"cleaning"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">Out-of-Geography Searches</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Problem</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool builders dayton ohio</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$19.16</td><td><span class="badge badge-red">Dayton &mdash; 70mi from Columbus</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pools charlotte</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$8.37</td><td><span class="badge badge-red">Charlotte, NC</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pittsburgh pool installation</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$3.70</td><td><span class="badge badge-red">Pittsburgh, PA</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool installation bloomington il</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$2.54</td><td><span class="badge badge-red">Bloomington, IL</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>fiberglass pools dayton ohio</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$2.04</td><td><span class="badge badge-yellow">Dayton, OH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>pool companies in kentucky</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$1.49</td><td><span class="badge badge-red">Kentucky</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="waste-negative"></td><td>inground pool companies michigan</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$0.66</td><td><span class="badge badge-red">Michigan</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);"><span class="lang-en">Above-Ground / Hot Tub / Spa</span><span class="lang-pt">Acima do Solo / Spa / Hot Tub</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th><span class="lang-en">Apply To</span><span class="lang-pt">Aplicar Em</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"above ground"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"aboveground"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"swim spa"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"intex"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"inflatable"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">Relevant but Not Converting (monitor &mdash; don't block yet)</h4>
-      <table><thead><tr><th>Search Term</th><th>Campaign</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th>Notes</th></tr></thead><tbody>
-        <tr><td>inground pool installers near me</td><td>Pool Installation</td><td class="text-right">5</td><td class="text-right">$39.76</td><td><span class="badge badge-blue">Relevant, add as keyword</span></td></tr>
-        <tr><td>fiberglass pools</td><td>Fiberglass Pools</td><td class="text-right">12</td><td class="text-right">$34.88</td><td><span class="badge badge-yellow">Generic, watch CTR</span></td></tr>
-        <tr><td>inground pool</td><td>Pool Installation</td><td class="text-right">7</td><td class="text-right">$21.23</td><td><span class="badge badge-yellow">Very generic</span></td></tr>
-        <tr><td>inground pool installation near me</td><td>Pool Installation</td><td class="text-right">2</td><td class="text-right">$19.59</td><td><span class="badge badge-blue">Relevant, add as keyword</span></td></tr>
-        <tr><td>fiberglass pool installation</td><td>Fiberglass Pools</td><td class="text-right">1</td><td class="text-right">$14.24</td><td><span class="badge badge-blue">Core term, keep</span></td></tr>
-        <tr><td>fiberglass pools ohio</td><td>Combined</td><td class="text-right">5</td><td class="text-right">$17.18</td><td><span class="badge badge-blue">Geo-relevant, add as kw</span></td></tr>
-        <tr><td>fiberglass pools near me</td><td>Combined</td><td class="text-right">3</td><td class="text-right">$10.91</td><td><span class="badge badge-blue">Add as keyword</span></td></tr>
-        <tr><td>fiberglass pool shell</td><td>Fiberglass Pools</td><td class="text-right">4</td><td class="text-right">$5.96</td><td><span class="badge badge-blue">Product term</span></td></tr>
-        <tr><td>pool installs near me</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$8.43</td><td><span class="badge badge-blue">Relevant variant</span></td></tr>
-        <tr><td>pool company</td><td>Pool Installation</td><td class="text-right">1</td><td class="text-right">$8.29</td><td><span class="badge badge-yellow">Too generic</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);"><span class="lang-en">Commercial / Non-Residential</span><span class="lang-pt">Comercial / Não-Residencial</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th><span class="lang-en">Apply To</span><span class="lang-pt">Aplicar Em</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"commercial"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"hotel"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"hoa"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"community pool"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);"><span class="lang-en">Research / Reviews</span><span class="lang-pt">Pesquisa / Reviews</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th><span class="lang-en">Apply To</span><span class="lang-pt">Aplicar Em</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"reviews"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"forum"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"reddit"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>"complaints"</td><td>Phrase</td><td><span class="lang-en">Account</span><span class="lang-pt">Conta</span></td><td><span class="priority-low">LOW</span></td></tr>
+      </tbody></table>
+
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);"><span class="lang-en">Competitor Brands &mdash; Non-Converting (wasted $315 in this cycle)</span><span class="lang-pt">Marcas Concorrentes &mdash; Sem Conversão (queimou $315 neste ciclo)</span></h4>
+      <div class="callout callout-blue" style="margin-bottom:12px;">
+        <span class="lang-en"><strong>Note:</strong> Patterson Pools and Sun Holiday Pools both converted &mdash; we are NOT blocking those. Keep capturing their traffic.</span>
+        <span class="lang-pt"><strong>Nota:</strong> Patterson Pools e Sun Holiday Pools converteram &mdash; NÃO vamos bloqueá-las. Continuar capturando esse tráfego.</span>
+      </div>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Negative Keyword</span><span class="lang-pt">Negativa</span></th><th>Match</th><th class="text-right"><span class="lang-en">Wasted</span><span class="lang-pt">Desperdiçou</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[rainforest pools and composites]</td><td>Exact</td><td class="text-right">$31.90</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[gc pools springfield ohio]</td><td>Exact</td><td class="text-right">$30.91</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[latham pools cost]</td><td>Exact</td><td class="text-right">$34.22</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[latham corinthian]</td><td>Exact</td><td class="text-right">$12.47</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[latham fiberglass pool cost]</td><td>Exact</td><td class="text-right">$5.50</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[latham pools near me]</td><td>Exact</td><td class="text-right">$2.33</td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[pacific pools columbus ohio]</td><td>Exact</td><td class="text-right">$12.41</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[premier pools and spas columbus ohio]</td><td>Exact</td><td class="text-right">$3.92</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[614 pools reviews]</td><td>Exact</td><td class="text-right">$8.29</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[sunburst pools reviews]</td><td>Exact</td><td class="text-right">$2.45</td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[waters edge pools reviews]</td><td>Exact</td><td class="text-right">$3.04</td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[fibro pools reviews]</td><td>Exact</td><td class="text-right">$4.61</td><td><span class="priority-low">LOW</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[luxury pools columbus oh]</td><td>Exact</td><td class="text-right">$17.59</td><td><span class="priority-medium">MED</span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[luxury pools]</td><td>Exact</td><td class="text-right">$40.61</td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="negative"></td><td>[sunburst pools etna ohio]</td><td>Exact</td><td class="text-right">$10.12</td><td><span class="priority-medium">MED</span></td></tr>
       </tbody></table>
     </div>
   </div>
@@ -477,106 +556,89 @@ tr:hover { background: var(--hover); }
   <!-- TAB: LOCATIONS -->
   <div id="tab-locations" class="tab-content">
     <div class="card-body">
-      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)"><strong>Location targeting review.</strong> Maxima serves Columbus metro area. Distant locations with 0 conversions waste budget and should be excluded.</p>
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)">
+        <span class="lang-en">Geographic spend review. Boost bids in locations converting at acceptable CPA; reduce bids where spend exceeds $100 with zero conversions in 47 days.</span>
+        <span class="lang-pt">Revisão geográfica de gasto. Aumentar lance onde converte com CPA aceitável; reduzir onde gastou mais de $100 com zero conversões em 47 dias.</span>
+      </p>
 
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-green);">Locations with Conversions (KEEP)</h4>
-      <table><thead><tr><th>Location</th><th class="text-right">Conv.</th><th class="text-right">Cost</th><th class="text-right">CPA</th><th class="text-right">Clicks</th><th>Distance</th></tr></thead><tbody>
-        <tr class="highlight-row"><td><strong>Columbus</strong></td><td class="text-right">4</td><td class="text-right">$225.94</td><td class="text-right">$56.49</td><td class="text-right">34</td><td>Center</td></tr>
-        <tr><td><strong>Hilliard</strong></td><td class="text-right">1</td><td class="text-right">$18.47</td><td class="text-right">$18.47</td><td class="text-right">2</td><td>~10 mi</td></tr>
-        <tr><td><strong>Westerville</strong></td><td class="text-right">1</td><td class="text-right">$56.47</td><td class="text-right">$56.47</td><td class="text-right">4</td><td>~12 mi</td></tr>
-        <tr><td><strong>Delaware County</strong></td><td class="text-right">1</td><td class="text-right">$12.75</td><td class="text-right">$12.75</td><td class="text-right">13</td><td>~25 mi</td></tr>
-        <tr><td><strong>Richland County</strong> (Mansfield)</td><td class="text-right">1</td><td class="text-right">$31.35</td><td class="text-right">$31.35</td><td class="text-right">7</td><td>~65 mi</td></tr>
-        <tr><td><strong>Champaign County</strong> (Urbana)</td><td class="text-right">1</td><td class="text-right">$15.12</td><td class="text-right">$15.12</td><td class="text-right">6</td><td>~55 mi</td></tr>
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-green);">&#11014; <span class="lang-en">Boost Bids (good ROI)</span><span class="lang-pt">Aumentar Lance (bom ROI)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th><th class="text-right">Conv.</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="text-right">CPA</th><th><span class="lang-en">Action</span><span class="lang-pt">Ação</span></th></tr></thead><tbody>
+        <tr class="highlight-row"><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td><strong>Columbus, OH</strong></td><td class="text-right">8</td><td class="text-right">$1,403.53</td><td class="text-right">$175.44</td><td><span class="badge badge-green"><span class="lang-en">Keep core</span><span class="lang-pt">Manter núcleo</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td><strong>Richland County</strong></td><td class="text-right">2</td><td class="text-right">$230.36</td><td class="text-right"><strong>$115.18</strong></td><td><span class="badge badge-green"><span class="lang-en">+15% bid</span><span class="lang-pt">+15% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td>Powell, OH</td><td class="text-right">1</td><td class="text-right">$111.56</td><td class="text-right">$111.56</td><td><span class="badge badge-green"><span class="lang-en">+15% bid</span><span class="lang-pt">+15% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td>Dublin, OH</td><td class="text-right">1</td><td class="text-right">$162.37</td><td class="text-right">$162.37</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td>Knox County</td><td class="text-right">1</td><td class="text-right">$164.56</td><td class="text-right">$164.56</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td>Upper Arlington, OH</td><td class="text-right">1</td><td class="text-right">$148.78</td><td class="text-right">$148.78</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="boost-bid-location"></td><td>Grove City, OH</td><td class="text-right">1</td><td class="text-right">$153.45</td><td class="text-right">$153.45</td><td><span class="badge badge-green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td></tr>
       </tbody></table>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">Locations to EXCLUDE (distant, 0 conversions)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Location</th><th class="text-right">Clicks</th><th class="text-right">Impr.</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th>Distance</th><th>Action</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Marion County</strong></td><td class="text-right">3</td><td class="text-right">57</td><td class="text-right">$79.48</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Knox County</strong> (Mt Vernon)</td><td class="text-right">2</td><td class="text-right">56</td><td class="text-right">$10.49</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Crawford County</strong> (Bucyrus)</td><td class="text-right">1</td><td class="text-right">27</td><td class="text-right">$3.05</td><td class="text-right">0</td><td>~70 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Hardin County</strong> (Kenton)</td><td class="text-right">0</td><td class="text-right">16</td><td class="text-right">$0.00</td><td class="text-right">0</td><td>~70 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Wyandot County</strong> (Upper Sandusky)</td><td class="text-right">1</td><td class="text-right">16</td><td class="text-right">$1.18</td><td class="text-right">0</td><td>~75 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Logan County</strong> (Bellefontaine)</td><td class="text-right">2</td><td class="text-right">20</td><td class="text-right">$7.40</td><td class="text-right">0</td><td>~60 mi</td><td><span class="priority-high">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Morrow County</strong></td><td class="text-right">0</td><td class="text-right">12</td><td class="text-right">$0.00</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="exclude-location"></td><td><strong>Cardington</strong></td><td class="text-right">1</td><td class="text-right">7</td><td class="text-right">$3.81</td><td class="text-right">0</td><td>~50 mi</td><td><span class="priority-medium">EXCLUDE</span></td></tr>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-red);">&#11015; <span class="lang-en">Reduce Bid -30% (high spend, 0 conv)</span><span class="lang-pt">Reduzir Lance -30% (alto gasto, 0 conv)</span></h4>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th><th class="text-right">Clicks</th><th class="text-right"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="text-right">Conv.</th><th><span class="lang-en">Action</span><span class="lang-pt">Ação</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Galena, OH</td><td class="text-right">10</td><td class="text-right">$200.21</td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">-30% bid</span><span class="lang-pt">-30% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Clark County, OH</td><td class="text-right">19</td><td class="text-right">$147.58</td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">-30% bid</span><span class="lang-pt">-30% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Fairfield County, OH</td><td class="text-right">17</td><td class="text-right">$161.93</td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">-30% bid</span><span class="lang-pt">-30% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Plain City, OH</td><td class="text-right">13</td><td class="text-right">$149.21</td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">-30% bid</span><span class="lang-pt">-30% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Groveport, OH</td><td class="text-right">8</td><td class="text-right">$148.33</td><td class="text-right">0</td><td><span class="badge badge-red"><span class="lang-en">-30% bid</span><span class="lang-pt">-30% lance</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Pickaway County, OH</td><td class="text-right">14</td><td class="text-right">$124.21</td><td class="text-right">0</td><td><span class="badge badge-yellow"><span class="lang-en">Monitor</span><span class="lang-pt">Monitorar</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Sunbury, OH</td><td class="text-right">12</td><td class="text-right">$106.33</td><td class="text-right">0</td><td><span class="badge badge-yellow"><span class="lang-en">Monitor</span><span class="lang-pt">Monitorar</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Reynoldsburg, OH</td><td class="text-right">9</td><td class="text-right">$107.88</td><td class="text-right">0</td><td><span class="badge badge-yellow"><span class="lang-en">Monitor</span><span class="lang-pt">Monitorar</span></span></td></tr>
       </tbody></table>
-
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-yellow-dark);">Locations to MONITOR (some spend, 0 conv but closer)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Location</th><th class="text-right">Clicks</th><th class="text-right">Cost</th><th class="text-right">Conv.</th><th>Distance</th><th>Action</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Pickaway County</td><td class="text-right">5</td><td class="text-right">$43.98</td><td class="text-right">0</td><td>~35 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Licking County (Newark)</td><td class="text-right">5</td><td class="text-right">$41.36</td><td class="text-right">0</td><td>~35 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="reduce-bid-location"></td><td>Clark County (Springfield)</td><td class="text-right">5</td><td class="text-right">$19.93</td><td class="text-right">0</td><td>~45 mi</td><td><span class="badge badge-yellow">Reduce bid -30%</span></td></tr>
-      </tbody></table>
-
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-green);">Columbus Metro &mdash; Core Service Area (keep all)</h4>
-      <p style="font-size:13px;color:var(--text2);line-height:1.8;">Columbus, Dublin, Hilliard, Westerville, Gahanna, Reynoldsburg, Grove City, Upper Arlington, Worthington, Pickerington, New Albany, Powell, Groveport, Lewis Center, Sunbury, Pataskala, Galena, Plain City, Etna, Blacklick, Galloway, West Jefferson, Johnstown, Franklin County, Fairfield County, Madison County, Buckeye Lake, Lithopolis</p>
     </div>
   </div>
 
   <!-- TAB: BUDGET -->
   <div id="tab-budget" class="tab-content">
     <div class="card-body">
-      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-blue);">Budget Reallocation ($120/day total)</h4>
-      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th>Campaign</th><th class="text-right">Current</th><th class="text-right">Recommended</th><th>Reason</th><th>Impact</th></tr></thead><tbody>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Pool Installation</strong></td><td class="text-right">$45/day</td><td class="text-right"><strong>$60/day</strong></td><td>Best CPA ($82.56), limited by budget, 12 conv &mdash; deserves more</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Fiberglass Pools</strong></td><td class="text-right">$35/day</td><td class="text-right"><strong>$35/day</strong></td><td>Best CTR (9.02%), hold stable while negatives improve CPA</td><td><span class="priority-low">HOLD</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Brand Protection</strong></td><td class="text-right">$12/day</td><td class="text-right"><strong>$12/day</strong></td><td>Efficient ($31.63 CPA), keep protecting brand</td><td><span class="priority-low">HOLD</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-red)"><strong>High-Ticket Pools</strong></td><td class="text-right">$15/day</td><td class="text-right"><strong>PAUSE</strong></td><td>$496 CPA for 1 conversion. Reallocate $15 to Pool Installation</td><td><span class="priority-high">HIGH</span></td></tr>
-        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-red)"><strong>Broad Discovery</strong></td><td class="text-right">$12/day</td><td class="text-right"><strong>PAUSE</strong></td><td>High waste from irrelevant terms, only 2 conv at $135 CPA</td><td><span class="priority-high">HIGH</span></td></tr>
+      <h4 style="font-family:var(--font);margin-bottom:12px;color:var(--g-blue);"><span class="lang-en">Budget Reallocation (same total ~$120/day)</span><span class="lang-pt">Realocação de Budget (mesmo total ~$120/dia)</span></h4>
+      <p style="margin-bottom:16px;font-size:13px;color:var(--text2)">
+        <span class="lang-en"><strong>Strategy:</strong> Move budget from the campaign with worst CPA (Pool Installation $345) to the two with the best CPA (High-Ticket $155, Fiberglass $179). Same daily spend, ~2x conversion efficiency.</span>
+        <span class="lang-pt"><strong>Estratégia:</strong> Mover budget da campanha com pior CPA (Pool Installation $345) para as duas com melhor CPA (High-Ticket $155, Fiberglass $179). Mesmo gasto diário, ~2x mais eficiência em conversões.</span>
+      </p>
+      <table class="action-table"><thead><tr><th style="width:40px">&#10003;</th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="text-right"><span class="lang-en">Current</span><span class="lang-pt">Atual</span></th><th class="text-right"><span class="lang-en">Recommended</span><span class="lang-pt">Recomendado</span></th><th><span class="lang-en">Reason</span><span class="lang-pt">Motivo</span></th><th><span class="lang-en">Priority</span><span class="lang-pt">Prioridade</span></th></tr></thead><tbody>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-red)"><strong>Pool Installation</strong></td><td class="text-right">$60/day</td><td class="text-right"><strong>$35/day</strong> &darr;</td><td><span class="lang-en">Worst CPA ($345). Cut after pausing "professional pool contractors"</span><span class="lang-pt">Pior CPA ($345). Cortar depois de pausar "professional pool contractors"</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-green-dark)"><strong>Fiberglass Pools</strong></td><td class="text-right">$35/day</td><td class="text-right"><strong>$50/day</strong> &uarr;</td><td><span class="lang-en">CPA $179, CTR 6.62%. Scale up.</span><span class="lang-pt">CPA $179, CTR 6,62%. Escalar.</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td style="color:var(--g-green-dark)"><strong>High-Ticket Pools</strong></td><td class="text-right">~$15/day</td><td class="text-right"><strong>$25/day</strong> &uarr;</td><td><span class="lang-en">Best CPA ($155), best CTR (14.85%). Scale aggressively.</span><span class="lang-pt">Melhor CPA ($155), melhor CTR (14,85%). Escalar agressivamente.</span></td><td><span class="priority-high"><span class="lang-en">HIGH</span><span class="lang-pt">ALTA</span></span></td></tr>
+        <tr><td class="text-center"><input type="checkbox" class="approval-check" data-action="budget"></td><td><strong>Brand Protection</strong></td><td class="text-right">~$10/day</td><td class="text-right"><strong>$10/day</strong></td><td><span class="lang-en">Hold (defensive)</span><span class="lang-pt">Manter (defensiva)</span></td><td><span class="priority-low">HOLD</span></td></tr>
       </tbody></table>
       <div style="margin-top:16px;padding:16px;background:var(--g-blue-light);border-radius:8px;">
-        <p style="font-size:14px;font-family:var(--font);margin-bottom:8px;"><strong>Budget Summary After Changes:</strong></p>
-        <table style="width:auto;">
-          <tr><td style="padding:4px 16px 4px 0;">Pool Installation</td><td class="text-right" style="padding:4px 0;"><strong>$60/day</strong></td></tr>
-          <tr><td style="padding:4px 16px 4px 0;">Fiberglass Pools</td><td class="text-right" style="padding:4px 0;">$35/day</td></tr>
-          <tr><td style="padding:4px 16px 4px 0;">Brand Protection</td><td class="text-right" style="padding:4px 0;">$12/day</td></tr>
-          <tr style="font-weight:600;border-top:2px solid var(--border);"><td style="padding:8px 16px 4px 0;">TOTAL</td><td class="text-right" style="padding:8px 0 4px;">$107/day ($13 buffer)</td></tr>
-        </table>
-        <p style="font-size:12px;color:var(--text2);margin-top:8px;">The $13/day buffer allows Pool Installation to occasionally exceed $60 on high-conversion days. Or add to Fiberglass if results improve.</p>
+        <p style="font-size:14px;font-family:var(--font);margin-bottom:8px;"><strong><span class="lang-en">Total After Changes: ~$120/day (unchanged)</span><span class="lang-pt">Total Após Mudanças: ~$120/dia (sem mudança)</span></strong></p>
+        <p style="font-size:12px;color:var(--text2);"><span class="lang-en">The reallocation shifts $25/day from Pool Installation (CPA $345) to Fiberglass + High-Ticket (avg CPA $167). Expected impact: if those campaigns hold their current CPA on the extra spend, that's ~+3 conversions/week at the same total cost.</span><span class="lang-pt">A realocação move $25/dia de Pool Installation (CPA $345) para Fiberglass + High-Ticket (CPA médio $167). Impacto esperado: se essas campanhas mantiverem o CPA atual no gasto extra, são ~+3 conversões/semana com o mesmo custo total.</span></p>
       </div>
 
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">Landing Page Insights</h4>
-      <table><thead><tr><th>Landing Page</th><th class="text-right">Clicks</th><th class="text-right">CTR</th><th class="text-right">Spend</th><th>Notes</th></tr></thead><tbody>
-        <tr><td>/maxima-pools-advantage/</td><td class="text-right">312</td><td class="text-right">3.74%</td><td class="text-right">$1,595</td><td><span class="badge badge-green">Primary LP &mdash; working well</span></td></tr>
-        <tr><td>/ (homepage)</td><td class="text-right">53</td><td class="text-right">2.90%</td><td class="text-right">$403</td><td><span class="badge badge-yellow">Consider dedicated LP</span></td></tr>
-        <tr><td>/fiberglass-pool-gallery/</td><td class="text-right">24</td><td class="text-right">0.74%</td><td class="text-right">$123</td><td><span class="badge badge-red">Low CTR sitelink</span></td></tr>
-      </tbody></table>
-
-      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);">Call Performance</h4>
-      <table><thead><tr><th>Campaign</th><th class="text-right">Calls</th><th class="text-right">Cost</th><th class="text-right">Call Conv.</th><th class="text-right">Call CPA</th></tr></thead><tbody>
-        <tr class="highlight-row"><td>Pool Installation</td><td class="text-right">5</td><td class="text-right">$134.73</td><td class="text-right">4</td><td class="text-right"><strong>$33.68</strong></td></tr>
-        <tr><td>High-Ticket Pools</td><td class="text-right">3</td><td class="text-right">$75.93</td><td class="text-right">1</td><td class="text-right">$75.93</td></tr>
-        <tr><td>Broad Discovery</td><td class="text-right">3</td><td class="text-right">$42.06</td><td class="text-right">0</td><td class="text-right">&mdash;</td></tr>
-      </tbody></table>
+      <h4 style="font-family:var(--font);margin:24px 0 12px;color:var(--g-blue);"><span class="lang-en">Landing Page Investigation Needed</span><span class="lang-pt">Investigação de Landing Page Necessária</span></h4>
+      <div class="callout callout-yellow">
+        <span class="lang-en">Two keywords have surprisingly high CPA despite strong geo or technical relevance: <strong>"pool contractors columbus ohio"</strong> ($195 CPA) and <strong>"residential pool installation"</strong> ($174 CPA). Worth manually checking the landing page these are pointing to &mdash; could be a Quality Score / page experience issue.</span>
+        <span class="lang-pt">Duas keywords têm CPA surpreendentemente alto apesar de forte relevância geográfica ou técnica: <strong>"pool contractors columbus ohio"</strong> (CPA $195) e <strong>"residential pool installation"</strong> (CPA $174). Vale checar manualmente a landing page para a qual estão apontando &mdash; pode ser problema de Quality Score / experiência da página.</span>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- EXECUTIVE SUMMARY -->
 <div class="card" style="margin-top:24px;">
-  <div class="card-header"><h3>&#128202; Executive Summary</h3></div>
+  <div class="card-header"><h3>&#128202; <span class="lang-en">Executive Summary</span><span class="lang-pt">Resumo Executivo</span></h3></div>
   <div class="card-body">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
       <div>
-        <h4 style="color:var(--g-green);font-family:var(--font);margin-bottom:8px;">Strengths</h4>
+        <h4 style="color:var(--g-green);font-family:var(--font);margin-bottom:8px;"><span class="lang-en">Wins</span><span class="lang-pt">Vitórias</span></h4>
         <ul style="font-size:13px;line-height:1.8;padding-left:20px;">
-          <li><strong>Pool Installation</strong> is the star: $82.56 CPA, 12 conv (57% of total)</li>
-          <li><strong>Pool Contractors Group</strong> best CPA at $63.60</li>
-          <li><strong>Fiberglass Pools</strong> 9.02% CTR, highest in account</li>
-          <li><strong>"pool contractors columbus ohio"</strong> $35.73 CPA with 3 conv</li>
-          <li>Phone calls from Pool Installation: $33.68 CPA</li>
-          <li>Converting search terms avg $18.24 CPA</li>
+          <li><span class="lang-en"><strong>Impression Share jumped to 33.48%</strong> &mdash; Maxima is now #1 in the Columbus fiberglass niche</span><span class="lang-pt"><strong>Impression Share saltou para 33,48%</strong> &mdash; Maxima é agora #1 no nicho fiberglass de Columbus</span></li>
+          <li><span class="lang-en"><strong>Volume +24%</strong>: 21 → 26 conversions</span><span class="lang-pt"><strong>Volume +24%</strong>: 21 → 26 conversões</span></li>
+          <li><span class="lang-en"><strong>CTR improved</strong> from 4.5% → 5.32%</span><span class="lang-pt"><strong>CTR melhorou</strong> de 4,5% → 5,32%</span></li>
+          <li><span class="lang-en"><strong>High-Ticket Pools</strong> is the new star: CPA $155, CTR 14.85%</span><span class="lang-pt"><strong>High-Ticket Pools</strong> é a nova estrela: CPA $155, CTR 14,85%</span></li>
+          <li><span class="lang-en"><strong>2 weeks beat baseline</strong>: Apr 13-19 ($141 CPA), May 4-10 ($135 CPA)</span><span class="lang-pt"><strong>2 semanas bateram o baseline</strong>: Apr 13-19 (CPA $141), May 4-10 (CPA $135)</span></li>
+          <li><span class="lang-en"><strong>Brand Protection</strong> holding at 32.5% CTR (defense working)</span><span class="lang-pt"><strong>Brand Protection</strong> em 32,5% CTR (defesa funcionando)</span></li>
         </ul>
       </div>
       <div>
-        <h4 style="color:var(--g-red);font-family:var(--font);margin-bottom:8px;">Weaknesses &amp; Opportunities</h4>
+        <h4 style="color:var(--g-red);font-family:var(--font);margin-bottom:8px;"><span class="lang-en">Issues to Fix</span><span class="lang-pt">Problemas a Corrigir</span></h4>
         <ul style="font-size:13px;line-height:1.8;padding-left:20px;">
-          <li><strong>High-Ticket Pools:</strong> $496 CPA, needs restructure</li>
-          <li><strong>~$262 wasted</strong> on competitor brand searches</li>
-          <li><strong>79.6%</strong> of click spend on non-converting terms</li>
-          <li><strong>14.16% impression share</strong> &mdash; huge room to grow</li>
-          <li><strong>10 converting terms</strong> not yet added as keywords</li>
-          <li>Out-of-geography clicks wasting budget</li>
+          <li><span class="lang-en"><strong>CPA +70%</strong>: $130.87 → $223.04</span><span class="lang-pt"><strong>CPA +70%</strong>: $130,87 → $223,04</span></li>
+          <li><span class="lang-en"><strong>One keyword burned $721</strong> with 0 conv ("professional pool contractors")</span><span class="lang-pt"><strong>Uma keyword queimou $721</strong> com 0 conv ("professional pool contractors")</span></li>
+          <li><span class="lang-en"><strong>Pool Installation = 54% of spend</strong> with worst CPA ($345)</span><span class="lang-pt"><strong>Pool Installation = 54% do gasto</strong> com pior CPA ($345)</span></li>
+          <li><span class="lang-en"><strong>Conv. rate dropped</strong>: 7.2% → 4.41% (-39%)</span><span class="lang-pt"><strong>Taxa de conversão caiu</strong>: 7,2% → 4,41% (-39%)</span></li>
+          <li><span class="lang-en"><strong>$315 wasted on competitor brand searches</strong> with only 1 conversion</span><span class="lang-pt"><strong>$315 queimados em pesquisas de marcas concorrentes</strong> com apenas 1 conversão</span></li>
+          <li><span class="lang-en"><strong>8 locations</strong> spent >$100 with 0 conversions</span><span class="lang-pt"><strong>8 localizações</strong> gastaram >$100 com 0 conversões</span></li>
         </ul>
       </div>
     </div>
@@ -585,20 +647,34 @@ tr:hover { background: var(--hover); }
 
 <!-- NEXT STEPS -->
 <div class="card" style="border-left:4px solid var(--g-blue);">
-  <div class="card-header"><h3>&#128640; Next Steps (applying now, review Apr 3)</h3></div>
+  <div class="card-header"><h3>&#128640; <span class="lang-en">Next Steps (apply now, review ~Jun 27)</span><span class="lang-pt">Próximos Passos (aplicar agora, rever ~27 Jun)</span></h3></div>
   <div class="card-body">
-    <ol style="font-size:14px;line-height:2.2;padding-left:20px;">
-      <li><strong style="color:var(--g-red);">Add competitor negative keywords</strong> &mdash; Save ~$262/month</li>
-      <li><strong style="color:var(--g-red);">Add service/repair/spa negatives</strong> &mdash; Save ~$65/month</li>
-      <li><strong style="color:var(--g-green);">Add 9 converting search terms as keywords</strong></li>
-      <li><strong style="color:var(--g-blue);">Increase Pool Installation budget: $45 &rarr; $65/day</strong></li>
-      <li><strong style="color:var(--g-yellow-dark);">Reduce High-Ticket Pools: $15 &rarr; $10/day</strong></li>
-      <li><strong>Pause underperformers</strong> (custom pool builder, pool builder services)</li>
-      <li><strong>Test medium-priority keywords</strong> (fiberglass pools ohio, pool installers near me)</li>
-      <li><strong>Improve ad strength</strong> &mdash; most ads rated "Average"</li>
-      <li><strong>Test desktop bid adjustment</strong> (+15% on Pool Installation)</li>
+    <h4 style="color:var(--g-red);font-family:var(--font);margin-bottom:8px;">&#128308; <span class="lang-en">This week (highest impact)</span><span class="lang-pt">Esta semana (maior impacto)</span></h4>
+    <ol style="font-size:14px;line-height:2.2;padding-left:20px;margin-bottom:16px;">
+      <li><span class="lang-en"><strong>Pause "professional pool contractors"</strong> (Phrase) &mdash; saves ~$120/week</span><span class="lang-pt"><strong>Pausar "professional pool contractors"</strong> (Phrase) &mdash; economiza ~$120/semana</span></li>
+      <li><span class="lang-en"><strong>Reduce bid -30%</strong> on 6 keywords with poor CPA (see Keyword Actions tab)</span><span class="lang-pt"><strong>Reduzir lance -30%</strong> em 6 keywords com CPA ruim (ver aba Ações de Keywords)</span></li>
+      <li><span class="lang-en"><strong>Add 12 DIY/Cost negatives</strong> &mdash; saves ~$45/month</span><span class="lang-pt"><strong>Adicionar 12 negativas DIY/Custo</strong> &mdash; economiza ~$45/mês</span></li>
     </ol>
-    <p style="margin-top:16px;padding:12px;background:var(--g-blue-light);border-radius:8px;font-size:13px;"><strong>Next review:</strong> Apr 3, 2026 &mdash; We will analyze if these changes improved CPA and conversion volume.</p>
+
+    <h4 style="color:var(--g-yellow-dark);font-family:var(--font);margin-bottom:8px;">&#128993; <span class="lang-en">Next 2 weeks</span><span class="lang-pt">Próximas 2 semanas</span></h4>
+    <ol style="font-size:14px;line-height:2.2;padding-left:20px;margin-bottom:16px;" start="4">
+      <li><span class="lang-en"><strong>Reallocate budget</strong>: Pool Installation $60 &rarr; $35, Fiberglass +$15, High-Ticket +$10</span><span class="lang-pt"><strong>Realocar budget</strong>: Pool Installation $60 &rarr; $35, Fiberglass +$15, High-Ticket +$10</span></li>
+      <li><span class="lang-en"><strong>Add 15 competitor brand negatives</strong> (Exact match only)</span><span class="lang-pt"><strong>Adicionar 15 negativas de marca concorrente</strong> (apenas Exact match)</span></li>
+      <li><span class="lang-en"><strong>Add 4 converting search terms as keywords</strong> (pool companies in columbus ohio, pool installers ohio, in ground pool fiberglass, quality pools)</span><span class="lang-pt"><strong>Adicionar 4 search terms convertidos como keywords</strong> (pool companies in columbus ohio, pool installers ohio, in ground pool fiberglass, quality pools)</span></li>
+    </ol>
+
+    <h4 style="color:var(--g-green-dark);font-family:var(--font);margin-bottom:8px;">&#128994; <span class="lang-en">Within the month</span><span class="lang-pt">No mês</span></h4>
+    <ol style="font-size:14px;line-height:2.2;padding-left:20px;" start="7">
+      <li><span class="lang-en"><strong>Add 11 new keywords</strong> across High-Ticket, Fiberglass, and Pool Installation</span><span class="lang-pt"><strong>Adicionar 11 keywords novas</strong> em High-Ticket, Fiberglass e Pool Installation</span></li>
+      <li><span class="lang-en"><strong>Geo bid adjustments</strong>: +15% Columbus/Richland/Powell; -30% on 5 zero-conv locations</span><span class="lang-pt"><strong>Ajustes geográficos</strong>: +15% Columbus/Richland/Powell; -30% em 5 locais sem conversão</span></li>
+      <li><span class="lang-en"><strong>Investigate landing pages</strong> for "pool contractors columbus ohio" and "residential pool installation"</span><span class="lang-pt"><strong>Investigar landing pages</strong> de "pool contractors columbus ohio" e "residential pool installation"</span></li>
+    </ol>
+
+    <div class="callout callout-blue" style="margin-top:16px;">
+      <strong><span class="lang-en">Targets for Next Cycle (~Jun 27)</span><span class="lang-pt">Metas para o Próximo Ciclo (~27 Jun)</span></strong><br>
+      <span class="lang-en">CPA &lt; $170 &middot; &ge;5 conv/week &middot; maintain IS &ge;30% &middot; Pool Installation &le;40% of budget</span>
+      <span class="lang-pt">CPA &lt; $170 &middot; &ge;5 conv/semana &middot; manter IS &ge;30% &middot; Pool Installation &le;40% do budget</span>
+    </div>
   </div>
 </div>
 
@@ -606,13 +682,19 @@ tr:hover { background: var(--hover); }
 
 <!-- FLOATING APPROVAL BAR -->
 <div class="approval-bar">
-  <div class="counter"><span id="approved-count">0</span> / <span id="total-actions">0</span> actions approved</div>
-  <button class="btn-select-all" onclick="selectAll()">Select All</button>
-  <button class="btn-deselect" onclick="deselectAll()">Deselect All</button>
-  <button class="btn-export" onclick="exportApproved()">&#128230; Export Approved Actions</button>
+  <div class="counter"><span id="approved-count">0</span> / <span id="total-actions">0</span> <span class="lang-en">actions approved</span><span class="lang-pt">ações aprovadas</span></div>
+  <button class="btn-select-all" onclick="selectAll()"><span class="lang-en">Select All</span><span class="lang-pt">Selecionar Todas</span></button>
+  <button class="btn-deselect" onclick="deselectAll()"><span class="lang-en">Deselect All</span><span class="lang-pt">Desmarcar Todas</span></button>
+  <button class="btn-export" onclick="exportApproved()">&#128230; <span class="lang-en">Export Approved Actions</span><span class="lang-pt">Exportar Ações Aprovadas</span></button>
 </div>
 
 <script>
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  localStorage.setItem('maxima-lang', lang);
+}
 function showTab(btn, tabId) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -630,28 +712,35 @@ function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.close
 function exportApproved() {
   const approved = [];
   document.querySelectorAll('.approval-check:checked').forEach(cb => {
-    const cells = Array.from(cb.closest('tr').querySelectorAll('td')).slice(1).map(c => c.textContent.trim());
+    const cells = Array.from(cb.closest('tr').querySelectorAll('td')).slice(1).map(c => c.textContent.trim().replace(/\s+/g, ' '));
     approved.push({ action: cb.dataset.action, values: cells });
   });
   if (!approved.length) { alert('No actions approved. Check items first.'); return; }
-  let t = 'MAXIMA POOLS - APPROVED ACTIONS\nDate: ' + new Date().toLocaleDateString() + '\n' + '='.repeat(50) + '\n\n';
-  const labels = { negative: 'NEGATIVE KEYWORDS', 'add-keyword': 'NEW KEYWORDS', 'pause-keyword': 'KEYWORDS TO PAUSE', 'remove-keyword': 'KEYWORDS TO REMOVE', budget: 'BUDGET CHANGES', 'waste-negative': 'WASTED SEARCH TERMS - ADD AS NEGATIVES', 'exclude-location': 'LOCATIONS TO EXCLUDE', 'reduce-bid-location': 'LOCATIONS TO REDUCE BID' };
+  let t = 'MAXIMA POOLS - APPROVED ACTIONS (Phase 3 Review)\nDate: ' + new Date().toLocaleDateString() + '\nReport: May 13, 2026 (covers Mar 28 - May 13, 47 days)\n' + '='.repeat(60) + '\n\n';
+  const labels = {
+    negative: 'NEGATIVE KEYWORDS',
+    'add-keyword': 'NEW KEYWORDS TO ADD',
+    'pause-keyword': 'KEYWORDS TO PAUSE',
+    'reduce-bid': 'KEYWORDS TO REDUCE BID -30%',
+    budget: 'BUDGET CHANGES',
+    'exclude-location': 'LOCATIONS TO EXCLUDE',
+    'reduce-bid-location': 'LOCATIONS TO REDUCE BID -30%',
+    'boost-bid-location': 'LOCATIONS TO BOOST BID +15%'
+  };
   const groups = {};
   approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i.values); });
-  Object.keys(groups).forEach(a => { t += '\n' + (labels[a]||a) + '\n' + '-'.repeat(40) + '\n'; groups[a].forEach(v => t += '  [x] ' + v.join(' | ') + '\n'); });
-  t += '\n' + '='.repeat(50) + '\nTotal: ' + approved.length + ' actions\n';
-  const blob = new Blob([t], {type:'text/plain'});
+  Object.keys(groups).forEach(a => { t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n'; groups[a].forEach(v => t += '  [x] ' + v.join(' | ') + '\n'); });
+  t += '\n' + '='.repeat(60) + '\nTotal: ' + approved.length + ' actions approved\n';
+  const blob = new Blob([t], { type: 'text/plain' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'maxima_approved_' + new Date().toISOString().slice(0,10) + '.txt'; a.click();
+  a.download = 'maxima_approved_phase3_' + new Date().toISOString().slice(0, 10) + '.txt'; a.click();
 }
-const SK = 'maxima-approvals-phase2';
-function saveState() { const s = {}; checkboxes.forEach((c,i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
-function loadState() {
-  // Approved actions from client review (Mar 31, 2026) — 62 actions total
-  const approved = [2,3,4,5,6,7,8,9,10,12,16,17,18,20,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,45,46,47,48,49,50,51,52,56,59,65,67,68,69,72,77,78,80,82,84,85,86,88,89,101,102,103];
-  approved.forEach(i => { if(checkboxes[i]){checkboxes[i].checked=true;checkboxes[i].closest('tr').classList.add('approved');} });
-  updateCount();
-}
+const SK = 'maxima-approvals-phase3';
+function saveState() { const s = {}; checkboxes.forEach((c, i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
+function loadState() { const s = localStorage.getItem(SK); if (s) { const d = JSON.parse(s); checkboxes.forEach((c, i) => { if (d[i]) { c.checked = true; c.closest('tr').classList.add('approved'); } }); updateCount(); } }
+// Init language
+const savedLang = localStorage.getItem('maxima-lang') || 'en';
+setLang(savedLang);
 loadState();
 </script>
 </body>
