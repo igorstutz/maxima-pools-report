@@ -416,11 +416,15 @@ h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin
   <div class="section">
     <div class="section-head">
       <div class="ico">📍</div>
-      <div><h3><span class="lang-en">Locations — May → June</span><span class="lang-pt">Localizações — Maio → Junho</span></h3>
-      <div class="sub"><span class="lang-en">100% of spend stayed inside Ohio — no geographic waste</span><span class="lang-pt">100% do investimento ficou dentro de Ohio — sem desperdício geográfico</span></div></div>
+      <div><h3><span class="lang-en">Locations — May → June (vs current bid adjustments)</span><span class="lang-pt">Localizações — Maio → Junho (vs ajustes de lance atuais)</span></h3>
+      <div class="sub"><span class="lang-en">100% of spend stayed inside Ohio. "Current bid" reflects the adjustments already live (per campaign).</span><span class="lang-pt">100% do investimento ficou dentro de Ohio. "Bid atual" reflete os ajustes já ativos (por campanha).</span></div></div>
     </div>
     <div class="section-body" style="overflow-x:auto;">
-      <h4 class="subhead"><span class="lang-en">📈 Scaling up (raise bids)</span><span class="lang-pt">📈 Em alta (aumentar lance)</span></h4>
+      <div class="callout yellow">
+        <span class="lang-en"><strong>Two mismatches to fix first:</strong> (1) <strong>Fairfield County</strong> is one of our best converters (4 leads, $38 CPA) but is currently set to <strong>−15%</strong> on Pool Installation &amp; Fiberglass — it's being suppressed; reverse it to positive. (2) <strong>Galena</strong> is at <strong>+15%</strong> on Pool Installation but produced <strong>0 primary leads</strong> ($98 spent) — remove that boost. Bid adjustments are set per campaign + location, so the "Current bid" column notes which campaign each applies to.</span>
+        <span class="lang-pt"><strong>Dois descompassos para corrigir primeiro:</strong> (1) <strong>Fairfield County</strong> é um dos nossos melhores conversores (4 leads, CPA $38) mas está em <strong>−15%</strong> em Pool Installation &amp; Fiberglass — está sendo suprimido; reverter para positivo. (2) <strong>Galena</strong> está em <strong>+15%</strong> em Pool Installation mas gerou <strong>0 lead primário</strong> ($98 gastos) — remover esse boost. Os ajustes são por campanha + localização, então a coluna "Bid atual" indica a qual campanha cada um se aplica.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">📈 Good converters — raise or keep</span><span class="lang-pt">📈 Bons conversores — aumentar ou manter</span></h4>
       <table>
         <thead>
           <tr>
@@ -429,18 +433,21 @@ h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin
             <th class="num"><span class="lang-en">Leads May→Jun</span><span class="lang-pt">Leads Mai→Jun</span></th>
             <th class="num"><span class="lang-en">Cost Jun</span><span class="lang-pt">Custo Jun</span></th>
             <th class="num">CPA Jun</th>
+            <th><span class="lang-en">Current bid</span><span class="lang-pt">Bid atual</span></th>
             <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
           </tr>
         </thead>
         <tbody>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Delaware County</strong></td><td class="num">4 → <strong>10,7</strong></td><td class="num">$412</td><td class="num"><strong>$39</strong></td><td><span class="tag green">+20%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Fairfield County</td><td class="num">1 → 4,0</td><td class="num">$150</td><td class="num">$38</td><td><span class="tag green">+15%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Lewis Center</td><td class="num">0 → 3,0</td><td class="num">$129</td><td class="num">$43</td><td><span class="tag green">+15%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Marion County</td><td class="num">0 → 4,0</td><td class="num">$308</td><td class="num">$77</td><td><span class="tag green">+15%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Grove City</td><td class="num">0 → 2,0</td><td class="num">$71</td><td class="num">$35</td><td><span class="tag green">+15%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Delaware County</strong></td><td class="num">4 → <strong>10,7</strong></td><td class="num">$412</td><td class="num"><strong>$39</strong></td><td><span class="tag green">PI +20% · HT +10%</span></td><td><span class="tag blue"><span class="lang-en">Keep; add +10–15% on Fiberglass (now —)</span><span class="lang-pt">Manter; add +10–15% na Fiberglass (hoje —)</span></span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Fairfield County</strong></td><td class="num">1 → 4,0</td><td class="num">$150</td><td class="num"><strong>$38</strong></td><td><span class="tag red">PI −15% · FG −15%</span></td><td><span class="tag green"><span class="lang-en">Reverse → +10–15%</span><span class="lang-pt">Reverter → +10–15%</span></span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Lewis Center</td><td class="num">0 → 3,0</td><td class="num">$129</td><td class="num">$43</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Marion County</td><td class="num">0 → 4,0</td><td class="num">$308</td><td class="num">$77</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Grove City</td><td class="num">0 → 2,0</td><td class="num">$71</td><td class="num">$35</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
+          <tr><td></td><td>Richland County</td><td class="num">2 → 2,0</td><td class="num">$144</td><td class="num">$72</td><td><span class="tag green">PI +15% · FG +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
+          <tr><td></td><td>Powell</td><td class="num">0 → 1,0</td><td class="num">$22</td><td class="num">$22</td><td><span class="tag green">PI +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
         </tbody>
       </table>
-      <h4 class="subhead"><span class="lang-en">📉 Weak (negative bid adjustment)</span><span class="lang-pt">📉 Fracas (ajuste de lance negativo)</span></h4>
+      <h4 class="subhead"><span class="lang-en">📉 Weak — reduce or remove boost</span><span class="lang-pt">📉 Fracas — reduzir ou remover boost</span></h4>
       <table>
         <thead>
           <tr>
@@ -448,20 +455,21 @@ h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin
             <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
             <th class="num"><span class="lang-en">Cost Jun</span><span class="lang-pt">Custo Jun</span></th>
             <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th><span class="lang-en">Current bid</span><span class="lang-pt">Bid atual</span></th>
             <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
           </tr>
         </thead>
         <tbody>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Licking County</td><td class="num">$273</td><td class="num">1,0</td><td><span class="tag yellow">−10%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Crawford County</td><td class="num">$156</td><td class="num">1,0</td><td><span class="tag yellow">−10%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Galena</td><td class="num">$98</td><td class="num">0,0</td><td><span class="tag yellow">−15%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Marysville</td><td class="num">$89</td><td class="num">0,0</td><td><span class="tag yellow">−15%</span></td></tr>
-          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Morrow County</td><td class="num">$81</td><td class="num">0,0</td><td><span class="tag yellow">−15%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Galena</strong></td><td class="num">$98</td><td class="num">0,0</td><td><span class="tag red">PI +15%</span></td><td><span class="tag yellow"><span class="lang-en">Remove boost → 0% / −10%</span><span class="lang-pt">Remover boost → 0% / −10%</span></span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Licking County</td><td class="num">$273</td><td class="num">1,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Crawford County</td><td class="num">$156</td><td class="num">1,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Marysville</td><td class="num">$89</td><td class="num">0,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10–15%</span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Morrow County</td><td class="num">$81</td><td class="num">0,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10–15%</span></td></tr>
         </tbody>
       </table>
       <div class="callout green" style="margin-top:14px;">
-        <span class="lang-en"><strong>Delaware County is the star</strong> — 10.7 leads at a $39 CPA, the most efficient geo by far. Galena, Marysville and Morrow County spent $268 combined with 0 primary leads — apply a gentle −10% to −15% bid adjustment (not a hard cut) and let the budget lean toward Delaware / Fairfield / Lewis Center.</span>
-        <span class="lang-pt"><strong>Delaware County é o destaque</strong> — 10,7 leads a um CPA de $39, de longe a geografia mais eficiente. Galena, Marysville e Morrow County gastaram $268 juntas com 0 lead primário — aplicar um ajuste suave de −10% a −15% (não um corte agressivo) e deixar o orçamento pender para Delaware / Fairfield / Lewis Center.</span>
+        <span class="lang-en"><strong>Delaware County is the star</strong> — 10.7 leads at a $39 CPA, already boosted (+20% PI). The priority fixes are reversing the −15% on Fairfield (a $38-CPA converter) and removing the +15% on Galena (0 leads). Already-applied reductions on <strong>Pickaway County (−20%)</strong> and <strong>Clark County Fiberglass (−25%)</strong> look appropriate — no change needed there.</span>
+        <span class="lang-pt"><strong>Delaware County é o destaque</strong> — 10,7 leads a um CPA de $39, já impulsionado (+20% PI). As correções prioritárias são reverter o −15% de Fairfield (um conversor de CPA $38) e remover o +15% de Galena (0 leads). As reduções já aplicadas em <strong>Pickaway County (−20%)</strong> e <strong>Clark County Fiberglass (−25%)</strong> parecem adequadas — sem necessidade de mudança ali.</span>
       </div>
     </div>
   </div>
@@ -488,8 +496,8 @@ h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin
           <p><span class="lang-en">Lock in proven intent: [pool contractors near me] (CPA $20!), [pool company near me], [pool service near me].</span><span class="lang-pt">Fixar a intenção comprovada: [pool contractors near me] (CPA $20!), [pool company near me], [pool service near me].</span></p>
         </div></div>
         <div class="step"><div class="step-body">
-          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Geo bid adjustments</span><span class="lang-pt">Ajustes de lance geográficos</span></h4>
-          <p><span class="lang-en">+15–20% on Delaware / Fairfield / Lewis Center (great CPA); a gentle −10–15% on Galena / Marysville / Morrow / Licking (no leads yet).</span><span class="lang-pt">+15–20% em Delaware / Fairfield / Lewis Center (ótimo CPA); um suave −10–15% em Galena / Marysville / Morrow / Licking (ainda sem leads).</span></p>
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Fix the two geo bid mismatches first</span><span class="lang-pt">Corrigir primeiro os dois descompassos de geo</span></h4>
+          <p><span class="lang-en">Reverse Fairfield County from −15% to +10–15% (it's a $38-CPA converter being suppressed) and remove the +15% on Galena (0 leads). Then add +15% on Lewis Center / Marion / Grove City, and a gentle −10–15% on Licking / Crawford / Marysville / Morrow.</span><span class="lang-pt">Reverter Fairfield County de −15% para +10–15% (é um conversor de CPA $38 sendo suprimido) e remover o +15% de Galena (0 leads). Depois aplicar +15% em Lewis Center / Marion / Grove City, e um suave −10–15% em Licking / Crawford / Marysville / Morrow.</span></p>
         </div></div>
         <div class="step"><div class="step-body">
           <h4><span class="pri low">LOW</span> &nbsp;<span class="lang-en">Keep monitoring (broad match &amp; new San Juan page)</span><span class="lang-pt">Seguir monitorando (broad match &amp; nova página San Juan)</span></h4>
