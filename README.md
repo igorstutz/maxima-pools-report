@@ -18,11 +18,14 @@ Single-page interactive report analyzing **Maxima Pools'** digital presence, ide
 
 ## 📦 Contents
 
-- **`index.html`** — full interactive report (single-page, responsive design)
+- **`index.html`** — latest report: **Report 05 · June 2026 (Monthly, May→June comparison)**
+- **`report-04-jun8.html`** — Report 04 (Weekly, May 25–31 vs Jun 1–7)
+- **`report-03-may13.html`** — Report 03 (Mar 28 – May 13)
 
 ## 🚀 Viewing
 
 Open `index.html` in any modern browser or host via GitHub Pages.
+Live: **https://igorstutz.github.io/maxima-pools-report/**
 
 ---
 

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads · Maxima Pools · Weekly Comparison (Jun 8)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-green-light); color: var(--g-green-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 100px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi .delta { font-size: 13px; font-weight: 500; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; }
+.delta.up { background: var(--g-green-light); color: var(--g-green-dark); }
+.delta.down { background: var(--g-red-light); color: var(--g-red); }
+.delta.neutral { background: var(--hover); color: var(--text2); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.bad { border-left: 4px solid var(--g-red); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.pos { color: var(--g-green-dark); font-weight: 500; }
+.neg { color: var(--g-red); font-weight: 500; }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.red { background: var(--g-red-light); color: var(--g-red); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.red { background: var(--g-red-light); border-left: 4px solid var(--g-red); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+
+.approval-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--g-blue); }
+tr.approved td { background: var(--g-green-light) !important; }
+.pri { font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+.pri.high { background: var(--g-red-light); color: var(--g-red); }
+.pri.med { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.pri.low { background: var(--hover); color: var(--text2); }
+
+.steps { counter-reset: step; }
+.step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-light); }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--g-blue); color: white; font-family: var(--font); font-weight: 500; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.step .step-body h4 { font-family: var(--font); font-size: 14.5px; font-weight: 500; margin-bottom: 3px; }
+.step .step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count span { color: var(--g-blue); font-size: 18px; }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 18px 0 10px; color: var(--text); }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div>
+      <div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div>
+      <div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Pools · Weekly Comparison</span>
+  <span class="g-topbar-spacer"></span>
+  <span class="g-topbar-badge"><span class="lang-en">Report 04</span><span class="lang-pt">Relatório 04</span></span>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<div class="g-main">
+
+  <!-- BANNER -->
+  <div class="phase-banner">
+    <div class="phase-icon">📈</div>
+    <div>
+      <h2><span class="lang-en">Weekly Comparison · May 25–31 vs Jun 1–7</span><span class="lang-pt">Comparativo Semanal · 25–31 Mai vs 01–07 Jun</span></h2>
+      <p class="lang-en">Strong week-over-week improvement: more clicks at a lower cost-per-click, and lead conversions up sharply with a meaningfully lower cost per lead. This dashboard compares the two weeks and lists the recommended actions to keep the momentum.</p>
+      <p class="lang-pt">Melhora forte de uma semana para a outra: mais cliques com custo-por-clique menor, e conversões de lead em alta com custo por lead bem mais baixo. Este painel compara as duas semanas e lista as ações recomendadas para manter o ritmo.</p>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🎯</div>
+      <div><h3><span class="lang-en">Key Metrics — Week over Week</span><span class="lang-pt">Métricas-Chave — Semana a Semana</span></h3>
+      <div class="sub"><span class="lang-en">Search keywords only (account total rows excluded). Latest week = Jun 1–7.</span><span class="lang-pt">Apenas keywords de Search (linhas de total da conta excluídas). Semana atual = 01–07 Jun.</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Lead Conversions</span><span class="lang-pt">Conversões (Lead)</span></div>
+          <div class="val">15,0</div>
+          <div class="prev"><span class="lang-en">prev. 9,67</span><span class="lang-pt">ant. 9,67</span></div>
+          <div class="delta up">▲ +55,1%</div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Cost / Lead (CPA)</span><span class="lang-pt">Custo / Lead (CPA)</span></div>
+          <div class="val">$64,00</div>
+          <div class="prev"><span class="lang-en">prev. $88,73</span><span class="lang-pt">ant. $88,73</span></div>
+          <div class="delta up">▼ −27,9%</div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></div>
+          <div class="val">$4,64</div>
+          <div class="prev"><span class="lang-en">prev. $5,57</span><span class="lang-pt">ant. $5,57</span></div>
+          <div class="delta up">▼ −16,7%</div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></div>
+          <div class="val">207</div>
+          <div class="prev"><span class="lang-en">prev. 154</span><span class="lang-pt">ant. 154</span></div>
+          <div class="delta up">▲ +34,4%</div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Impressions</span><span class="lang-pt">Impressões</span></div>
+          <div class="val">3.054</div>
+          <div class="prev"><span class="lang-en">prev. 2.398</span><span class="lang-pt">ant. 2.398</span></div>
+          <div class="delta up">▲ +27,4%</div>
+        </div>
+        <div class="kpi good">
+          <div class="label">CTR</div>
+          <div class="val">6,78%</div>
+          <div class="prev"><span class="lang-en">prev. 6,42%</span><span class="lang-pt">ant. 6,42%</span></div>
+          <div class="delta up">▲ +0,36 pp</div>
+        </div>
+        <div class="kpi warn">
+          <div class="label"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></div>
+          <div class="val">$959,93</div>
+          <div class="prev"><span class="lang-en">prev. $857,98</span><span class="lang-pt">ant. $857,98</span></div>
+          <div class="delta neutral">▲ +11,9%</div>
+        </div>
+        <div class="kpi warn">
+          <div class="label"><span class="lang-en">Impression Share</span><span class="lang-pt">Parcela de Impressões</span></div>
+          <div class="val">29,2%</div>
+          <div class="prev"><span class="lang-en">prev. 30,7%</span><span class="lang-pt">ant. 30,7%</span></div>
+          <div class="delta down">▼ −1,5 pp</div>
+        </div>
+      </div>
+      <div class="callout green" style="margin-top:20px;">
+        <span class="lang-en"><strong>Bottom line:</strong> Spend rose ~12%, but it bought 34% more clicks and 55% more leads — so each lead got ~28% cheaper ($88.73 → $64.00). The account is converting budget into leads more efficiently than last week. "Lead Conversions" = the tracked phone calls + lead form submits (the primary conversion actions). Total "all conversions" (incl. secondary actions) were 42,7 → 44,0.</span>
+        <span class="lang-pt"><strong>Resumo:</strong> O investimento subiu ~12%, mas comprou 34% mais cliques e 55% mais leads — então cada lead ficou ~28% mais barato ($88,73 → $64,00). A conta está convertendo orçamento em leads de forma mais eficiente que na semana anterior. "Conversões (Lead)" = ligações telefônicas + envios de formulário rastreados (ações de conversão primárias). O total de "todas as conversões" (incl. ações secundárias) foi 42,7 → 44,0.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGN COMPARISON -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📊</div>
+      <div><h3><span class="lang-en">Performance by Campaign</span><span class="lang-pt">Performance por Campanha</span></h3>
+      <div class="sub"><span class="lang-en">May 25–31 → Jun 1–7</span><span class="lang-pt">25–31 Mai → 01–07 Jun</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Read</span><span class="lang-pt">Leitura</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pool Installation</strong></td>
+            <td class="num">60 → <strong>93</strong> <span class="pos">+55%</span></td>
+            <td class="num">$404 → $473</td>
+            <td class="num">4,7 → <strong>10,0</strong> <span class="pos">+114%</span></td>
+            <td class="num">$86,57 → <strong>$47,25</strong> <span class="pos">−45%</span></td>
+            <td><span class="tag green"><span class="lang-en">Top engine</span><span class="lang-pt">Motor principal</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Fiberglass Pools</strong></td>
+            <td class="num">49 → 71 <span class="pos">+45%</span></td>
+            <td class="num">$284 → $331</td>
+            <td class="num">2,0 → 3,0</td>
+            <td class="num">$142,14 → $110,42 <span class="pos">−22%</span></td>
+            <td><span class="tag yellow"><span class="lang-en">Improving, still costly</span><span class="lang-pt">Melhorando, ainda caro</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>High-Ticket Pools</strong></td>
+            <td class="num">34 → 38</td>
+            <td class="num">$134 → $138</td>
+            <td class="num">1,0 → 2,0</td>
+            <td class="num">$133,57 → $68,82 <span class="pos">−48%</span></td>
+            <td><span class="tag yellow"><span class="lang-en">Low volume, has broad match</span><span class="lang-pt">Baixo volume, tem broad match</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Brand Protection</strong></td>
+            <td class="num">11 → 5</td>
+            <td class="num">$36 → $19</td>
+            <td class="num">2,0 → 0,0</td>
+            <td class="num">$17,92 → —</td>
+            <td><span class="tag red"><span class="lang-en">Watch — 0 leads</span><span class="lang-pt">Atenção — 0 leads</span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Where the win came from:</strong> Pool Installation drove the result — clicks +55% and leads more than doubled while CPA dropped to $47. Fiberglass is improving but its CPA ($110) is still ~2× Pool Installation. Brand Protection traffic shrank and produced 0 leads this week — worth a quick check (is the brand term being out-bid, or simply low search volume?).</span>
+        <span class="lang-pt"><strong>De onde veio o ganho:</strong> Pool Installation puxou o resultado — cliques +55% e leads mais que dobraram, com CPA caindo para $47. Fiberglass está melhorando, mas seu CPA ($110) ainda é ~2× o de Pool Installation. O tráfego de Brand Protection encolheu e gerou 0 leads nesta semana — vale uma checagem rápida (o termo de marca está sendo superado em lance, ou é só baixo volume de busca?).</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BROAD MATCH ALERT -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-red-light)">⚠️</div>
+      <div><h3><span class="lang-en">Account Rule Alert — Broad Match Keywords</span><span class="lang-pt">Alerta de Regra da Conta — Keywords em Broad Match</span></h3>
+      <div class="sub"><span class="lang-en">14 keywords are in Broad match — account policy is Phrase / Exact only</span><span class="lang-pt">14 keywords estão em Broad match — política da conta é Phrase / Exact apenas</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="callout red">
+        <span class="lang-en"><strong>14 keywords in the High-Ticket Pools campaign are set to Broad match</strong>, which the account policy does not allow (Phrase and Exact only). Broad match is the most likely cause of irrelevant search terms and wasted clicks. Recommendation: convert all of them to Phrase match. The ones with traffic are below; the remaining (custom pool builder, resort style pools, architectural pool design, luxury inground pool, etc.) had 0 clicks but should still be converted.</span>
+        <span class="lang-pt"><strong>14 keywords na campanha High-Ticket Pools estão em Broad match</strong>, o que a política da conta não permite (apenas Phrase e Exact). Broad match é a causa mais provável de termos de busca irrelevantes e cliques desperdiçados. Recomendação: converter todas para Phrase match. As que tiveram tráfego estão abaixo; as demais (custom pool builder, resort style pools, architectural pool design, luxury inground pool, etc.) tiveram 0 cliques, mas também devem ser convertidas.</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Keyword (→ convert to Phrase)</span><span class="lang-pt">Keyword (→ converter p/ Phrase)</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="match-type"></td><td>concrete pool</td><td class="num">13</td><td class="num">$29,25</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="match-type"></td><td>premium inground pools</td><td class="num">4</td><td class="num">$12,96</td><td class="num">1</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="match-type"></td><td>custom pools near me</td><td class="num">3</td><td class="num">$4,26</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="match-type"></td><td>gunite pool</td><td class="num">1</td><td class="num">$0,23</td><td class="num">1</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="match-type"></td><td><span class="lang-en">+10 broad keywords with 0 clicks (convert all)</span><span class="lang-pt">+10 keywords broad com 0 cliques (converter todas)</span></td><td class="num">0</td><td class="num">$0,00</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEARCH TERM OPPORTUNITIES -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">🌱</div>
+      <div><h3><span class="lang-en">Search Term Opportunities — Add as Keywords</span><span class="lang-pt">Oportunidades de Search Terms — Adicionar como Keywords</span></h3>
+      <div class="sub"><span class="lang-en">Converting / high-intent terms that are not yet keywords (Phrase or Exact)</span><span class="lang-pt">Termos que converteram / de alta intenção que ainda não são keywords (Phrase ou Exact)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term</span><span class="lang-pt">Termo de busca</span></th>
+            <th><span class="lang-en">Suggested match</span><span class="lang-pt">Match sugerido</span></th>
+            <th><span class="lang-en">Ad group</span><span class="lang-pt">Grupo de anúncios</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool contractors near me</td><td><span class="tag blue">Phrase</span></td><td>Pool Installation</td><td class="num">2</td><td class="num">$39,04</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool service near me</td><td><span class="tag blue">Phrase</span></td><td>Pool Installation</td><td class="num">2</td><td class="num">$52,13</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>swimming pool contractors in my area</td><td><span class="tag blue">Phrase</span></td><td>Pool Installation</td><td class="num">2</td><td class="num">$5,25</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pools near me</td><td><span class="tag green">Exact</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$0,23</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>fiberglass in ground pools near me</td><td><span class="tag blue">Phrase</span></td><td>Fiberglass Pools</td><td class="num">1</td><td class="num">$16,34</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>in ground pools near me</td><td><span class="tag blue">Phrase</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$2,78</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool brokers usa</td><td><span class="tag green">Exact</span></td><td>High-Ticket Pools</td><td class="num">1</td><td class="num">$6,74</td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>Note:</strong> "pool service near me / pool service contractor" lean toward existing-pool service intent. They converted this week, so add them — but watch them: if they later attract repair/maintenance clicks without leads, narrow with negatives.</span>
+        <span class="lang-pt"><strong>Obs.:</strong> "pool service near me / pool service contractor" tendem à intenção de serviço em piscina já existente. Converteram nesta semana, então adicione — mas monitore: se depois atraírem cliques de reparo/manutenção sem leads, restrinja com negativos.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEGATIVES -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-red-light)">🚫</div>
+      <div><h3><span class="lang-en">Recommended Negative Keywords</span><span class="lang-pt">Negativos Recomendados</span></h3>
+      <div class="sub"><span class="lang-en">DIY / kits / for-sale / repair terms that spent with 0 leads</span><span class="lang-pt">Termos DIY / kits / venda de produto / reparo que gastaram com 0 leads</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term → negative</span><span class="lang-pt">Termo → negativo</span></th>
+            <th><span class="lang-en">Category</span><span class="lang-pt">Categoria</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>fiberglass inground pool kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$11,17</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>do it yourself fiberglass pool kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>inground pool kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$1,05</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>underground pool kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$1,59</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>backyard lazy river kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>pool shells for sale</td><td><span class="tag blue">For sale / Product</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>inground fiberglass pool shells for sale</td><td><span class="tag blue">For sale / Product</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>pools for sale / pools for sale near me</td><td><span class="tag blue">For sale / Product</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>container pools for sale (+ near me)</td><td><span class="tag blue">For sale / Product</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>swimming pool repairs</td><td><span class="tag red">Repair</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>fiberglass pool repairs near me</td><td><span class="tag red">Repair</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>swimming pool leak detection near me</td><td><span class="tag red">Repair</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>swimming pools suppliers near me</td><td><span class="tag blue">Supplier</span></td><td class="num">$0,00</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>Kept on purpose (do NOT make negative):</strong> "fiberglass pool manufacturing companies", "best fiberglass pool manufacturer" and similar <em>manufacturer</em> searches — Maxima is an authorized San Juan Pools dealer, so these are relevant research-stage prospects, not waste.</span>
+        <span class="lang-pt"><strong>Mantidos de propósito (NÃO tornar negativo):</strong> "fiberglass pool manufacturing companies", "best fiberglass pool manufacturer" e buscas de <em>manufacturer</em> similares — a Maxima é dealer autorizado San Juan Pools, então são prospects em fase de pesquisa relevantes, não desperdício.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🥊</div>
+      <div><h3><span class="lang-en">Auction Insights & Competitors</span><span class="lang-pt">Auction Insights & Concorrentes</span></h3>
+      <div class="sub"><span class="lang-en">Your impression share and who you compete against</span><span class="lang-pt">Sua parcela de impressões e contra quem você compete</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout blue">
+        <span class="lang-en"><strong>Your impression share:</strong> 30,7% → <strong>29,2%</strong> (slight dip). Top-of-page rate held at ~61%. Three new competitors entered the auction this week: <strong>lathampool.com</strong> (major fiberglass manufacturer), <strong>aumanlandscape.com</strong> and <strong>abovegroundpoolgurus.com</strong>. <strong>blueworldpools.com</strong> jumped to 13,4% IS — now the strongest competitor by impression share.</span>
+        <span class="lang-pt"><strong>Sua parcela de impressões:</strong> 30,7% → <strong>29,2%</strong> (leve queda). Taxa de topo da página manteve ~61%. Três novos concorrentes entraram no leilão nesta semana: <strong>lathampool.com</strong> (grande fabricante de fibra), <strong>aumanlandscape.com</strong> e <strong>abovegroundpoolgurus.com</strong>. <strong>blueworldpools.com</strong> saltou para 13,4% de IS — agora o concorrente mais forte por parcela de impressões.</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Domain</span><span class="lang-pt">Domínio</span></th>
+            <th class="num"><span class="lang-en">Impr. Share</span><span class="lang-pt">Parc. Impr.</span></th>
+            <th class="num"><span class="lang-en">Top of page</span><span class="lang-pt">Topo da pág.</span></th>
+            <th><span class="lang-en">Note</span><span class="lang-pt">Nota</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--g-blue-light)"><td><strong>You / Maxima</strong></td><td class="num"><strong>29,2%</strong></td><td class="num">61,5%</td><td><span class="lang-en">Leader of the set</span><span class="lang-pt">Líder do grupo</span></td></tr>
+          <tr><td>blueworldpools.com</td><td class="num">13,4%</td><td class="num">63,8%</td><td><span class="tag red"><span class="lang-en">Rising</span><span class="lang-pt">Em alta</span></span></td></tr>
+          <tr><td>premierpoolsandspas.com</td><td class="num">13,0%</td><td class="num">75,2%</td><td class="muted">—</td></tr>
+          <tr><td>riverpoolsandspas.com</td><td class="num">12,2%</td><td class="num">85,4%</td><td class="muted">—</td></tr>
+          <tr><td>kayakpoolsmidwest.com</td><td class="num">11,1%</td><td class="num">86,5%</td><td class="muted">—</td></tr>
+          <tr><td>aquaticcreationsohio.com</td><td class="num">11,0%</td><td class="num">71,3%</td><td class="muted">—</td></tr>
+          <tr><td>landscapemgtgroup.com</td><td class="num">10,5%</td><td class="num">92,9%</td><td class="muted">—</td></tr>
+          <tr><td>lathampool.com</td><td class="num">&lt; 10%</td><td class="num">76,3%</td><td><span class="tag yellow"><span class="lang-en">New</span><span class="lang-pt">Novo</span></span></td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="subhead"><span class="lang-en">Competitor brand searches (conquesting opportunity)</span><span class="lang-pt">Buscas por marca de concorrentes (oportunidade de conquesting)</span></h4>
+      <div class="callout yellow">
+        <span class="lang-en">Several users searched competitor brand names and landed on your ads, and some converted (zaber pools, trinity pool service, serenity pools). Others spent with no lead (leisure time pools marion, water's edge pools marysville, mallory pools, easy living pools). This confirms there is local brand demand to capture — keep an eye on the Brand Protection setup and consider a dedicated competitor ad group only if spend there grows.</span>
+        <span class="lang-pt">Vários usuários buscaram nomes de marcas concorrentes e caíram nos seus anúncios, e alguns converteram (zaber pools, trinity pool service, serenity pools). Outros gastaram sem lead (leisure time pools marion, water's edge pools marysville, mallory pools, easy living pools). Isso confirma demanda local de marca a capturar — fique de olho na configuração de Brand Protection e considere um grupo de anúncios de concorrentes dedicado só se o gasto ali crescer.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEO -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📍</div>
+      <div><h3><span class="lang-en">Top Locations (Jun 1–7)</span><span class="lang-pt">Principais Localizações (01–07 Jun)</span></h3>
+      <div class="sub"><span class="lang-en">All-conversions used as the geo signal (location report)</span><span class="lang-pt">Todas as conversões usadas como sinal geográfico (relatório de localização)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">All conv.</span><span class="lang-pt">Todas conv.</span></th>
+            <th><span class="lang-en">Read</span><span class="lang-pt">Leitura</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Delaware County, OH</td><td class="num">28</td><td class="num">$182,04</td><td class="num"><strong>11</strong></td><td><span class="tag green"><span class="lang-en">Best converter</span><span class="lang-pt">Melhor conversor</span></span></td></tr>
+          <tr><td>Columbus, OH</td><td class="num">36</td><td class="num">$134,86</td><td class="num">4</td><td><span class="tag green"><span class="lang-en">Core market</span><span class="lang-pt">Mercado central</span></span></td></tr>
+          <tr><td>Lewis Center, OH</td><td class="num">10</td><td class="num">$48,40</td><td class="num">4</td><td><span class="tag green"><span class="lang-en">Efficient</span><span class="lang-pt">Eficiente</span></span></td></tr>
+          <tr><td>Marion County, OH</td><td class="num">11</td><td class="num">$88,13</td><td class="num">3</td><td class="muted">—</td></tr>
+          <tr><td>Licking County, OH</td><td class="num">11</td><td class="num">$25,42</td><td class="num">0</td><td><span class="tag yellow"><span class="lang-en">Watch</span><span class="lang-pt">Monitorar</span></span></td></tr>
+          <tr><td>Franklin County, OH</td><td class="num">8</td><td class="num">$29,20</td><td class="num">0</td><td><span class="tag yellow"><span class="lang-en">Watch</span><span class="lang-pt">Monitorar</span></span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout green" style="margin-top:14px;">
+        <span class="lang-en"><strong>Delaware County is punching above its weight</strong> — 11 conversions from 28 clicks. Worth a positive bid adjustment. Columbus + Lewis Center + Delaware together carry most of the leads.</span>
+        <span class="lang-pt"><strong>Delaware County está rendendo acima do esperado</strong> — 11 conversões de 28 cliques. Vale um ajuste de lance positivo. Columbus + Lewis Center + Delaware juntos carregam a maior parte dos leads.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">✅</div>
+      <div><h3><span class="lang-en">Prioritized Next Steps</span><span class="lang-pt">Próximos Passos Prioritários</span></h3>
+      <div class="sub"><span class="lang-en">Ordered by impact</span><span class="lang-pt">Ordenados por impacto</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Convert the 14 Broad match keywords to Phrase</span><span class="lang-pt">Converter as 14 keywords Broad match para Phrase</span></h4>
+          <p><span class="lang-en">Fixes the account-policy breach and stops broad match from pulling in irrelevant searches (the source of most for-sale / repair junk above).</span><span class="lang-pt">Corrige a violação da política da conta e impede que o broad match traga buscas irrelevantes (origem da maioria do lixo de venda/reparo acima).</span></p>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Add the 13 recommended negatives</span><span class="lang-pt">Adicionar os 13 negativos recomendados</span></h4>
+          <p><span class="lang-en">Blocks DIY/kit/for-sale/repair intent so budget stays on installation buyers. Add at campaign level.</span><span class="lang-pt">Bloqueia intenção DIY/kit/venda/reparo para o orçamento ficar com compradores de instalação. Adicionar em nível de campanha.</span></p>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Add the 7 converting search terms as keywords</span><span class="lang-pt">Adicionar os 7 termos que converteram como keywords</span></h4>
+          <p><span class="lang-en">Locks in proven intent (pool contractors / service / pools near me) with explicit Phrase/Exact keywords for better control and Quality Score.</span><span class="lang-pt">Fixa a intenção comprovada (pool contractors / service / pools near me) com keywords Phrase/Exact explícitas para melhor controle e Quality Score.</span></p>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Positive bid adjustment for Delaware County</span><span class="lang-pt">Ajuste de lance positivo para Delaware County</span></h4>
+          <p><span class="lang-en">11 conversions from 28 clicks — the most efficient geo. Lean into it.</span><span class="lang-pt">11 conversões de 28 cliques — a geografia mais eficiente. Apostar nela.</span></p>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri low">LOW</span> &nbsp;<span class="lang-en">Check Brand Protection (0 leads, traffic down)</span><span class="lang-pt">Verificar Brand Protection (0 leads, tráfego em queda)</span></h4>
+          <p><span class="lang-en">Clicks fell 11 → 5 and produced no leads this week. Confirm the brand keyword is still serving and the landing page is intact (post tracking-migration).</span><span class="lang-pt">Cliques caíram 11 → 5 e não geraram leads nesta semana. Confirmar se a keyword de marca ainda está servindo e se a landing page está íntegra (pós-migração de tracking).</span></p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lang-en"><strong>Data source:</strong> Google Ads exports in <em>Relatórios 04</em> — Search keyword, Search terms, Auction insights and Location reports for May 25–31 and Jun 1–7, 2026. Keyword totals exclude the report's account-total rows. "Lead Conversions" = primary tracked conversions (phone call leads + lead form submits).</span>
+    <span class="lang-pt"><strong>Fonte de dados:</strong> exports do Google Ads em <em>Relatórios 04</em> — relatórios de Search keyword, Search terms, Auction insights e Location para 25–31 Mai e 01–07 Jun de 2026. Totais de keyword excluem as linhas de total da conta. "Conversões (Lead)" = conversões primárias rastreadas (ligações + envios de formulário).</span>
+  </div>
+
+</div>
+
+<div class="approval-bar">
+  <span class="count"><span id="approved-count">0</span><span class="lang-en"> of </span><span class="lang-pt"> de </span><span id="total-actions">0</span><span class="lang-en"> actions approved</span><span class="lang-pt"> ações aprovadas</span></span>
+  <span class="spacer"></span>
+  <button onclick="selectAll()"><span class="lang-en">Select All</span><span class="lang-pt">Marcar Todas</span></button>
+  <button onclick="deselectAll()"><span class="lang-en">Deselect All</span><span class="lang-pt">Desmarcar Todas</span></button>
+  <button class="btn-export" onclick="exportApproved()">📦 <span class="lang-en">Export Approved Actions</span><span class="lang-pt">Exportar Ações Aprovadas</span></button>
+</div>
+
+<script>
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  localStorage.setItem('maxima-lang', lang);
+}
+const checkboxes = document.querySelectorAll('.approval-check');
+const countEl = document.getElementById('approved-count');
+const totalEl = document.getElementById('total-actions');
+totalEl.textContent = checkboxes.length;
+checkboxes.forEach(cb => { cb.addEventListener('change', () => { cb.closest('tr').classList.toggle('approved', cb.checked); updateCount(); saveState(); }); });
+function updateCount() { countEl.textContent = document.querySelectorAll('.approval-check:checked').length; }
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); saveState(); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); saveState(); }
+function exportApproved() {
+  const approved = [];
+  document.querySelectorAll('.approval-check:checked').forEach(cb => {
+    const cells = Array.from(cb.closest('tr').querySelectorAll('td')).slice(1).map(c => c.textContent.trim().replace(/\s+/g, ' '));
+    approved.push({ action: cb.dataset.action, values: cells });
+  });
+  if (!approved.length) { alert('No actions approved / Nenhuma ação aprovada.'); return; }
+  let t = 'MAXIMA POOLS - APPROVED ACTIONS (Report 04 - Weekly Comparison)\nReport: May 25-31 vs Jun 1-7, 2026\n' + '='.repeat(60) + '\n\n';
+  const labels = {
+    'match-type': 'CONVERT TO PHRASE MATCH (was Broad)',
+    negative: 'NEGATIVE KEYWORDS',
+    'add-keyword': 'NEW KEYWORDS TO ADD'
+  };
+  const groups = {};
+  approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i.values); });
+  Object.keys(groups).forEach(a => { t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n'; groups[a].forEach(v => t += '  [x] ' + v.join(' | ') + '\n'); });
+  t += '\n' + '='.repeat(60) + '\nTotal: ' + approved.length + ' actions approved\n';
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_approved_report04.txt'; a.click();
+}
+const SK = 'maxima-approvals-report04';
+function saveState() { const s = {}; checkboxes.forEach((c, i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
+function loadState() { const s = localStorage.getItem(SK); if (s) { const d = JSON.parse(s); checkboxes.forEach((c, i) => { if (d[i]) { c.checked = true; c.closest('tr').classList.add('approved'); } }); updateCount(); } }
+setLang(localStorage.getItem('maxima-lang') || 'en');
+loadState();
+</script>
+</body>
+</html>
