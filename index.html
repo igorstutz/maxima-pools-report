@@ -443,8 +443,8 @@ h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin
           <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Lewis Center</td><td class="num">0 → 3,0</td><td class="num">$129</td><td class="num">$43</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
           <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Marion County</td><td class="num">0 → 4,0</td><td class="num">$308</td><td class="num">$77</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
           <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Grove City</td><td class="num">0 → 2,0</td><td class="num">$71</td><td class="num">$35</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td></tr>
-          <tr><td></td><td>Richland County</td><td class="num">2 → 2,0</td><td class="num">$144</td><td class="num">$72</td><td><span class="tag green">PI +15% · FG +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
-          <tr><td></td><td>Powell</td><td class="num">0 → 1,0</td><td class="num">$22</td><td class="num">$22</td><td><span class="tag green">PI +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-keep"></td><td>Richland County</td><td class="num">2 → 2,0</td><td class="num">$144</td><td class="num">$72</td><td><span class="tag green">PI +15% · FG +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-keep"></td><td>Powell</td><td class="num">0 → 1,0</td><td class="num">$22</td><td class="num">$22</td><td><span class="tag green">PI +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td></tr>
         </tbody>
       </table>
       <h4 class="subhead"><span class="lang-en">📉 Weak — reduce or remove boost</span><span class="lang-pt">📉 Fracas — reduzir ou remover boost</span></h4>
@@ -551,7 +551,8 @@ function exportApproved() {
     negative: 'NEGATIVE KEYWORDS',
     'add-keyword': 'NEW KEYWORDS TO ADD',
     'bid-up': 'POSITIVE GEO BID ADJUSTMENT',
-    'bid-down': 'NEGATIVE GEO BID ADJUSTMENT'
+    'bid-down': 'NEGATIVE GEO BID ADJUSTMENT',
+    'bid-keep': 'KEEP CURRENT GEO BID (no change)'
   };
   const groups = {};
   approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i.values); });
