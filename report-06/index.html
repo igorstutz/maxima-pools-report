@@ -662,12 +662,20 @@ const PLACEHOLDERS = {
   en: 'Agree, disagree, or your idea…',
   pt: 'Concordo, discordo, ou sua ideia…'
 };
+
+/* ===== Shared storage (Google Apps Script backend) ===== */
+const API_URL   = 'https://script.google.com/macros/s/AKfycbzYVLa_ViuTMh4wlUZpSQXZXW_-u-u3n-NX61U2RwKW0FtP4_JO5YFI4asoGTavIATs/exec';
+const REPORT_ID = 'pools06';
+const REMOTE    = /^https:\/\//.test(API_URL);
+const LANG_KEY  = 'maxima-lang';
+const CACHE_KEY = 'maxima-cache-pools06';
+
 function setLang(lang) {
   document.documentElement.setAttribute('data-lang', lang);
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
   document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
-  localStorage.setItem('maxima-lang', lang);
+  localStorage.setItem(LANG_KEY, lang);
 }
 
 const checkboxes = document.querySelectorAll('.approval-check');
@@ -677,15 +685,36 @@ const totalEl = document.getElementById('total-actions');
 const notesCountEl = document.getElementById('notes-count');
 totalEl.textContent = checkboxes.length;
 
-checkboxes.forEach(cb => { cb.addEventListener('change', () => { cb.closest('tr').classList.toggle('approved', cb.checked); updateCount(); saveState(); }); });
-notes.forEach(n => { n.addEventListener('input', () => { n.classList.toggle('filled', n.value.trim().length > 0); updateCount(); saveNotes(); }); });
+// stable key per checkbox = its row's note id (fallback to index)
+checkboxes.forEach((cb, i) => { const tr = cb.closest('tr'); const n = tr && tr.querySelector('.note-input'); cb._key = n ? ('chk_' + n.dataset.note) : ('chk_' + i); });
+
+/* sync status pill in the approval bar */
+const syncEl = document.createElement('span');
+syncEl.id = 'sync-status';
+syncEl.style.cssText = 'font-size:12px; margin-left:10px; white-space:nowrap; font-weight:500;';
+if (countEl && countEl.parentNode) countEl.parentNode.insertBefore(syncEl, countEl.nextSibling);
+function setSync(text, color) { syncEl.textContent = text; syncEl.style.color = color || 'var(--text3)'; }
+setSync(REMOTE ? '☁ shared' : '', REMOTE ? 'var(--g-green-dark)' : 'var(--text3)');
+
+checkboxes.forEach(cb => cb.addEventListener('change', () => {
+  cb.closest('tr').classList.toggle('approved', cb.checked);
+  updateCount();
+  remoteSave('approval', cb._key, cb.checked ? '1' : '0');
+}));
+const noteTimers = {};
+notes.forEach(n => n.addEventListener('input', () => {
+  n.classList.toggle('filled', n.value.trim().length > 0);
+  updateCount();
+  clearTimeout(noteTimers[n.dataset.note]);
+  noteTimers[n.dataset.note] = setTimeout(() => remoteSave('note', n.dataset.note, n.value), 700);
+}));
 
 function updateCount() {
   countEl.textContent = document.querySelectorAll('.approval-check:checked').length;
   notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
 }
-function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); saveState(); }
-function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); saveState(); }
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '1' }))); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '0' }))); }
 
 function rowLabel(tr) {
   return Array.from(tr.querySelectorAll('td'))
@@ -761,17 +790,46 @@ function exportApproved() {
   a.download = 'maxima_pools_feedback_report06.txt'; a.click();
 }
 
-const SK = 'maxima-approvals-pools06';
-const NK = 'maxima-notes-pools06';
-function saveState() { const s = {}; checkboxes.forEach((c, i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
-function loadState() { const s = localStorage.getItem(SK); if (s) { const d = JSON.parse(s); checkboxes.forEach((c, i) => { if (d[i]) { c.checked = true; c.closest('tr').classList.add('approved'); } }); } }
-function saveNotes() { const s = {}; notes.forEach(n => { if (n.value.trim()) s[n.dataset.note] = n.value; }); localStorage.setItem(NK, JSON.stringify(s)); }
-function loadNotes() { const s = localStorage.getItem(NK); if (s) { const d = JSON.parse(s); notes.forEach(n => { if (d[n.dataset.note]) { n.value = d[n.dataset.note]; n.classList.add('filled'); } }); } }
+/* ---- shared + local storage ---- */
+function cacheGet() { try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}'); } catch (e) { return {}; } }
+function cachePut(kind, key, value) { const c = cacheGet(); const b = kind === 'note' ? 'notes' : 'approvals'; c[b] = c[b] || {}; c[b][key] = value; localStorage.setItem(CACHE_KEY, JSON.stringify(c)); }
+function applyState(d) {
+  if (!d) return;
+  if (d.notes) notes.forEach(n => { const v = d.notes[n.dataset.note]; if (v != null) { n.value = v; n.classList.toggle('filled', String(v).trim().length > 0); } });
+  if (d.approvals) checkboxes.forEach(cb => { const v = d.approvals[cb._key]; if (v != null) { const on = (v === '1' || v === 1 || v === true); cb.checked = on; cb.closest('tr').classList.toggle('approved', on); } });
+  updateCount();
+}
+async function loadAll() {
+  applyState(cacheGet());
+  if (!REMOTE) return;
+  try {
+    setSync('☁ syncing…');
+    const r = await fetch(API_URL + '?report=' + encodeURIComponent(REPORT_ID), { method: 'GET' });
+    const d = await r.json();
+    applyState(d);
+    localStorage.setItem(CACHE_KEY, JSON.stringify(d));
+    setSync('☁ shared', 'var(--g-green-dark)');
+  } catch (e) { setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'); }
+}
+function remoteSave(kind, key, value) {
+  cachePut(kind, key, value);
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, kind: kind, key: key, value: value }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+function remoteBatch(kind, entries) {
+  entries.forEach(e => cachePut(kind, e.key, e.value));
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, items: entries.map(e => ({ kind: kind, key: e.key, value: e.value })) }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+/* re-fetch when the tab regains focus, so you see others' updates */
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadAll(); });
 
-setLang(localStorage.getItem('maxima-lang') || 'en');
-loadState();
-loadNotes();
-updateCount();
+setLang(localStorage.getItem(LANG_KEY) || 'en');
+loadAll();
 </script>
 </body>
 </html>
