@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads · Maxima Pools · Period Report (May 1 – Jul 23, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-green-light); color: var(--g-green-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 100px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.notes-intro { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--g-yellow); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.notes-intro .ni-icon { font-size: 26px; flex-shrink: 0; line-height: 1.2; }
+.notes-intro h3 { font-family: var(--font); font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.notes-intro p { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi .delta { font-size: 13px; font-weight: 500; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; }
+.delta.up { background: var(--g-green-light); color: var(--g-green-dark); }
+.delta.down { background: var(--g-red-light); color: var(--g-red); }
+.delta.neutral { background: var(--hover); color: var(--text2); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.bad { border-left: 4px solid var(--g-red); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.pos { color: var(--g-green-dark); font-weight: 500; }
+.neg { color: var(--g-red); font-weight: 500; }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.red { background: var(--g-red-light); color: var(--g-red); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.red { background: var(--g-red-light); border-left: 4px solid var(--g-red); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+
+.approval-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--g-blue); }
+tr.approved td { background: var(--g-green-light) !important; }
+.pri { font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+.pri.high { background: var(--g-red-light); color: var(--g-red); }
+.pri.med { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.pri.low { background: var(--hover); color: var(--text2); }
+
+.note-col { min-width: 200px; width: 200px; }
+.note-input { width: 100%; min-width: 150px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; font-family: var(--font-body); font-size: 12.5px; color: var(--text); background: #fffdf6; resize: vertical; min-height: 38px; line-height: 1.45; display: block; transition: border-color .15s, box-shadow .15s, background .15s; }
+.note-input:focus { outline: none; border-color: var(--g-blue); background: var(--white); box-shadow: 0 0 0 3px var(--g-blue-light); }
+.note-input::placeholder { color: var(--text3); font-style: italic; }
+.note-input.filled { background: var(--g-yellow-light); border-color: var(--g-yellow); }
+.note-block { width: 100%; margin-top: 4px; min-height: 46px; }
+.section-note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.section-note label, .step-note label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; font-family: var(--font); }
+.section-note label::before, .step-note label::before { content: "🗒️ "; }
+.step-note { margin-top: 10px; max-width: 640px; }
+
+.steps { counter-reset: step; }
+.step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-light); }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--g-blue); color: white; font-family: var(--font); font-weight: 500; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.step .step-body { flex: 1; }
+.step .step-body h4 { font-family: var(--font); font-size: 14.5px; font-weight: 500; margin-bottom: 3px; }
+.step .step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count span { color: var(--g-blue); font-size: 18px; }
+.approval-bar .count .notes-count { color: var(--g-yellow-dark); }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 18px 0 10px; color: var(--text); }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } .approval-bar { flex-wrap: wrap; } .approval-bar .count { width: 100%; } }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div>
+      <div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div>
+      <div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Pools · Period Report</span>
+  <span class="g-topbar-spacer"></span>
+  <span class="g-topbar-badge"><span class="lang-en">Report 06 · May–Jul</span><span class="lang-pt">Relatório 06 · Mai–Jul</span></span>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<div class="g-main">
+
+  <!-- BANNER -->
+  <div class="phase-banner">
+    <div class="phase-icon">📈</div>
+    <div>
+      <h2><span class="lang-en">Full-Period Review · May 1 – July 23, 2026</span><span class="lang-pt">Análise do Período · 1 Mai – 23 Jul, 2026</span></h2>
+      <p class="lang-en">A longer window this time — about 12 weeks. Over the whole period the account brought <strong>84 leads at a $133.63 cost-per-lead</strong> on $11,224.79 of spend, 100% inside Ohio. The month-by-month trend tells the real story: June was the peak; July (partial) has cheaper, higher traffic but fewer recorded conversions so far. Below: the trend, what's working, and the recommended actions to approve or comment on.</p>
+      <p class="lang-pt">Uma janela mais longa desta vez — cerca de 12 semanas. No período todo a conta trouxe <strong>84 leads a um custo por lead de $133,63</strong> com $11.224,79 de investimento, 100% dentro de Ohio. A tendência mês a mês conta a história real: Junho foi o pico; Julho (parcial) tem tráfego mais barato e maior, mas menos conversões registradas até agora. Abaixo: a tendência, o que está funcionando, e as ações recomendadas para aprovar ou comentar.</p>
+    </div>
+  </div>
+
+  <!-- NOTES INTRO -->
+  <div class="notes-intro">
+    <div class="ni-icon">🗒️</div>
+    <div>
+      <h3><span class="lang-en">Your notes — tell us what you think</span><span class="lang-pt">Suas notas — nos diga o que achou</span></h3>
+      <p class="lang-en">Next to every recommendation there is a <strong>notes field</strong>. As you read, write whether you <strong>agree</strong>, <strong>disagree</strong>, or have <strong>a different idea</strong> — anything you type is saved automatically. Tick the checkbox <strong>☑</strong> to approve an action. When you're done, click <strong>“Export feedback &amp; approved actions”</strong> at the bottom to send everything back to us in one file.</p>
+      <p class="lang-pt">Ao lado de cada recomendação existe um <strong>campo de notas</strong>. Conforme você lê, escreva se <strong>concorda</strong>, <strong>discorda</strong> ou tem <strong>outra ideia</strong> — tudo o que você digitar é salvo automaticamente. Marque a caixinha <strong>☑</strong> para aprovar uma ação. Ao terminar, clique em <strong>“Exportar feedback e ações aprovadas”</strong> no rodapé para nos enviar tudo em um único arquivo.</p>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🎯</div>
+      <div><h3><span class="lang-en">Period Totals — May 1 to July 23, 2026</span><span class="lang-pt">Totais do Período — 1 Mai a 23 Jul, 2026</span></h3>
+      <div class="sub"><span class="lang-en">Whole account, aggregated over ~12 weeks.</span><span class="lang-pt">Conta inteira, agregado em ~12 semanas.</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Lead Conversions</span><span class="lang-pt">Conversões (Lead)</span></div>
+          <div class="val">84,0</div>
+          <div class="prev"><span class="lang-en">phone + form leads</span><span class="lang-pt">ligações + formulários</span></div>
+        </div>
+        <div class="kpi warn">
+          <div class="label"><span class="lang-en">Cost / Lead (CPA)</span><span class="lang-pt">Custo / Lead (CPA)</span></div>
+          <div class="val">$133,63</div>
+          <div class="prev"><span class="lang-en">period average</span><span class="lang-pt">média do período</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Total Spend</span><span class="lang-pt">Investimento</span></div>
+          <div class="val">$11.224,79</div>
+          <div class="prev"><span class="lang-en">100% inside Ohio</span><span class="lang-pt">100% dentro de Ohio</span></div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></div>
+          <div class="val">$6,01</div>
+          <div class="prev"><span class="lang-en">1,867 clicks</span><span class="lang-pt">1.867 cliques</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label">CTR</div>
+          <div class="val">6,09%</div>
+          <div class="prev"><span class="lang-en">30,659 impressions</span><span class="lang-pt">30.659 impressões</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Conv. Rate</span><span class="lang-pt">Taxa de Conv.</span></div>
+          <div class="val">4,50%</div>
+          <div class="prev"><span class="lang-en">leads ÷ clicks</span><span class="lang-pt">leads ÷ cliques</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></div>
+          <div class="val">1.867</div>
+          <div class="prev"><span class="lang-en">paid search traffic</span><span class="lang-pt">tráfego de busca paga</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Impressions</span><span class="lang-pt">Impressões</span></div>
+          <div class="val">30.659</div>
+          <div class="prev"><span class="lang-en">across 4 campaigns</span><span class="lang-pt">em 4 campanhas</span></div>
+        </div>
+      </div>
+      <div class="callout blue" style="margin-top:20px;">
+        <span class="lang-en"><strong>How to read the CPA:</strong> $133.63 is the <em>period average</em> across three very different months. It blends June's excellent $99 with a softer May ($181) and a partial July ($155). "Lead Conversions" = tracked phone-call leads + lead-form submits (the primary actions we optimize for); the secondary "all conversions" metric is not used as the success measure.</span>
+        <span class="lang-pt"><strong>Como ler o CPA:</strong> $133,63 é a <em>média do período</em> entre três meses bem diferentes. Ele mistura os ótimos $99 de Junho com um Maio mais fraco ($181) e um Julho parcial ($155). "Conversões (Lead)" = ligações + envios de formulário rastreados (as ações primárias que otimizamos); a métrica secundária "all conversions" não é usada como medida de sucesso.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the overall numbers</span><span class="lang-pt">Suas notas sobre os números gerais</span></label>
+        <textarea class="note-input note-block" data-note="sec-metrics" data-label="Period Totals / Totais do Período"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTHLY EVOLUTION -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🗓️</div>
+      <div><h3><span class="lang-en">Month-by-Month Evolution</span><span class="lang-pt">Evolução Mês a Mês</span></h3>
+      <div class="sub"><span class="lang-en">May (full) → June (full) → July (partial, 1–23)</span><span class="lang-pt">Maio (cheio) → Junho (cheio) → Julho (parcial, 1–23)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Metric</span><span class="lang-pt">Métrica</span></th>
+            <th class="num">May / Maio</th>
+            <th class="num">June / Junho</th>
+            <th class="num">Jul 1–23 <span class="lang-en">(partial)</span><span class="lang-pt">(parcial)</span></th>
+            <th><span class="lang-en">Trend Jun→Jul</span><span class="lang-pt">Tendência Jun→Jul</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></strong></td><td class="num">22,0</td><td class="num"><strong>42,0</strong></td><td class="num">20,0</td><td><span class="tag yellow"><span class="lang-en">Below June peak</span><span class="lang-pt">Abaixo do pico de Jun</span></span></td></tr>
+          <tr><td>CPA</td><td class="num">$181,12</td><td class="num"><strong>$98,75</strong></td><td class="num">$154,62</td><td><span class="neg">▲ higher / mais alto</span></td></tr>
+          <tr><td><span class="lang-en">Spend</span><span class="lang-pt">Investimento</span></td><td class="num">$3.984,64</td><td class="num">$4.147,71</td><td class="num">$3.092,44</td><td><span class="muted">≈ $134/day · dia</span></td></tr>
+          <tr><td><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></td><td class="num">$7,91</td><td class="num">$5,64</td><td class="num"><strong>$4,93</strong></td><td><span class="pos">▼ cheaper / mais barato</span></td></tr>
+          <tr><td>CTR</td><td class="num">5,58%</td><td class="num">5,98%</td><td class="num"><strong>6,74%</strong></td><td><span class="pos">▲ better / melhor</span></td></tr>
+          <tr><td><span class="lang-en">Conv. Rate</span><span class="lang-pt">Taxa de Conv.</span></td><td class="num">4,37%</td><td class="num">5,71%</td><td class="num">3,19%</td><td><span class="neg">▼ lower / menor</span></td></tr>
+          <tr><td><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></td><td class="num">504</td><td class="num">736</td><td class="num">627</td><td><span class="pos">▲ ~27/day · dia</span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:16px;">
+        <span class="lang-en"><strong>What's really happening in July:</strong> traffic got <strong>cheaper and larger</strong> (CPC down to $4.93, CTR up to 6.74%, 627 clicks in 23 days ≈ 27/day vs June's 24.5/day). The dip is purely in <strong>recorded conversions</strong>, not in traffic. Part of that is <strong>attribution lag</strong> — phone-call and form leads from the most recent days are still being counted and will backfill. So July's real CPA is likely better than the $154.62 shown. <strong>Recommendation: watch, don't overreact</strong> — but if the softness holds into August, the geo and keyword fixes below are where the leverage is.</span>
+        <span class="lang-pt"><strong>O que realmente acontece em Julho:</strong> o tráfego ficou <strong>mais barato e maior</strong> (CPC caiu para $4,93, CTR subiu para 6,74%, 627 cliques em 23 dias ≈ 27/dia vs 24,5/dia de Junho). A queda é só nas <strong>conversões registradas</strong>, não no tráfego. Parte disso é <strong>atraso de atribuição</strong> — leads de ligação e formulário dos dias mais recentes ainda estão sendo contabilizados e vão preencher. Ou seja, o CPA real de Julho provavelmente é melhor que os $154,62 exibidos. <strong>Recomendação: acompanhar, sem reagir demais</strong> — mas se a fraqueza continuar em Agosto, as correções de geo e keyword abaixo são onde está a alavanca.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>Note on the monthly split:</strong> this export came as a single aggregate for the whole period. May and June figures are taken from the monthly reports we already sent; July (1–23) is derived as the remainder. Totals reconcile exactly to the period ($11,224.79 / 84 leads).</span>
+        <span class="lang-pt"><strong>Nota sobre a divisão mensal:</strong> este export veio como um agregado único do período inteiro. Os números de Maio e Junho vêm dos relatórios mensais que já enviamos; Julho (1–23) é derivado como o restante. Os totais batem exatamente com o período ($11.224,79 / 84 leads).</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the monthly trend</span><span class="lang-pt">Suas notas sobre a tendência mensal</span></label>
+        <textarea class="note-input note-block" data-note="sec-trend" data-label="Monthly Evolution / Evolução Mensal"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGN -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📊</div>
+      <div><h3><span class="lang-en">Performance by Campaign</span><span class="lang-pt">Performance por Campanha</span></h3>
+      <div class="sub"><span class="lang-en">Full period · lead conversions &amp; CPA</span><span class="lang-pt">Período completo · conversões de lead &amp; CPA</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Read</span><span class="lang-pt">Leitura</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pool Installation</strong></td>
+            <td class="num">714</td><td class="num">$5.827,26</td><td class="num"><strong>44,67</strong></td><td class="num">$130,46</td>
+            <td><span class="tag green"><span class="lang-en">Volume engine</span><span class="lang-pt">Motor de volume</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>High-Ticket Pools</strong></td>
+            <td class="num">370</td><td class="num">$1.660,40</td><td class="num">16,00</td><td class="num"><strong>$103,78</strong></td>
+            <td><span class="tag green"><span class="lang-en">Best acquisition CPA</span><span class="lang-pt">Melhor CPA de aquisição</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Fiberglass Pools</strong></td>
+            <td class="num">685</td><td class="num">$3.509,69</td><td class="num">18,33</td><td class="num">$191,44</td>
+            <td><span class="tag yellow"><span class="lang-en">Priciest CPA — optimize</span><span class="lang-pt">CPA mais caro — otimizar</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Brand Protection</strong></td>
+            <td class="num">98</td><td class="num">$227,44</td><td class="num">5,00</td><td class="num">$45,49</td>
+            <td><span class="tag blue"><span class="lang-en">Brand defense (TIS)</span><span class="lang-pt">Defesa de marca (TIS)</span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Read:</strong> Pool Installation is the volume engine (45 leads). High-Ticket is quietly the most efficient acquisition campaign ($104 CPA) on a small budget. <strong>Fiberglass is the clear optimization target</strong> — it spent $3,509 for the highest CPA ($191). Most of the money-losing keywords below live in Fiberglass.</span>
+        <span class="lang-pt"><strong>Leitura:</strong> Pool Installation é o motor de volume (45 leads). A High-Ticket é discretamente a campanha de aquisição mais eficiente ($104 de CPA) com orçamento pequeno. <strong>A Fiberglass é o alvo claro de otimização</strong> — gastou $3.509 com o CPA mais alto ($191). A maioria das keywords que dão prejuízo (abaixo) está na Fiberglass.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on campaign performance</span><span class="lang-pt">Suas notas sobre a performance das campanhas</span></label>
+        <textarea class="note-input note-block" data-note="sec-campaign" data-label="Campaign Performance / Performance por Campanha"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS TO REVIEW/PAUSE -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-red-light)">⏸️</div>
+      <div><h3><span class="lang-en">Keywords — Review / Pause (money drains)</span><span class="lang-pt">Keywords — Revisar / Pausar (ralos de verba)</span></h3>
+      <div class="sub"><span class="lang-en">High spend, weak or no conversions over the full period</span><span class="lang-pt">Alto gasto, conversão fraca ou nula no período completo</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout red">
+        <span class="lang-en"><strong>Three Phrase keywords alone burned ~$1,297 for 2.3 leads.</strong> The worst is <strong>"custom pool builder"</strong> (Phrase) — $614.50 for 1 lead — while the <em>Broad</em> versions of the same phrase are among the best performers in the account ($27–$46 CPA). Pausing/rebuilding these frees budget for what converts.</span>
+        <span class="lang-pt"><strong>Só três keywords em Phrase queimaram ~$1.297 por 2,3 leads.</strong> A pior é <strong>"custom pool builder"</strong> (Phrase) — $614,50 por 1 lead — enquanto as versões em <em>Broad</em> da mesma frase estão entre as melhores da conta ($27–$46 de CPA). Pausar/reconstruir essas libera verba para o que converte.</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Keyword</span><span class="lang-pt">Keyword</span></th>
+            <th><span class="lang-en">Match</span><span class="lang-pt">Match</span></th>
+            <th><span class="lang-en">Camp.</span><span class="lang-pt">Camp.</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Suggested action</span><span class="lang-pt">Ação sugerida</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="pause"></td><td>"custom pool builder"</td><td>Phrase</td><td>High-Ticket</td><td class="num">$614,50</td><td class="num">1,0</td><td class="num"><span class="neg">$614,50</span></td><td><span class="tag red"><span class="lang-en">Pause — Broad covers it</span><span class="lang-pt">Pausar — Broad já cobre</span></span></td><td><textarea class="note-input" data-note="kw-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="pause"></td><td>"fiberglass pools ohio"</td><td>Phrase</td><td>Fiberglass</td><td class="num">$257,15</td><td class="num">0,33</td><td class="num"><span class="neg">$771,45</span></td><td><span class="tag red"><span class="lang-en">Pause</span><span class="lang-pt">Pausar</span></span></td><td><textarea class="note-input" data-note="kw-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="pause"></td><td>"fiberglass pool company"</td><td>Phrase</td><td>Fiberglass</td><td class="num">$425,33</td><td class="num">1,0</td><td class="num"><span class="neg">$425,33</span></td><td><span class="tag red"><span class="lang-en">Pause / rebuild ad</span><span class="lang-pt">Pausar / refazer anúncio</span></span></td><td><textarea class="note-input" data-note="kw-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"residential pool installation"</td><td>Phrase</td><td>Pool Install</td><td class="num">$697,28</td><td class="num">2,5</td><td class="num">$278,91</td><td><span class="tag yellow"><span class="lang-en">Review ad + landing page</span><span class="lang-pt">Revisar anúncio + LP</span></span></td><td><textarea class="note-input" data-note="kw-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"pool installation"</td><td>Phrase</td><td>Pool Install</td><td class="num">$553,06</td><td class="num">2,0</td><td class="num">$276,53</td><td><span class="tag yellow"><span class="lang-en">Too generic — review</span><span class="lang-pt">Genérica demais — revisar</span></span></td><td><textarea class="note-input" data-note="kw-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>[pool companies near me]</td><td>Exact</td><td>Pool Install</td><td class="num">$393,14</td><td class="num">2,0</td><td class="num">$196,57</td><td><span class="tag yellow"><span class="lang-en">Above avg — monitor</span><span class="lang-pt">Acima da média — monitorar</span></span></td><td><textarea class="note-input" data-note="kw-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>[fiberglass pools near me]</td><td>Exact</td><td>Fiberglass</td><td class="num">$493,25</td><td class="num">3,0</td><td class="num">$164,42</td><td><span class="tag yellow"><span class="lang-en">Above avg — monitor</span><span class="lang-pt">Acima da média — monitorar</span></span></td><td><textarea class="note-input" data-note="kw-7"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="pause"></td><td>"fiberglass pool shell"</td><td>Phrase</td><td>Fiberglass</td><td class="num">$196,14</td><td class="num">1,0</td><td class="num">$196,14</td><td><span class="tag red"><span class="lang-en">Pause — pulls DIY "shell" intent</span><span class="lang-pt">Pausar — atrai intenção "shell"/DIY</span></span></td><td><textarea class="note-input" data-note="kw-8"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="pause"></td><td>"inground pool inserts"</td><td>Phrase</td><td>Fiberglass</td><td class="num">$147,63</td><td class="num">1,0</td><td class="num">$147,63</td><td><span class="tag red"><span class="lang-en">Pause — pulls "insert"/product intent</span><span class="lang-pt">Pausar — atrai intenção "insert"/produto</span></span></td><td><textarea class="note-input" data-note="kw-9"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>Why pause "fiberglass pool shell" and "inground pool inserts":</strong> these keywords deliberately chase "shell/insert" searches — which are mostly people wanting to <em>buy a product to self-install</em>, not hire an installer. They convert poorly and they feed the exact DIY search terms we're recommending as negatives below. Pausing them and letting the negatives work is cleaner than fighting yourself.</span>
+        <span class="lang-pt"><strong>Por que pausar "fiberglass pool shell" e "inground pool inserts":</strong> essas keywords perseguem de propósito buscas de "shell/insert" — que são majoritariamente pessoas querendo <em>comprar um produto para instalar sozinhas</em>, não contratar instalação. Convertem mal e alimentam justamente os termos DIY que recomendamos como negativos abaixo. Pausá-las e deixar os negativos trabalharem é mais limpo do que competir contra si mesmo.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS TO KEEP -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">✅</div>
+      <div><h3><span class="lang-en">Keywords — Keep / Scale (top performers)</span><span class="lang-pt">Keywords — Manter / Escalar (melhores)</span></h3>
+      <div class="sub"><span class="lang-en">Converting keywords at or below the $133 average CPA</span><span class="lang-pt">Keywords que convertem no ou abaixo do CPA médio de $133</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Keyword</span><span class="lang-pt">Keyword</span></th>
+            <th><span class="lang-en">Match</span><span class="lang-pt">Match</span></th>
+            <th><span class="lang-en">Camp.</span><span class="lang-pt">Camp.</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>custom pool builder</td><td>Broad</td><td>High-Ticket</td><td class="num">35</td><td class="num">$80,31</td><td class="num">3,0</td><td class="num"><strong>$26,77</strong></td><td><textarea class="note-input" data-note="kwk-1"></textarea></td></tr>
+          <tr><td>"pool construction company"</td><td>Phrase</td><td>Pool Install</td><td class="num">19</td><td class="num">$121,64</td><td class="num">3,67</td><td class="num"><strong>$33,17</strong></td><td><textarea class="note-input" data-note="kwk-2"></textarea></td></tr>
+          <tr><td>[maxima pools]</td><td>Exact</td><td>Brand</td><td class="num">96</td><td class="num">$218,22</td><td class="num">5,0</td><td class="num">$43,64</td><td><textarea class="note-input" data-note="kwk-3"></textarea></td></tr>
+          <tr><td>custom pool builder near me</td><td>Broad</td><td>High-Ticket</td><td class="num">69</td><td class="num">$228,46</td><td class="num">5,0</td><td class="num">$45,69</td><td><textarea class="note-input" data-note="kwk-4"></textarea></td></tr>
+          <tr><td>premium inground pools</td><td>Broad</td><td>High-Ticket</td><td class="num">27</td><td class="num">$100,09</td><td class="num">2,0</td><td class="num">$50,04</td><td><textarea class="note-input" data-note="kwk-5"></textarea></td></tr>
+          <tr><td>"pool installation near me"</td><td>Phrase</td><td>Pool Install</td><td class="num">18</td><td class="num">$206,61</td><td class="num">3,0</td><td class="num">$68,87</td><td><textarea class="note-input" data-note="kwk-6"></textarea></td></tr>
+          <tr><td>[pool builders near me]</td><td>Exact</td><td>Pool Install</td><td class="num">21</td><td class="num">$234,89</td><td class="num">3,0</td><td class="num">$78,30</td><td><textarea class="note-input" data-note="kwk-7"></textarea></td></tr>
+          <tr><td>"professional pool contractors"</td><td>Phrase</td><td>Pool Install</td><td class="num">105</td><td class="num">$919,74</td><td class="num">7,67</td><td class="num">$119,97</td><td><textarea class="note-input" data-note="kwk-8"></textarea></td></tr>
+          <tr><td>"inground fiberglass pools"</td><td>Phrase</td><td>Fiberglass</td><td class="num">270</td><td class="num">$1.142,33</td><td class="num">8,67</td><td class="num">$131,81</td><td><textarea class="note-input" data-note="kwk-9"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout green" style="margin-top:14px;">
+        <span class="lang-en"><strong>These are the backbone.</strong> "inground fiberglass pools" and "professional pool contractors" carry the most volume; the Broad "custom pool builder" pair and "pool construction company" deliver the cheapest leads. Keep them running and protect their budget.</span>
+        <span class="lang-pt"><strong>Essas são a espinha dorsal.</strong> "inground fiberglass pools" e "professional pool contractors" carregam o maior volume; o par Broad "custom pool builder" e "pool construction company" entregam os leads mais baratos. Manter rodando e proteger o orçamento delas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BROAD MATCH REVIEW -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">🔍</div>
+      <div><h3><span class="lang-en">Broad Match Keywords — Performance Review</span><span class="lang-pt">Keywords em Broad Match — Avaliação de Performance</span></h3>
+      <div class="sub"><span class="lang-en">High-Ticket Pools · kept while they perform (leads, or cost under the $133 avg CPA)</span><span class="lang-pt">High-Ticket Pools · mantidas enquanto performam (leads, ou custo abaixo do CPA médio de $133)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout green">
+        <span class="lang-en"><strong>Broad match is still earning its place here.</strong> The High-Ticket broad keywords include some of the account's cheapest leads, and the few that haven't converted are spending <em>below</em> the $133 average cost-per-lead. Keep all and keep monitoring; only revisit a keyword if its spend climbs well past $133 without a lead.</span>
+        <span class="lang-pt"><strong>Broad match continua justificando seu lugar aqui.</strong> As keywords broad da High-Ticket incluem alguns dos leads mais baratos da conta, e as poucas que não converteram estão gastando <em>abaixo</em> do custo por lead médio de $133. Manter todas e seguir monitorando; só reavaliar uma keyword se o gasto passar bem de $133 sem lead.</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Broad keyword</span><span class="lang-pt">Keyword broad</span></th>
+            <th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Status</span><span class="lang-pt">Status</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>custom pool builder near me</td><td class="num">69</td><td class="num">$228,46</td><td class="num"><strong>5</strong></td><td class="num">$45,69</td><td><span class="tag green"><span class="lang-en">Keep — strong</span><span class="lang-pt">Manter — forte</span></span></td><td><textarea class="note-input" data-note="broad-1"></textarea></td></tr>
+          <tr><td>custom pool builder</td><td class="num">35</td><td class="num">$80,31</td><td class="num"><strong>3</strong></td><td class="num">$26,77</td><td><span class="tag green"><span class="lang-en">Keep — strong</span><span class="lang-pt">Manter — forte</span></span></td><td><textarea class="note-input" data-note="broad-2"></textarea></td></tr>
+          <tr><td>premium inground pools</td><td class="num">27</td><td class="num">$100,09</td><td class="num"><strong>2</strong></td><td class="num">$50,04</td><td><span class="tag green"><span class="lang-en">Keep — strong</span><span class="lang-pt">Manter — forte</span></span></td><td><textarea class="note-input" data-note="broad-3"></textarea></td></tr>
+          <tr><td>concrete pool</td><td class="num">34</td><td class="num">$83,18</td><td class="num">1</td><td class="num">$83,18</td><td><span class="tag green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td><td><textarea class="note-input" data-note="broad-4"></textarea></td></tr>
+          <tr><td>gunite pool</td><td class="num">4</td><td class="num">$19,99</td><td class="num">1</td><td class="num">$19,99</td><td><span class="tag green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td><td><textarea class="note-input" data-note="broad-5"></textarea></td></tr>
+          <tr><td>custom pools near me</td><td class="num">35</td><td class="num">$153,47</td><td class="num">1</td><td class="num">$153,47</td><td><span class="tag yellow"><span class="lang-en">Keep — converted, monitor</span><span class="lang-pt">Manter — converteu, monitorar</span></span></td><td><textarea class="note-input" data-note="broad-6"></textarea></td></tr>
+          <tr><td>luxury backyard pool</td><td class="num">16</td><td class="num">$79,63</td><td class="num">0</td><td class="num">—</td><td><span class="tag blue"><span class="lang-en">Keep — cost &lt; $133</span><span class="lang-pt">Manter — custo &lt; $133</span></span></td><td><textarea class="note-input" data-note="broad-7"></textarea></td></tr>
+          <tr><td>architectural pool design</td><td class="num">12</td><td class="num">$54,95</td><td class="num">0</td><td class="num">—</td><td><span class="tag blue"><span class="lang-en">Keep — cost &lt; $133</span><span class="lang-pt">Manter — custo &lt; $133</span></span></td><td><textarea class="note-input" data-note="broad-8"></textarea></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEARCH TERMS ADD -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">🌱</div>
+      <div><h3><span class="lang-en">Search Term Opportunities — Add as Keywords</span><span class="lang-pt">Oportunidades de Search Terms — Adicionar como Keywords</span></h3>
+      <div class="sub"><span class="lang-en">Converting terms not yet set as explicit keywords (Phrase or Exact)</span><span class="lang-pt">Termos que converteram e ainda não são keywords explícitas (Phrase ou Exact)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term</span><span class="lang-pt">Termo de busca</span></th>
+            <th><span class="lang-en">Suggested match</span><span class="lang-pt">Match sugerido</span></th>
+            <th><span class="lang-en">Ad group</span><span class="lang-pt">Grupo de anúncios</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool company near me</td><td><span class="tag green">Exact</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$5</td><td><textarea class="note-input" data-note="st-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool installer near me</td><td><span class="tag green">Exact</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$27</td><td><textarea class="note-input" data-note="st-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>local pool contractor</td><td><span class="tag blue">Phrase</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$27</td><td><textarea class="note-input" data-note="st-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>pool builders columbus ohio</td><td><span class="tag green">Exact</span></td><td>Pool Installation</td><td class="num">1</td><td class="num">$23</td><td><textarea class="note-input" data-note="st-4"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:14px;">
+        <span class="lang-en"><strong>Reminder:</strong> <strong>"pool company near me"</strong> converted at a $5 cost-per-lead and was recommended last cycle too — it still isn't added as an explicit keyword. It's the single easiest win here.</span>
+        <span class="lang-pt"><strong>Lembrete:</strong> <strong>"pool company near me"</strong> converteu a $5 de custo por lead e já foi recomendado no ciclo passado — ainda não foi adicionado como keyword explícita. É o ganho mais fácil da lista.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEGATIVES -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-red-light)">🚫</div>
+      <div><h3><span class="lang-en">Recommended Negative Keywords</span><span class="lang-pt">Negativos Recomendados</span></h3>
+      <div class="sub"><span class="lang-en">Terms that spent with 0 primary leads over the period (~$800 across the groups below)</span><span class="lang-pt">Termos que gastaram com 0 lead primário no período (~$800 nos grupos abaixo)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term → negative</span><span class="lang-pt">Termo → negativo</span></th>
+            <th><span class="lang-en">Category</span><span class="lang-pt">Categoria</span></th>
+            <th class="num"><span class="lang-en">Cost (period)</span><span class="lang-pt">Custo (período)</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>fiberglass pool shell / shells for sale / factory direct</td><td><span class="tag yellow">DIY / Product</span></td><td class="num">$110,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>fiberglass pool insert / inserts / pool inserts</td><td><span class="tag yellow">DIY / Product</span></td><td class="num">$55,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>fiberglass inground pool kits</td><td><span class="tag yellow">DIY / Kit</span></td><td class="num">$17,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>wholesale fiberglass pool</td><td><span class="tag blue">Wholesale</span></td><td class="num">$15,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>vinyl liner inground pool</td><td><span class="tag blue"><span class="lang-en">Other product</span><span class="lang-pt">Outro produto</span></span></td><td class="num">$16,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>pool equipment service near me</td><td><span class="tag red">Repair / Equip.</span></td><td class="num">$44,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>pool suppliers near me / pool store(s) in columbus</td><td><span class="tag red">Store / Supplies</span></td><td class="num">$96,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-7"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>hayward dealer / hayward authorized service center</td><td><span class="tag red">Equip. brand</span></td><td class="num">$53,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-8"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>commercial pool service</td><td><span class="tag red"><span class="lang-en">Commercial (out of scope)</span><span class="lang-pt">Comercial (fora de escopo)</span></span></td><td class="num">$53,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-9"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>pool liner installation / fill a pool service near me</td><td><span class="tag red">Repair / Service</span></td><td class="num">$40,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-10"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>water's edge / leisure time / moore brothers / poseidon / gc / rainbow / polaris / pacific / dodds pools</td><td><span class="tag blue"><span class="lang-en">Non-target competitors</span><span class="lang-pt">Concorrentes não-alvo</span></span></td><td class="num">$300,00</td><td class="num">0</td><td><textarea class="note-input" data-note="neg-11"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>Careful with two things:</strong> (1) do NOT negative the word "service" by itself — "pool company service near me" and "pool service near me" both converted. Negative the specific modifiers (equipment, liner, store, supplies). (2) The "non-target competitors" row is separate from the intentional <em>Competitors</em> ad group (Easy Living, Luxury Pools, Aquatic Creations, Serenity, etc. — those are on purpose). This row is small-town competitor names leaking through broad/phrase in Pool Installation &amp; Fiberglass with 0 conversions.</span>
+        <span class="lang-pt"><strong>Cuidado com duas coisas:</strong> (1) NÃO negativar a palavra "service" isolada — "pool company service near me" e "pool service near me" converteram. Negativar os modificadores específicos (equipment, liner, store, supplies). (2) A linha "concorrentes não-alvo" é diferente do grupo <em>Competitors</em> intencional (Easy Living, Luxury Pools, Aquatic Creations, Serenity, etc. — esses são de propósito). Esta linha são nomes de concorrentes de cidades pequenas vazando por broad/phrase em Pool Installation e Fiberglass com 0 conversões.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>Keep (do NOT negative):</strong> "san juan pools" (the brand Maxima is an authorized dealer of), "fiberglass pool manufacturer/manufacturing" (dealer research), "hot tub / plunge pool / tanning ledge" (inside Maxima's niche), "kayak pools" (competitor that converted once). The search-terms report shows ~$6,600 of the $11,225 total — Google hides the long tail — so treat the negatives list as the visible portion.</span>
+        <span class="lang-pt"><strong>Manter (NÃO negativar):</strong> "san juan pools" (marca da qual a Maxima é dealer autorizado), "fiberglass pool manufacturer/manufacturing" (pesquisa de dealer), "hot tub / plunge pool / tanning ledge" (dentro do nicho da Maxima), "kayak pools" (concorrente que converteu uma vez). O relatório de search terms mostra ~$6.600 dos $11.225 totais — o Google esconde a cauda longa — então trate a lista de negativos como a parte visível.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEO -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📍</div>
+      <div><h3><span class="lang-en">Locations — Full Period (vs current bid adjustments)</span><span class="lang-pt">Localizações — Período Completo (vs ajustes de lance atuais)</span></h3>
+      <div class="sub"><span class="lang-en">100% of spend stayed inside Ohio. "Current bid" reflects the adjustments already live (per campaign).</span><span class="lang-pt">100% do investimento ficou dentro de Ohio. "Bid atual" reflete os ajustes já ativos (por campanha).</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout red">
+        <span class="lang-en"><strong>Recurring mismatches still not fixed since June:</strong> (1) <strong>Fairfield County</strong> is a top converter (6 leads, $85 CPA) but is still set to <strong>−15%</strong> on Pool Installation &amp; Fiberglass — reverse it to positive. (2) <strong>Galena</strong> is still at <strong>+15%</strong> on Pool Installation with <strong>0 leads</strong> ($191 spent) — remove the boost. New this period: (3) <strong>Clark County</strong> has a <strong>+15%</strong> on Pool Installation with 0 leads — remove it. (4) <strong>Columbus</strong> is at <strong>+15%</strong> but its CPA is $220 (well above the $133 average) and it's the single largest spend line ($2,208) — reduce/remove the boost; that's where efficiency gains matter most.</span>
+        <span class="lang-pt"><strong>Descompassos recorrentes ainda não corrigidos desde Junho:</strong> (1) <strong>Fairfield County</strong> é um dos melhores conversores (6 leads, CPA $85) mas segue em <strong>−15%</strong> em Pool Installation e Fiberglass — reverter para positivo. (2) <strong>Galena</strong> segue em <strong>+15%</strong> em Pool Installation com <strong>0 leads</strong> ($191 gastos) — remover o boost. Novidade deste período: (3) <strong>Clark County</strong> tem <strong>+15%</strong> em Pool Installation com 0 leads — remover. (4) <strong>Columbus</strong> está em <strong>+15%</strong> mas com CPA $220 (bem acima da média de $133) e é a maior linha de gasto da conta ($2.208) — reduzir/remover o boost; é onde o ganho de eficiência mais pesa.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">📈 Good converters — raise or keep</span><span class="lang-pt">📈 Bons conversores — aumentar ou manter</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Current bid</span><span class="lang-pt">Bid atual</span></th>
+            <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Delaware County</strong></td><td class="num"><strong>17,7</strong></td><td class="num">$1.180,62</td><td class="num"><strong>$66,81</strong></td><td><span class="tag green">PI +20% · HT +10%</span></td><td><span class="tag blue"><span class="lang-en">Keep; add +10–15% on Fiberglass</span><span class="lang-pt">Manter; add +10–15% na Fiberglass</span></span></td><td><textarea class="note-input" data-note="geo-up-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Franklin County</td><td class="num">7,0</td><td class="num">$696,51</td><td class="num">$99,50</td><td><span class="muted">—</span></td><td><span class="tag green">+10–15%</span></td><td><textarea class="note-input" data-note="geo-up-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Fairfield County</strong></td><td class="num">6,0</td><td class="num">$508,89</td><td class="num"><strong>$84,82</strong></td><td><span class="tag red">PI −15% · FG −15%</span></td><td><span class="tag green"><span class="lang-en">Reverse → +10–15%</span><span class="lang-pt">Reverter → +10–15%</span></span></td><td><textarea class="note-input" data-note="geo-up-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Knox County</td><td class="num">5,0</td><td class="num">$334,85</td><td class="num"><strong>$66,97</strong></td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Lewis Center</td><td class="num">3,0</td><td class="num">$156,66</td><td class="num"><strong>$52,22</strong></td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Logan County</td><td class="num">3,0</td><td class="num">$205,01</td><td class="num">$68,34</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Dublin</td><td class="num">3,3</td><td class="num">$251,52</td><td class="num">$75,53</td><td><span class="muted">—</span></td><td><span class="tag green">+10–15%</span></td><td><textarea class="note-input" data-note="geo-up-7"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Grove City</td><td class="num">2,0</td><td class="num">$147,03</td><td class="num">$73,52</td><td><span class="muted">—</span></td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-8"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-keep"></td><td>Richland County</td><td class="num">4,0</td><td class="num">$374,74</td><td class="num">$93,69</td><td><span class="tag green">PI +15% · FG +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td><td><textarea class="note-input" data-note="geo-up-9"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-keep"></td><td>Powell</td><td class="num">2,0</td><td class="num">$147,79</td><td class="num">$73,89</td><td><span class="tag green">PI +15% · FG +15%</span></td><td><span class="tag blue"><span class="lang-en">Keep as is</span><span class="lang-pt">Manter como está</span></span></td><td><textarea class="note-input" data-note="geo-up-10"></textarea></td></tr>
+        </tbody>
+      </table>
+      <h4 class="subhead"><span class="lang-en">📉 Weak — reduce or remove boost</span><span class="lang-pt">📉 Fracas — reduzir ou remover boost</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th><span class="lang-en">Current bid</span><span class="lang-pt">Bid atual</span></th>
+            <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Columbus</strong></td><td class="num">$2.207,68</td><td class="num">10,0</td><td><span class="tag red">PI +15%</span></td><td><span class="tag yellow"><span class="lang-en">Reduce boost → 0% (CPA $220)</span><span class="lang-pt">Reduzir boost → 0% (CPA $220)</span></span></td><td><textarea class="note-input" data-note="geo-down-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Galena</strong></td><td class="num">$190,66</td><td class="num">0,0</td><td><span class="tag red">PI +15%</span></td><td><span class="tag yellow"><span class="lang-en">Remove boost → 0% / −10%</span><span class="lang-pt">Remover boost → 0% / −10%</span></span></td><td><textarea class="note-input" data-note="geo-down-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Clark County</strong></td><td class="num">$241,32</td><td class="num">0,0</td><td><span class="tag red">PI +15% · FG −25%</span></td><td><span class="tag yellow"><span class="lang-en">Remove the PI +15%</span><span class="lang-pt">Remover o PI +15%</span></span></td><td><textarea class="note-input" data-note="geo-down-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Marysville</td><td class="num">$267,51</td><td class="num">0,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−15%</span></td><td><textarea class="note-input" data-note="geo-down-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Westerville</td><td class="num">$208,21</td><td class="num">0,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−15%</span></td><td><textarea class="note-input" data-note="geo-down-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Crawford County</td><td class="num">$232,92</td><td class="num">1,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10–15%</span></td><td><textarea class="note-input" data-note="geo-down-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Plain City / New Albany / Gahanna / Champaign Co.</td><td class="num">$527,00</td><td class="num">0,0</td><td><span class="muted">—</span></td><td><span class="tag yellow">−10–15%</span></td><td><textarea class="note-input" data-note="geo-down-7"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout green" style="margin-top:14px;">
+        <span class="lang-en"><strong>Delaware County remains the star</strong> — 17.7 leads at a $67 CPA, already boosted. The biggest untapped efficiency is <strong>Columbus</strong>: it's the largest spend line at a $220 CPA with a +15% boost. Trimming that boost and shifting the emphasis to the sub-$90-CPA counties (Fairfield, Knox, Lewis Center, Franklin, Delaware) is the core of this period's geo plan. Pickaway (−20%) already looks right.</span>
+        <span class="lang-pt"><strong>Delaware County segue como destaque</strong> — 17,7 leads a um CPA de $67, já impulsionado. A maior eficiência inexplorada é <strong>Columbus</strong>: é a maior linha de gasto, com CPA $220 e boost de +15%. Aparar esse boost e deslocar a ênfase para os condados de CPA abaixo de $90 (Fairfield, Knox, Lewis Center, Franklin, Delaware) é o núcleo do plano de geo deste período. Pickaway (−20%) já parece correto.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">✅</div>
+      <div><h3><span class="lang-en">Prioritized Next Steps</span><span class="lang-pt">Próximos Passos Prioritários</span></h3>
+      <div class="sub"><span class="lang-en">Ordered by impact</span><span class="lang-pt">Ordenados por impacto</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Pause the 3 high-CPA Phrase keywords</span><span class="lang-pt">Pausar as 3 keywords Phrase de CPA altíssimo</span></h4>
+          <p><span class="lang-en">"custom pool builder" ($614/lead), "fiberglass pool company" ($425/lead), "fiberglass pools ohio" ($771/lead) — together ~$1,297 for 2.3 leads. The Broad versions already cover this intent far cheaper. This is the fastest budget recovery.</span><span class="lang-pt">"custom pool builder" ($614/lead), "fiberglass pool company" ($425/lead), "fiberglass pools ohio" ($771/lead) — juntas ~$1.297 por 2,3 leads. As versões Broad já cobrem essa intenção muito mais barato. É a recuperação de verba mais rápida.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-1" data-label="Step 1 · Pause high-CPA phrase kw"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Fix the recurring geo mismatches</span><span class="lang-pt">Corrigir os descompassos de geo recorrentes</span></h4>
+          <p><span class="lang-en">Reverse Fairfield (−15% → +), remove Galena's +15% (0 leads), remove Clark County's PI +15% (0 leads), and trim Columbus's +15% (CPA $220 on the biggest spend line). Fairfield &amp; Galena have been pending since June.</span><span class="lang-pt">Reverter Fairfield (−15% → +), remover o +15% de Galena (0 leads), remover o PI +15% de Clark County (0 leads) e aparar o +15% de Columbus (CPA $220 na maior linha de gasto). Fairfield e Galena estão pendentes desde Junho.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-2" data-label="Step 2 · Fix geo mismatches"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Add the negatives (DIY/product + repair/store/equipment)</span><span class="lang-pt">Adicionar os negativos (DIY/produto + reparo/loja/equipamento)</span></h4>
+          <p><span class="lang-en">Blocks ~$500+ of visible wasted spend and keeps budget on installation buyers. Remember: negative the modifiers, not the word "service".</span><span class="lang-pt">Bloqueia ~$500+ de gasto desperdiçado visível e mantém o orçamento em compradores de instalação. Lembre: negativar os modificadores, não a palavra "service".</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-3" data-label="Step 3 · Add negatives"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Boost the sub-$90-CPA counties &amp; add the converting keywords</span><span class="lang-pt">Impulsionar os condados de CPA &lt;$90 &amp; adicionar as keywords que converteram</span></h4>
+          <p><span class="lang-en">+15% on Knox, Lewis Center, Logan, Franklin, Dublin, Grove City. Add [pool company near me] ($5 CPA!), [pool installer near me], "local pool contractor".</span><span class="lang-pt">+15% em Knox, Lewis Center, Logan, Franklin, Dublin, Grove City. Adicionar [pool company near me] (CPA $5!), [pool installer near me], "local pool contractor".</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-4" data-label="Step 4 · Boost counties + add keywords"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Optimize Fiberglass (priciest campaign) + review generic Phrase kw</span><span class="lang-pt">Otimizar a Fiberglass (campanha mais cara) + revisar Phrase genéricas</span></h4>
+          <p><span class="lang-en">Fiberglass has the highest CPA ($191). Review ad copy/landing page for "residential pool installation" ($279) and "pool installation" ($277); pause the "shell"/"insert" keywords that feed DIY intent.</span><span class="lang-pt">A Fiberglass tem o CPA mais alto ($191). Revisar anúncio/landing page de "residential pool installation" ($279) e "pool installation" ($277); pausar as keywords "shell"/"insert" que alimentam intenção DIY.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-5" data-label="Step 5 · Optimize Fiberglass"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri low">LOW</span> &nbsp;<span class="lang-en">Watch July as conversions mature</span><span class="lang-pt">Acompanhar Julho conforme as conversões amadurecem</span></h4>
+          <p><span class="lang-en">July's traffic is cheaper and larger; the recorded-conversion dip is partly attribution lag. Re-check at month-end before drawing conclusions. Keep monitoring broad match (all under $133 or converting).</span><span class="lang-pt">O tráfego de Julho está mais barato e maior; a queda nas conversões registradas é em parte atraso de atribuição. Reavaliar no fim do mês antes de concluir. Seguir monitorando broad match (todas abaixo de $133 ou convertendo).</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-6" data-label="Step 6 · Watch July"></textarea></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lang-en"><strong>Data source:</strong> Google Ads — Campaign, Search keyword, Search terms, Ad group, Ad and Location reports for May 1 – July 23, 2026 (single aggregate export). Monthly May/June splits taken from prior monthly reports; July (1–23) derived as the remainder. "Lead Conversions" = primary tracked conversions (phone-call leads + lead-form submits). "All conversions" (secondary actions) are not used as the success metric.</span>
+    <span class="lang-pt"><strong>Fonte de dados:</strong> Google Ads — relatórios de Campanha, Search keyword, Search terms, Ad group, Ad e Location para 1 Mai – 23 Jul de 2026 (export agregado único). Divisões mensais de Maio/Junho vêm dos relatórios mensais anteriores; Julho (1–23) derivado como o restante. "Conversões (Lead)" = conversões primárias rastreadas (ligações + envios de formulário). "Todas as conversões" (ações secundárias) não são usadas como métrica de sucesso.</span>
+  </div>
+
+</div>
+
+<div class="approval-bar">
+  <span class="count"><span id="approved-count">0</span><span class="lang-en"> of </span><span class="lang-pt"> de </span><span id="total-actions">0</span><span class="lang-en"> actions approved</span><span class="lang-pt"> ações aprovadas</span> · <span class="notes-count" id="notes-count">0</span><span class="lang-en"> notes written</span><span class="lang-pt"> notas escritas</span></span>
+  <span class="spacer"></span>
+  <button onclick="selectAll()"><span class="lang-en">Select All</span><span class="lang-pt">Marcar Todas</span></button>
+  <button onclick="deselectAll()"><span class="lang-en">Deselect All</span><span class="lang-pt">Desmarcar Todas</span></button>
+  <button class="btn-export" onclick="exportApproved()">📦 <span class="lang-en">Export feedback &amp; approved actions</span><span class="lang-pt">Exportar feedback e ações aprovadas</span></button>
+</div>
+
+<script>
+const PLACEHOLDERS = {
+  en: 'Agree, disagree, or your idea…',
+  pt: 'Concordo, discordo, ou sua ideia…'
+};
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
+  localStorage.setItem('maxima-lang', lang);
+}
+
+const checkboxes = document.querySelectorAll('.approval-check');
+const notes = document.querySelectorAll('.note-input');
+const countEl = document.getElementById('approved-count');
+const totalEl = document.getElementById('total-actions');
+const notesCountEl = document.getElementById('notes-count');
+totalEl.textContent = checkboxes.length;
+
+checkboxes.forEach(cb => { cb.addEventListener('change', () => { cb.closest('tr').classList.toggle('approved', cb.checked); updateCount(); saveState(); }); });
+notes.forEach(n => { n.addEventListener('input', () => { n.classList.toggle('filled', n.value.trim().length > 0); updateCount(); saveNotes(); }); });
+
+function updateCount() {
+  countEl.textContent = document.querySelectorAll('.approval-check:checked').length;
+  notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
+}
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); saveState(); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); saveState(); }
+
+function rowLabel(tr) {
+  return Array.from(tr.querySelectorAll('td'))
+    .filter(td => !td.querySelector('.approval-check') && !td.querySelector('.note-input'))
+    .map(c => c.textContent.trim().replace(/\s+/g, ' '))
+    .filter(Boolean)
+    .join(' | ');
+}
+
+function exportApproved() {
+  const approved = [];
+  document.querySelectorAll('.approval-check:checked').forEach(cb => {
+    const tr = cb.closest('tr');
+    const noteEl = tr.querySelector('.note-input');
+    approved.push({ action: cb.dataset.action, values: rowLabel(tr), note: noteEl ? noteEl.value.trim() : '' });
+  });
+
+  const comments = [];
+  notes.forEach(n => {
+    const val = n.value.trim();
+    if (!val) return;
+    const tr = n.closest('tr');
+    const cb = tr ? tr.querySelector('.approval-check') : null;
+    if (cb && cb.checked) return;
+    let label;
+    if (tr) label = rowLabel(tr);
+    else label = n.dataset.label || n.dataset.note;
+    comments.push({ label, note: val });
+  });
+
+  if (!approved.length && !comments.length) {
+    alert('No actions approved and no notes written yet.\nNenhuma ação aprovada e nenhuma nota escrita ainda.');
+    return;
+  }
+
+  let t = 'MAXIMA POOLS — OWNER FEEDBACK & APPROVED ACTIONS (Report 06 — Period May 1 to Jul 23, 2026)\n';
+  t += '='.repeat(72) + '\n';
+
+  const labels = {
+    'match-type': 'CONVERT TO PHRASE/EXACT (was Broad)',
+    'pause': 'PAUSE KEYWORDS',
+    'review': 'REVIEW KEYWORDS (ad copy / landing page)',
+    negative: 'NEGATIVE KEYWORDS',
+    'add-keyword': 'NEW KEYWORDS TO ADD',
+    'bid-up': 'POSITIVE GEO BID ADJUSTMENT',
+    'bid-down': 'NEGATIVE / REMOVE GEO BID ADJUSTMENT',
+    'bid-keep': 'KEEP CURRENT GEO BID (no change)'
+  };
+
+  if (approved.length) {
+    t += '\n### APPROVED ACTIONS (' + approved.length + ') ###\n';
+    const groups = {};
+    approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i); });
+    Object.keys(groups).forEach(a => {
+      t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n';
+      groups[a].forEach(i => {
+        t += '  [x] ' + i.values + '\n';
+        if (i.note) t += '        note: ' + i.note + '\n';
+      });
+    });
+  }
+
+  if (comments.length) {
+    t += '\n### OWNER NOTES / COMMENTS (' + comments.length + ') ###\n' + '-'.repeat(40) + '\n';
+    comments.forEach(c => { t += '  • ' + c.label + '\n        note: ' + c.note + '\n'; });
+  }
+
+  t += '\n' + '='.repeat(72) + '\n';
+  t += 'Summary: ' + approved.length + ' actions approved, ' + comments.length + ' additional notes.\n';
+
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_pools_feedback_report06.txt'; a.click();
+}
+
+const SK = 'maxima-approvals-pools06';
+const NK = 'maxima-notes-pools06';
+function saveState() { const s = {}; checkboxes.forEach((c, i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
+function loadState() { const s = localStorage.getItem(SK); if (s) { const d = JSON.parse(s); checkboxes.forEach((c, i) => { if (d[i]) { c.checked = true; c.closest('tr').classList.add('approved'); } }); } }
+function saveNotes() { const s = {}; notes.forEach(n => { if (n.value.trim()) s[n.dataset.note] = n.value; }); localStorage.setItem(NK, JSON.stringify(s)); }
+function loadNotes() { const s = localStorage.getItem(NK); if (s) { const d = JSON.parse(s); notes.forEach(n => { if (d[n.dataset.note]) { n.value = d[n.dataset.note]; n.classList.add('filled'); } }); } }
+
+setLang(localStorage.getItem('maxima-lang') || 'en');
+loadState();
+loadNotes();
+updateCount();
+</script>
+</body>
+</html>
