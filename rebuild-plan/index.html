@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maxima Pools Rebuild Plan</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 110px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.notes-intro { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--g-yellow); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.notes-intro .ni-icon { font-size: 26px; flex-shrink: 0; line-height: 1.2; }
+.notes-intro h3 { font-family: var(--font); font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.notes-intro p { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+.tw { overflow-x: auto; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.blue { border-left: 4px solid var(--g-blue); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tfoot td { font-weight: 700; background: var(--hover); border-top: 2px solid var(--border); }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.tag.grey { background: var(--hover); color: var(--text2); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+.callout:last-child { margin-bottom: 0; }
+
+.approval-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--g-blue); }
+tr.approved td { background: var(--g-green-light) !important; }
+.note-col { min-width: 190px; width: 190px; }
+.note-input { width: 100%; min-width: 140px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; font-family: var(--font-body); font-size: 12.5px; color: var(--text); background: #fffdf6; resize: vertical; min-height: 38px; line-height: 1.45; display: block; transition: border-color .15s, box-shadow .15s, background .15s; }
+.note-input:focus { outline: none; border-color: var(--g-blue); background: var(--white); box-shadow: 0 0 0 3px var(--g-blue-light); }
+.note-input::placeholder { color: var(--text3); font-style: italic; }
+.note-input.filled { background: var(--g-yellow-light); border-color: var(--g-yellow); }
+.section-note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.section-note label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; font-family: var(--font); }
+.section-note label::before { content: "🗒️ "; }
+.note-block { width: 100%; margin-top: 4px; min-height: 46px; }
+
+.steps { counter-reset: step; }
+.step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-light); }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--g-blue); color: white; font-family: var(--font); font-weight: 500; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.step .step-body { flex: 1; }
+.step .step-body h4 { font-family: var(--font); font-size: 14.5px; font-weight: 500; margin-bottom: 3px; }
+.step .step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.step .when { font-size: 11px; color: var(--text3); font-family: var(--font); float: right; margin-left: 12px; }
+
+.ad-preview { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; max-width: 600px; background: var(--white); }
+.ad-preview .sp { font-size: 12px; font-weight: 700; color: var(--text); }
+.ad-preview .url { font-size: 12.5px; color: var(--text2); margin-bottom: 4px; }
+.ad-preview .ti { font-size: 18px; color: #1a0dab; line-height: 1.3; margin-bottom: 3px; }
+.ad-preview .de { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.ad-preview .sl { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-light); }
+.ad-preview .sl span { font-size: 12.5px; color: #1a0dab; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count span { color: var(--g-blue); font-size: 18px; }
+.approval-bar .count .notes-count { color: var(--g-yellow-dark); }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.grp { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+.grp-head { background: var(--hover); padding: 11px 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; border-bottom: 1px solid var(--border-light); }
+.grp-head .nm { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.grp-head .pg { font-size: 12px; color: var(--text2); }
+.grp-head .pg code { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 11.5px; color: var(--g-blue); }
+.grp-body { padding: 12px 14px; }
+.lbl { font-size: 10.5px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; color: var(--text3); margin: 12px 0 6px; }
+.lbl:first-child { margin-top: 0; }
+.kws { display: flex; flex-wrap: wrap; gap: 4px; }
+.kw { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 11.5px; padding: 2px 7px; border-radius: 4px; line-height: 1.55; }
+.kw.ph { background: var(--hover); color: var(--text2); border: 1px solid var(--border-light); }
+.kw.ex { background: var(--g-blue-light); color: var(--g-blue); border: 1px solid #d2e3fc; }
+.kw.br { background: var(--g-yellow-light); color: var(--g-yellow-dark); border: 1px solid #feefc3; }
+.kw.ng { background: var(--g-red-light); color: var(--g-red); border: 1px solid #fad2cf; }
+.hls { display: flex; flex-wrap: wrap; gap: 4px; }
+.hls span { font-size: 12px; padding: 3px 8px; border-radius: 4px; background: var(--white); border: 1px solid var(--border); line-height: 1.5; }
+.dsc { display: flex; flex-direction: column; gap: 4px; }
+.dsc p { font-size: 12.5px; color: var(--text2); background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 5px 9px; line-height: 1.5; }
+.mt-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--text2); margin-bottom: 16px; align-items: center; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 22px 0 10px; color: var(--text); }
+h4.subhead:first-child { margin-top: 0; }
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+.foot { font-size: 12px; color: var(--text3); line-height: 1.65; padding: 4px 4px 0; }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } .approval-bar { flex-wrap: wrap; } .approval-bar .count { width: 100%; } .note-col { width: auto; min-width: 140px; } .step .when { float: none; display: block; margin: 0 0 4px; } }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div><div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div><div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Pools — Account Rebuild</span>
+  <div class="g-topbar-spacer"></div>
+  <span class="g-topbar-badge"><span class="lang-en">For your review</span><span class="lang-pt">Para sua revisão</span></span>
+  <div class="lang-toggle"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-pt" onclick="setLang('pt')">PT</button></div>
+</div>
+
+<div class="g-main">
+
+<div class="phase-banner">
+  <div class="phase-icon">🏊</div>
+  <div>
+    <h2><span class="lang-en">Account Rebuild — Action Plan</span><span class="lang-pt">Reestruturação da Conta — Plano de Ação</span></h2>
+    <p><span class="lang-en">Rebuilding the Google Ads account around your website, the way we did for Maxima Concrete: closed keywords that you can read, one page per ad group, and a small, capped discovery campaign instead of open keywords everywhere. 5 campaigns to start, 22 ad groups, 352 keywords, at $88/day.</span><span class="lang-pt">Reestruturação da conta do Google Ads em cima do seu site, como fizemos na Maxima Concrete: keywords fechadas que dá para ler, uma página por grupo, e uma campanha de descoberta pequena e com teto no lugar de keywords abertas em tudo. 5 campanhas para começar, 22 grupos, 352 keywords, com $88/dia.</span></p>
+  </div>
+</div>
+
+<div class="notes-intro">
+  <div class="ni-icon">✍️</div>
+  <div>
+    <h3><span class="lang-en">How to use this page</span><span class="lang-pt">Como usar esta página</span></h3>
+    <p><span class="lang-en">Tick the box next to each item you approve. If you disagree with anything, or have a better idea, write it in the yellow box next to it — your notes save automatically and are visible to the team. Four questions near the end need your answer before we build.</span><span class="lang-pt">Marque a caixa ao lado de cada item que você aprova. Se discordar de algo, ou tiver uma ideia melhor, escreva na caixa amarela ao lado — suas notas salvam sozinhas e ficam visíveis para a equipe. Quatro perguntas perto do fim precisam da sua resposta antes de montarmos.</span></p>
+  </div>
+</div>
+
+<!-- ══ 1 · Campanhas ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🚀</div><div>
+    <h3><span class="lang-en">1 · Campaigns to launch now</span><span class="lang-pt">1 · Campanhas para lançar agora</span></h3>
+    <div class="sub"><span class="lang-en">5 campaigns, $88/day total</span><span class="lang-pt">5 campanhas, $88/dia no total</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="kpi-grid" style="margin-bottom:18px">
+      <div class="kpi blue"><div class="label"><span class="lang-en">Campaigns</span><span class="lang-pt">Campanhas</span></div><div class="val">5</div><div class="prev"><span class="lang-en">+1 later</span><span class="lang-pt">+1 depois</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">Ad groups</span><span class="lang-pt">Grupos</span></div><div class="val">22</div><div class="prev"><span class="lang-en">each with its own page</span><span class="lang-pt">cada um com sua página</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></div><div class="val">352</div><div class="prev"><span class="lang-en">only 6 open, all in discovery</span><span class="lang-pt">só 6 abertas, todas na descoberta</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">New ads</span><span class="lang-pt">Anúncios novos</span></div><div class="val">22</div><div class="prev">330 <span class="lang-en">headlines</span><span class="lang-pt">títulos</span></div></div>
+      <div class="kpi good"><div class="label"><span class="lang-en">Daily budget</span><span class="lang-pt">Orçamento diário</span></div><div class="val">$88</div><div class="prev"><span class="lang-en">about $2,675/month</span><span class="lang-pt">cerca de $2,675/mês</span></div></div>
+    </div>
+    <div class="tw"><table>
+      <thead><tr>
+        <th style="width:40px;text-align:center">OK</th>
+        <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+        <th class="num"><span class="lang-en">Budget</span><span class="lang-pt">Orçamento</span></th>
+        <th class="num"><span class="lang-en">Groups</span><span class="lang-pt">Grupos</span></th>
+        <th class="num"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></th>
+        <th><span class="lang-en">What it covers</span><span class="lang-pt">O que cobre</span></th>
+        <th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th>
+      </tr></thead>
+      <tbody><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🔐 Brand — Maxima Pools</strong></td>
+    <td class="num"><strong>$4</strong>/day</td>
+    <td class="num">2</td>
+    <td class="num">25</td>
+    <td><span class="lang-en">Searches for the Maxima Pools name</span><span class="lang-pt">Buscas pelo nome Maxima Pools</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-1" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🏊 Pool Installation</strong></td>
+    <td class="num"><strong>$62</strong>/day</td>
+    <td class="num">12</td>
+    <td class="num">207</td>
+    <td><span class="lang-en">Every pool-installation search: fiberglass, San Juan, generic pool builders, cost and financing, models, tanning ledges, plunge pools, pool &amp; spa, design-build, fiberglass vs. gunite, luxury</span><span class="lang-pt">Toda busca de instalação: fibra, San Juan, construtor genérico, custo e financiamento, modelos, tanning ledge, plunge, piscina com spa, design-build, fibra × gunite, luxo</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-2" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🎯 Competitors</strong></td>
+    <td class="num"><strong>$8</strong>/day</td>
+    <td class="num">2</td>
+    <td class="num">35</td>
+    <td><span class="lang-en">Competitor names you choose, exact match only, with a hard cap</span><span class="lang-pt">Nomes de concorrentes que você escolher, só exact, com teto</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-3" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🧰 Pool Service &amp; Upgrades</strong></td>
+    <td class="num"><strong>$6</strong>/day</td>
+    <td class="num">5</td>
+    <td class="num">79</td>
+    <td><span class="lang-en">Repair, opening &amp; closing, cleaning, automatic covers, heaters and lighting — kept off the installation budget</span><span class="lang-pt">Reparo, abertura e fechamento, limpeza, capa automática, aquecedor e iluminação — fora da verba de instalação</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-4" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🔓 Discovery (Broad)</strong></td>
+    <td class="num"><strong>$8</strong>/day</td>
+    <td class="num">1</td>
+    <td class="num">6</td>
+    <td><span class="lang-en">Open keywords, capped at 9.1% of budget — finds searches the others miss</span><span class="lang-pt">Keywords abertas, com teto de 9.1% — acha buscas que as outras não pegam</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-5" rows="1"></textarea></td>
+  </tr></tbody>
+      <tfoot><tr><td></td><td>Total</td><td class="num">$88/day</td><td class="num">22</td><td class="num">352</td><td colspan="2"></td></tr></tfoot>
+    </table></div>
+
+    <div class="callout blue" style="margin-top:18px">
+      <strong><span class="lang-en">Why installation gets most of the budget:</span><span class="lang-pt">Por que a instalação fica com a maior parte do orçamento:</span></strong>
+      <span class="lang-en">it is the business. Service gets its own small budget so it never eats into installation, and competitor names get a hard cap.</span><span class="lang-pt">é o negócio. Serviço ganha verba própria e pequena para nunca comer a instalação, e nomes de concorrente ganham teto.</span>
+    </div>
+    <div class="callout green">
+      <strong><span class="lang-en">About the discovery campaign:</span><span class="lang-pt">Sobre a campanha de descoberta:</span></strong>
+      <span class="lang-en">it finds searches we haven't thought of, without letting open keywords run the account. $8/day (9.1% of the budget), 6 open keywords, every closed keyword blocked so it only gets what the other campaigns miss, the same block lists, plus hot tubs, service and competitor names. If its cost per lead stays 50% above the closed campaigns' for two cycles, it is paused. New searches it finds move into the closed campaigns every week.</span><span class="lang-pt">acha buscas em que não pensamos, sem deixar keyword aberta comandar a conta. $8/dia (9.1% do orçamento), 6 keywords abertas, todas as keywords fechadas bloqueadas para ela só receber o que as outras não pegam, as mesmas listas de bloqueio, mais hot tub, serviço e nome de concorrente. Se o custo por lead dela ficar 50% acima do das campanhas fechadas por dois ciclos, ela é pausada. As buscas novas que ela achar passam toda semana para as campanhas fechadas.</span>
+    </div>
+    <div class="tw" style="margin-top:18px"><table>
+      <thead><tr><th style="width:40px;text-align:center">OK</th><th><span class="lang-en">Decision</span><span class="lang-pt">Decisão</span></th><th><span class="lang-en">What it means</span><span class="lang-pt">O que significa</span></th><th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th></tr></thead>
+      <tbody><tr><td style="text-align:center"><input type="checkbox" class="approval-check" data-action="decision"></td><td><strong><span class="lang-en">Go back to phrase and exact keywords, with one small discovery campaign for open keywords</span><span class="lang-pt">Voltar a keywords phrase e exact, com uma campanha pequena de descoberta para as abertas</span></strong></td><td><span class="lang-en">Open keywords stay, but only in a separate campaign capped at 9.1% of the budget, with every block list applied and a weekly review. AI Max is switched off everywhere.</span><span class="lang-pt">As keywords abertas continuam, mas só numa campanha separada com teto de 9.1% do orçamento, todas as listas de bloqueio aplicadas e revisão semanal. O AI Max é desligado em tudo.</span></td><td class="note-col"><textarea class="note-input" data-note="decision-6" rows="1"></textarea></td></tr></tbody>
+    </table></div>
+    
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the campaigns or the budget split</span><span class="lang-pt">Algo sobre as campanhas ou a divisão do orçamento</span></label>
+      <textarea class="note-input note-block" data-note="sec-campaigns" data-label="Anything about the campaigns or the budget split" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 4 · Negativos ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🚫</div><div>
+    <h3><span class="lang-en">2 · Searches we will stop paying for</span><span class="lang-pt">2 · Buscas que vamos parar de pagar</span></h3>
+    <div class="sub"><span class="lang-en">132 terms in 8 lists</span><span class="lang-pt">132 termos em 8 listas</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">Blocking a term means no ad shows for any search containing it. These lists go on every new campaign. The words “hot tub” stay open on purpose in the closed campaigns.</span><span class="lang-pt">Bloquear um termo significa que nenhum anúncio aparece para busca que o contenha. Estas listas vão em todas as campanhas novas. As palavras “hot tub” ficam abertas de propósito nas campanhas fechadas.</span></p>
+    
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Pool stores &amp; supplies (incl. Scioto Valley)</span><span class="lang-pt">Lojas e produtos de piscina (inclui Scioto Valley)</span></span>
+        <span class="pg">25 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">People shopping for chemicals, parts or a store. You asked us to block Scioto Valley completely.</span><span class="lang-pt">Quem procura químico, peça ou loja. Você pediu para bloquear a Scioto Valley inteira.</span></p>
+        <div class="kws"><span class="kw ng">pool store</span><span class="kw ng">pool stores</span><span class="kw ng">pool supply</span><span class="kw ng">pool supplies</span><span class="kw ng">pool supplier</span><span class="kw ng">pool suppliers</span><span class="kw ng">pool chemicals</span><span class="kw ng">chemicals</span><span class="kw ng">leslie</span><span class="kw ng">leslies</span><span class="kw ng">leslie's</span><span class="kw ng">lesslies</span><span class="kw ng">k&amp;k</span><span class="kw ng">k &amp; k</span><span class="kw ng">k and k</span><span class="kw ng">pool parts</span><span class="kw ng">pool toys</span><span class="kw ng">pool floats</span><span class="kw ng">catalog</span><span class="kw ng">hayward dealer</span><span class="kw ng">pentair dealer</span><span class="kw ng">scioto valley</span><span class="kw ng">watsons</span><span class="kw ng">pool depot</span><span class="kw ng">pool shop</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Pool stores &amp; supplies (incl. Scioto Valley)</strong> (25 terms)</span><span class="lang-pt">Bloquear <strong>Lojas e produtos de piscina (inclui Scioto Valley)</strong> (25 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-7" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Other hot tub brands &amp; stores</span><span class="lang-pt">Marcas e lojas de hot tub de terceiros</span></span>
+        <span class="pg">19 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">Only other dealers' brands and stores. The words 'hot tub' stay open, since you sell some — tell us which brand so it comes off this list.</span><span class="lang-pt">Só marcas e lojas de outros revendedores. 'Hot tub' continua liberado, já que vocês vendem — diga qual marca para ela sair desta lista.</span></p>
+        <div class="kws"><span class="kw ng">master spas</span><span class="kw ng">master spa</span><span class="kw ng">marquis</span><span class="kw ng">bullfrog</span><span class="kw ng">jacuzzi</span><span class="kw ng">hot spring</span><span class="kw ng">caldera</span><span class="kw ng">sundance</span><span class="kw ng">cal spas</span><span class="kw ng">calspa</span><span class="kw ng">all seasons spas</span><span class="kw ng">all season spas</span><span class="kw ng">spas direct</span><span class="kw ng">aegean</span><span class="kw ng">agean</span><span class="kw ng">doheny</span><span class="kw ng">dohenys</span><span class="kw ng">softub</span><span class="kw ng">cold plunge</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Other hot tub brands &amp; stores</strong> (19 terms)</span><span class="lang-pt">Bloquear <strong>Marcas e lojas de hot tub de terceiros</strong> (19 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-8" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Above-ground, vinyl &amp; semi-inground</span><span class="lang-pt">Acima do solo, vinil e semi-enterrada</span></span>
+        <span class="pg">17 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">Products you don't install.</span><span class="lang-pt">Produtos que vocês não instalam.</span></p>
+        <div class="kws"><span class="kw ng">above ground</span><span class="kw ng">aboveground</span><span class="kw ng">above-ground</span><span class="kw ng">vinyl</span><span class="kw ng">liner</span><span class="kw ng">liners</span><span class="kw ng">doughboy</span><span class="kw ng">intex</span><span class="kw ng">bestway</span><span class="kw ng">stock tank</span><span class="kw ng">soft sided</span><span class="kw ng">semi inground</span><span class="kw ng">semi in ground</span><span class="kw ng">semi-inground</span><span class="kw ng">kayak pool</span><span class="kw ng">kayak pools</span><span class="kw ng">on ground pool</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Above-ground, vinyl &amp; semi-inground</strong> (17 terms)</span><span class="lang-pt">Bloquear <strong>Acima do solo, vinil e semi-enterrada</strong> (17 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-9" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">DIY, kits &amp; shell sales</span><span class="lang-pt">DIY, kits e venda de casca</span></span>
+        <span class="pg">20 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">People buying a shell to install themselves. 'Factory direct' is blocked and 'fiberglass pool insert' is not, as you asked.</span><span class="lang-pt">Quem quer comprar a casca e instalar sozinho. 'Factory direct' bloqueado e 'fiberglass pool insert' não, como você pediu.</span></p>
+        <div class="kws"><span class="kw ng">diy</span><span class="kw ng">do it yourself</span><span class="kw ng">how to build</span><span class="kw ng">how to install</span><span class="kw ng">kit</span><span class="kw ng">kits</span><span class="kw ng">myself</span><span class="kw ng">for sale</span><span class="kw ng">wholesale</span><span class="kw ng">factory direct</span><span class="kw ng">cheap</span><span class="kw ng">used</span><span class="kw ng">craigslist</span><span class="kw ng">home depot</span><span class="kw ng">lowes</span><span class="kw ng">menards</span><span class="kw ng">walmart</span><span class="kw ng">costco</span><span class="kw ng">amazon</span><span class="kw ng">sams club</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>DIY, kits &amp; shell sales</strong> (20 terms)</span><span class="lang-pt">Bloquear <strong>DIY, kits e venda de casca</strong> (20 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-10" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Pool removal, resurfacing &amp; leaks</span><span class="lang-pt">Remoção, reboco e vazamento</span></span>
+        <span class="pg">12 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">Work you don't take on. Equipment and coping repair keep their own ad group.</span><span class="lang-pt">Trabalho que vocês não fazem. Reparo de equipamento e coping têm grupo próprio.</span></p>
+        <div class="kws"><span class="kw ng">pool removal</span><span class="kw ng">remove pool</span><span class="kw ng">fill in pool</span><span class="kw ng">filling in pool</span><span class="kw ng">pool demolition</span><span class="kw ng">resurfacing</span><span class="kw ng">resurface</span><span class="kw ng">replaster</span><span class="kw ng">plaster</span><span class="kw ng">leak detection</span><span class="kw ng">acid wash</span><span class="kw ng">pool painting</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Pool removal, resurfacing &amp; leaks</strong> (12 terms)</span><span class="lang-pt">Bloquear <strong>Remoção, reboco e vazamento</strong> (12 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-11" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Public pools, swim lessons &amp; pool tables</span><span class="lang-pt">Piscina pública, aula de natação e sinuca</span></span>
+        <span class="pg">18 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">People looking for somewhere to swim, or a pool table.</span><span class="lang-pt">Quem procura onde nadar, ou mesa de sinuca.</span></p>
+        <div class="kws"><span class="kw ng">public pool</span><span class="kw ng">ymca</span><span class="kw ng">aquatic center</span><span class="kw ng">swim lessons</span><span class="kw ng">swimming lessons</span><span class="kw ng">lap swim</span><span class="kw ng">pool hours</span><span class="kw ng">pool party</span><span class="kw ng">hotel</span><span class="kw ng">water park</span><span class="kw ng">splash pad</span><span class="kw ng">rec center</span><span class="kw ng">pool table</span><span class="kw ng">pool tables</span><span class="kw ng">billiard</span><span class="kw ng">billiards</span><span class="kw ng">pool cue</span><span class="kw ng">pool hall</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Public pools, swim lessons &amp; pool tables</strong> (18 terms)</span><span class="lang-pt">Bloquear <strong>Piscina pública, aula de natação e sinuca</strong> (18 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-12" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Jobs &amp; commercial pools</span><span class="lang-pt">Emprego e piscina comercial</span></span>
+        <span class="pg">11 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">Job seekers, and commercial pools — those belong to Maxima Concrete's commercial page.</span><span class="lang-pt">Quem procura emprego, e piscina comercial — que é da página comercial da Maxima Concrete.</span></p>
+        <div class="kws"><span class="kw ng">job</span><span class="kw ng">jobs</span><span class="kw ng">hiring</span><span class="kw ng">career</span><span class="kw ng">careers</span><span class="kw ng">salary</span><span class="kw ng">employment</span><span class="kw ng">resume</span><span class="kw ng">internship</span><span class="kw ng">commercial pool</span><span class="kw ng">commercial pools</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Jobs &amp; commercial pools</strong> (11 terms)</span><span class="lang-pt">Bloquear <strong>Emprego e piscina comercial</strong> (11 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-13" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Searches Maxima Concrete already covers</span><span class="lang-pt">Buscas que a Maxima Concrete já cobre</span></span>
+        <span class="pg">10 <span class="lang-en">terms</span><span class="lang-pt">termos</span></span>
+      </div>
+      <div class="grp-body">
+        <p style="font-size:12.5px;color:var(--text2);margin-bottom:8px"><span class="lang-en">Driveways, concrete patios, pool decks. Both companies bidding on the same search would compete against each other in the same auction.</span><span class="lang-pt">Driveways, patios de concreto, pool decks. As duas empresas no mesmo leilão concorreriam entre si.</span></p>
+        <div class="kws"><span class="kw ng">concrete patio</span><span class="kw ng">stamped concrete</span><span class="kw ng">concrete driveway</span><span class="kw ng">driveway</span><span class="kw ng">pool deck</span><span class="kw ng">pool decks</span><span class="kw ng">paver patio</span><span class="kw ng">retaining wall</span><span class="kw ng">sidewalk</span><span class="kw ng">maxima concrete</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Searches Maxima Concrete already covers</strong> (10 terms)</span><span class="lang-pt">Bloquear <strong>Buscas que a Maxima Concrete já cobre</strong> (10 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-14" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 5 · Anúncios ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">📣</div><div>
+    <h3><span class="lang-en">3 · How the ads are written</span><span class="lang-pt">3 · Como os anúncios são escritos</span></h3>
+    <div class="sub"><span class="lang-en">28 ads · 420 headlines · 112 descriptions</span><span class="lang-pt">28 anúncios · 420 títulos · 112 descrições</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">One ad per group, written from your own website. Every claim is already on maximapools.com. Here is how the pool builders ad will look on Google:</span><span class="lang-pt">Um anúncio por grupo, escrito a partir do seu próprio site. Toda afirmação já está em maximapools.com. Veja como o anúncio de construtor de piscina aparece no Google:</span></p>
+    <div class="ad-preview">
+      <div class="sp"><span class="lang-en">Sponsored</span><span class="lang-pt">Patrocinado</span></div>
+      <div class="url">maximapools.com/pool-builders/columbus</div>
+      <div class="ti">Columbus Pool Builders | Buy From the People Who Build | Authorized San Juan Dealer</div>
+      <div class="de">Buy your inground pool from the people who actually do the work. One team, start to end.</div>
+      <div class="sl"><span>Free Estimate</span><span>Pool Collection</span><span>Pool Simulator</span><span>Financing</span></div>
+    </div>
+
+    <h4 class="subhead"><span class="lang-en">The claims we use, and where they come from</span><span class="lang-pt">As afirmações que usamos, e de onde vêm</span></h4>
+    <div class="tw"><table>
+      <thead><tr><th><span class="lang-en">Claim in the ads</span><span class="lang-pt">Afirmação nos anúncios</span></th><th><span class="lang-en">Where it comes from</span><span class="lang-pt">De onde vem</span></th></tr></thead>
+      <tbody>
+        <tr><td>Authorized San Juan Pools dealer · San Juan since 1958</td><td class="muted"><span class="lang-en">Home, About, Why Maxima</span><span class="lang-pt">Home, About, Why Maxima</span></td></tr>
+        <tr><td>100% hand-laid fiberglass · 5+ layers · 32-mil gel coat · vinyl ester</td><td class="muted"><span class="lang-en">San Juan VS Competitors page</span><span class="lang-pt">Página San Juan VS Competitors</span></td></tr>
+        <tr><td>100+ fiberglass pool models</td><td class="muted"><span class="lang-en">About page, pool collection</span><span class="lang-pt">Página About, coleção de piscinas</span></td></tr>
+        <tr><td>Family-owned, Delaware OH · 33 Central Ohio towns</td><td class="muted"><span class="lang-en">About page</span><span class="lang-pt">Página About</span></td></tr>
+        <tr><td>Our own crews do the work</td><td class="muted"><span class="lang-en">About and Why Maxima pages</span><span class="lang-pt">Páginas About e Why Maxima</span></td></tr>
+        <tr><td>Installed in days, not weeks · 17x stronger than concrete · under 1 hour of upkeep a week</td><td class="muted"><span class="lang-en">Why Fiberglass Pools Make Sense page</span><span class="lang-pt">Página Why Fiberglass Pools Make Sense</span></td></tr>
+        <tr><td>25-year structural warranty</td><td class="muted"><span class="lang-en">Warranty page (the Freezable Pools page says 50 — see question 4)</span><span class="lang-pt">Página Warranty (a página Freezable Pools diz 50 — ver pergunta 4)</span></td></tr>
+        <tr><td>Itemized quote · we handle permits and drawings</td><td class="muted"><span class="lang-en">Our Process page</span><span class="lang-pt">Página Our Process</span></td></tr>
+        <tr><td>Lyon Financial, up to $250K, terms up to 30 years</td><td class="muted"><span class="lang-en">Financing page</span><span class="lang-pt">Página Financing</span></td></tr>
+        <tr><td>$250 diagnostic · closing from $450 · 500+ pools winterized · cleaning from $250</td><td class="muted"><span class="lang-en">Your service pages</span><span class="lang-pt">Suas páginas de serviço</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="legend"><span class="lang-en">We left out review ratings (the reviews page shows 12 Google reviews) and “#1 rated”, and we don't call fiberglass pools “custom” the way gunite builders do. Competitor ads never name the competitor — Google's trademark rules.</span><span class="lang-pt">Deixamos de fora nota de review (a página mostra 12 reviews do Google) e “#1 rated”, e não chamamos piscina de fibra de “custom” como os construtores de gunite fazem. Os anúncios de concorrente nunca citam o concorrente — regra de marca do Google.</span></p>
+    <div class="tw" style="margin-top:14px"><table>
+      <thead><tr><th style="width:40px;text-align:center">OK</th><th><span class="lang-en">To approve</span><span class="lang-pt">Para aprovar</span></th><th><span class="lang-en">Detail</span><span class="lang-pt">Detalhe</span></th><th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th></tr></thead>
+      <tbody><tr><td style="text-align:center"><input type="checkbox" class="approval-check" data-action="ads"></td><td><strong><span class="lang-en">The ad copy and the claims above</span><span class="lang-pt">A copy dos anúncios e as afirmações acima</span></strong></td><td><span class="lang-en">28 ads, 420 headlines, 14 sitelinks, 12 callouts. If any claim should not appear in an ad, tell us which one.</span><span class="lang-pt">28 anúncios, 420 títulos, 14 sitelinks, 12 callouts. Se alguma afirmação não puder ir num anúncio, diga qual.</span></td><td class="note-col"><textarea class="note-input" data-note="ads-15" rows="1"></textarea></td></tr></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ 6 · Construção completa ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🔎</div><div>
+    <h3><span class="lang-en">4 · The full build, group by group</span><span class="lang-pt">4 · A construção completa, grupo a grupo</span></h3>
+    <div class="sub"><span class="lang-en">Every ad group: the page it points to, every keyword, and the ad</span><span class="lang-pt">Cada grupo: a página de destino, todas as keywords e o anúncio</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:14px"><span class="lang-en">This is everything we will build, exactly as it goes into the account. In the Competitors campaign, please strike any name that isn't a real competitor — write it in the note at the end of this section.</span><span class="lang-pt">É tudo o que vamos construir, exatamente como entra na conta. Na campanha Competitors, risque qualquer nome que não seja concorrente de verdade — escreva na nota no fim desta seção.</span></p>
+    
+  <div class="mt-legend">
+    <span><span class="kw ph">&quot;like this&quot;</span> &nbsp;<span class="lang-en">phrase match — searches that contain this meaning</span><span class="lang-pt">phrase — buscas que contêm esse significado</span></span>
+    <span><span class="kw ex">[like this]</span> &nbsp;<span class="lang-en">exact match — this search and very close variants</span><span class="lang-pt">exact — essa busca e variações muito próximas</span></span>
+    <span><span class="kw br">like this</span> &nbsp;<span class="lang-en">broad match — discovery campaign only</span><span class="lang-pt">broad — só na campanha de descoberta</span></span>
+    <span><span class="kw ng">like this</span> &nbsp;<span class="lang-en">blocked</span><span class="lang-pt">bloqueado</span></span>
+  </div>
+    
+  <h4 class="subhead">🔐 Brand — Maxima Pools <span class="tag grey">$4/day</span> <span class="tag blue">2 ad groups</span></h4>
+  
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Brand — Core</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (19)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;maxima pools&quot;</span><span class="kw ph">&quot;maxima pool&quot;</span>
+        <span class="kw ex">[maxima pools]</span><span class="kw ex">[maxima pool]</span><span class="kw ex">[maxima pools columbus]</span><span class="kw ex">[maxima pools columbus ohio]</span><span class="kw ex">[maxima pools ohio]</span><span class="kw ex">[maxima pools delaware]</span><span class="kw ex">[maxima pools delaware ohio]</span><span class="kw ex">[maxima pools near me]</span><span class="kw ex">[maximapools]</span><span class="kw ex">[maxima pools com]</span><span class="kw ex">[maxima pools llc]</span><span class="kw ex">[maxima pool company]</span><span class="kw ex">[maxima fiberglass pools]</span><span class="kw ex">[maxima pools san juan]</span><span class="kw ex">[maximum pools]</span><span class="kw ex">[maxim pools]</span><span class="kw ex">[maximus pools]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Maxima Pools — Official Site</span><span>Maxima Pools, Delaware OH</span><span>Talk to the Maxima Team</span><span>Maxima Pools: Free Estimate</span><span>Fiberglass Pools by Maxima</span><span>Maxima Pools &amp; Outdoor Living</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span><span>Our Own Crews Do the Work</span><span>Get Your Free Estimate</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Official Maxima Pools site. Fiberglass pool installation in Central Ohio. Free estimate.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/maxima-pools/free-estimate</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Brand — Reputation</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/reviews/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (6)</div>
+      <div class="kws">
+        
+        <span class="kw ex">[maxima pools reviews]</span><span class="kw ex">[maxima pools google reviews]</span><span class="kw ex">[maxima pools bbb]</span><span class="kw ex">[maxima pools ratings]</span><span class="kw ex">[maxima pools complaints]</span><span class="kw ex">[is maxima pools good]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Maxima Pools Reviews</span><span>Read Maxima Pools Reviews</span><span>What Our Clients Say</span><span>Real Central Ohio Homeowners</span><span>See Why Families Choose Us</span><span>Maxima Pools — Official Site</span><span>Itemized Quote, No Surprises</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Family-Owned, Delaware OH</span><span>Our Own Crews Do the Work</span><span>Get Your Free Estimate</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Read what Central Ohio homeowners say about their Maxima pool. Then get a free estimate.</p><p>One team from the first dig to the final walkthrough. Transparent, itemized pricing.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/maxima-pools/reviews</span></div>
+      
+    </div>
+  </div>
+  <h4 class="subhead">🏊 Pool Installation <span class="tag grey">$62/day</span> <span class="tag blue">12 ad groups</span></h4>
+  
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Fiberglass Pools — Installation</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (28)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fiberglass pool installation&quot;</span><span class="kw ph">&quot;fiberglass pool installation near me&quot;</span><span class="kw ph">&quot;fiberglass pool installers near me&quot;</span><span class="kw ph">&quot;fiberglass pool installer&quot;</span><span class="kw ph">&quot;fiberglass pool builder&quot;</span><span class="kw ph">&quot;fiberglass pool builders near me&quot;</span><span class="kw ph">&quot;fiberglass pool company&quot;</span><span class="kw ph">&quot;fiberglass pool companies near me&quot;</span><span class="kw ph">&quot;fiberglass pool contractor&quot;</span><span class="kw ph">&quot;fiberglass pools near me&quot;</span><span class="kw ph">&quot;fiberglass pools columbus ohio&quot;</span><span class="kw ph">&quot;fiberglass pools columbus&quot;</span><span class="kw ph">&quot;inground fiberglass pools&quot;</span><span class="kw ph">&quot;fiberglass inground pool installation&quot;</span><span class="kw ph">&quot;fiberglass in ground pools&quot;</span><span class="kw ph">&quot;fiberglass pool dealer&quot;</span><span class="kw ph">&quot;fiberglass pool dealers near me&quot;</span><span class="kw ph">&quot;best fiberglass pool installers near me&quot;</span><span class="kw ph">&quot;fiberglass swimming pool installation&quot;</span><span class="kw ph">&quot;fiberglass pools central ohio&quot;</span>
+        <span class="kw ex">[fiberglass pools]</span><span class="kw ex">[fiberglass pool]</span><span class="kw ex">[fiberglass pools near me]</span><span class="kw ex">[fiberglass pool installation]</span><span class="kw ex">[fiberglass pool installers near me]</span><span class="kw ex">[fiberglass pools columbus ohio]</span><span class="kw ex">[fiberglass pool builder]</span><span class="kw ex">[inground fiberglass pools]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pool Installation</span><span>Fiberglass Pools Near You</span><span>Fiberglass Pool Builder</span><span>Columbus Fiberglass Pools</span><span>Inground Fiberglass Pools</span><span>Fiberglass Pools, Installed</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>100+ Fiberglass Pool Models</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Built for Ohio Winters</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Fiberglass pool installs in Central Ohio, from excavation to first swim. Free estimate.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Fiberglass flexes with Ohio freeze-thaw instead of cracking. 25-year structural warranty.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/fiberglass/installation</span></div>
+      
+      <div class="lbl"><span class="lang-en">Blocked in this campaign only</span><span class="lang-pt">Bloqueado só nesta campanha</span></div>
+      <div class="kws"><span class="kw ng">service</span><span class="kw ng">services</span><span class="kw ng">servicing</span><span class="kw ng">cleaning</span><span class="kw ng">cleaner</span><span class="kw ng">cleaners</span><span class="kw ng">repair</span><span class="kw ng">repairs</span><span class="kw ng">closing</span><span class="kw ng">opening</span><span class="kw ng">winterize</span><span class="kw ng">winterization</span><span class="kw ng">maintenance</span><span class="kw ng">cover</span><span class="kw ng">covers</span><span class="kw ng">heater</span><span class="kw ng">heaters</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Builders &amp; Contractors</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/why-maxima/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (31)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders near me&quot;</span><span class="kw ph">&quot;pool builder near me&quot;</span><span class="kw ph">&quot;pool contractors near me&quot;</span><span class="kw ph">&quot;pool contractor near me&quot;</span><span class="kw ph">&quot;pool companies near me&quot;</span><span class="kw ph">&quot;pool company near me&quot;</span><span class="kw ph">&quot;pool builders columbus ohio&quot;</span><span class="kw ph">&quot;pool builders in columbus&quot;</span><span class="kw ph">&quot;pool companies columbus ohio&quot;</span><span class="kw ph">&quot;pool companies in columbus ohio&quot;</span><span class="kw ph">&quot;pool contractors columbus ohio&quot;</span><span class="kw ph">&quot;swimming pool contractors near me&quot;</span><span class="kw ph">&quot;swimming pool builders near me&quot;</span><span class="kw ph">&quot;swimming pool companies near me&quot;</span><span class="kw ph">&quot;inground pool companies near me&quot;</span><span class="kw ph">&quot;inground pool builders near me&quot;</span><span class="kw ph">&quot;local pool builders&quot;</span><span class="kw ph">&quot;local pool company&quot;</span><span class="kw ph">&quot;best pool builders near me&quot;</span><span class="kw ph">&quot;central ohio pool builders&quot;</span><span class="kw ph">&quot;central ohio pool companies&quot;</span><span class="kw ph">&quot;pool professionals near me&quot;</span><span class="kw ph">&quot;pool construction companies near me&quot;</span><span class="kw ph">&quot;pool building companies near me&quot;</span>
+        <span class="kw ex">[pool builders near me]</span><span class="kw ex">[pool contractors near me]</span><span class="kw ex">[pool companies near me]</span><span class="kw ex">[pool builders columbus ohio]</span><span class="kw ex">[pool companies columbus ohio]</span><span class="kw ex">[swimming pool contractors near me]</span><span class="kw ex">[pool professionals near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Columbus Pool Builders</span><span>Local Pool Builder Near You</span><span>Inground Pool Contractor</span><span>Pool Company Near You</span><span>Buy From the People Who Build</span><span>Family-Owned Pool Builder</span><span>Authorized San Juan Dealer</span><span>Our Own Crews Do the Work</span><span>Itemized Quote, No Surprises</span><span>We Handle Permits &amp; Drawings</span><span>Installed in Days, Not Weeks</span><span>100+ Fiberglass Pool Models</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Buy your inground pool from the people who actually do the work. One team, start to end.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Phone consult, site visit, itemized quote. We handle the permits and drawings for you.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-builders/columbus</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Inground Pool Installation</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/our-process/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (25)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;inground pool installation&quot;</span><span class="kw ph">&quot;inground pool installation near me&quot;</span><span class="kw ph">&quot;in ground pool installation&quot;</span><span class="kw ph">&quot;inground pool installers near me&quot;</span><span class="kw ph">&quot;inground pool installers&quot;</span><span class="kw ph">&quot;pool installation near me&quot;</span><span class="kw ph">&quot;pool installers near me&quot;</span><span class="kw ph">&quot;pool installer near me&quot;</span><span class="kw ph">&quot;pool installation companies near me&quot;</span><span class="kw ph">&quot;pool installation columbus ohio&quot;</span><span class="kw ph">&quot;backyard pool installation&quot;</span><span class="kw ph">&quot;swimming pool installation&quot;</span><span class="kw ph">&quot;swimming pool installation near me&quot;</span><span class="kw ph">&quot;new pool installation&quot;</span><span class="kw ph">&quot;residential pool installation&quot;</span><span class="kw ph">&quot;install inground pool&quot;</span><span class="kw ph">&quot;pool construction near me&quot;</span><span class="kw ph">&quot;build a pool in my backyard&quot;</span><span class="kw ph">&quot;inground pools near me&quot;</span><span class="kw ph">&quot;inground pool near me&quot;</span>
+        <span class="kw ex">[inground pool installation]</span><span class="kw ex">[pool installation near me]</span><span class="kw ex">[pool installers near me]</span><span class="kw ex">[inground pools near me]</span><span class="kw ex">[pool installation columbus ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Inground Pool Installation</span><span>Pool Installation Near You</span><span>Backyard Pool Installation</span><span>7 Steps From Call to Swim</span><span>Phone Consult &amp; Site Visit</span><span>New Pool, One Crew</span><span>We Handle Permits &amp; Drawings</span><span>Itemized Quote, No Surprises</span><span>Installed in Days, Not Weeks</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Inground pool installation in 7 clear steps, from your first call to delivery day.</p><p>Phone consult, site visit, itemized quote. We handle the permits and drawings for you.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/inground-pools/our-process</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">San Juan Pools</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/san-juan-fiberglass-pools/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (14)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;san juan pools&quot;</span><span class="kw ph">&quot;san juan fiberglass pools&quot;</span><span class="kw ph">&quot;san juan pool dealer&quot;</span><span class="kw ph">&quot;san juan pools dealer&quot;</span><span class="kw ph">&quot;san juan pools ohio&quot;</span><span class="kw ph">&quot;san juan pools columbus&quot;</span><span class="kw ph">&quot;san juan pool installer&quot;</span><span class="kw ph">&quot;san juan pools near me&quot;</span><span class="kw ph">&quot;san juan pool models&quot;</span><span class="kw ph">&quot;san juan pools prices&quot;</span><span class="kw ph">&quot;hand laid fiberglass pools&quot;</span>
+        <span class="kw ex">[san juan pools]</span><span class="kw ex">[san juan fiberglass pools]</span><span class="kw ex">[san juan pool dealer]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>San Juan Pools in Columbus</span><span>San Juan Pools Near You</span><span>Your Local San Juan Dealer</span><span>San Juan Pools, Installed</span><span>See San Juan vs. Competitors</span><span>5+ Hand-Laid Layers</span><span>32-Mil Gel Coat Finish</span><span>Vinyl Ester Resin Throughout</span><span>Authorized San Juan Dealer</span><span>San Juan Pools Since 1958</span><span>100+ Fiberglass Pool Models</span><span>Our Own Crews Do the Work</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Authorized San Juan Pools dealer installing hand-laid fiberglass pools in Central Ohio.</p><p>No sprayed chop, no coring, no fillers. See the full 10-point San Juan comparison.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Fiberglass flexes with Ohio freeze-thaw instead of cracking. 25-year structural warranty.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/san-juan/dealer</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Cost &amp; Financing</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/financing/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (28)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fiberglass pool cost&quot;</span><span class="kw ph">&quot;fiberglass pool cost installed&quot;</span><span class="kw ph">&quot;inground fiberglass pool cost&quot;</span><span class="kw ph">&quot;fiberglass inground pool cost&quot;</span><span class="kw ph">&quot;cost of fiberglass pool&quot;</span><span class="kw ph">&quot;fiberglass pool prices&quot;</span><span class="kw ph">&quot;fiberglass pool price&quot;</span><span class="kw ph">&quot;inground pool cost&quot;</span><span class="kw ph">&quot;inground pool cost columbus&quot;</span><span class="kw ph">&quot;how much is a fiberglass pool&quot;</span><span class="kw ph">&quot;how much does a fiberglass pool cost&quot;</span><span class="kw ph">&quot;how much does an inground pool cost&quot;</span><span class="kw ph">&quot;pool installation cost&quot;</span><span class="kw ph">&quot;swimming pool installation cost&quot;</span><span class="kw ph">&quot;pool financing&quot;</span><span class="kw ph">&quot;inground pool financing&quot;</span><span class="kw ph">&quot;swimming pool financing&quot;</span><span class="kw ph">&quot;fiberglass pool financing&quot;</span><span class="kw ph">&quot;pool loans&quot;</span><span class="kw ph">&quot;pool loan&quot;</span><span class="kw ph">&quot;pool quote near me&quot;</span><span class="kw ph">&quot;pool estimate near me&quot;</span><span class="kw ph">&quot;inground pool quote&quot;</span>
+        <span class="kw ex">[fiberglass pool cost]</span><span class="kw ex">[inground pool cost]</span><span class="kw ex">[pool financing]</span><span class="kw ex">[fiberglass pool cost installed]</span><span class="kw ex">[pool quote near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pool Cost</span><span>Inground Pool Financing</span><span>Loans Up to $250K</span><span>Terms Up to 30 Years</span><span>Apply Free With Lyon Financial</span><span>Get an Itemized Pool Quote</span><span>Pool Financing Made Simple</span><span>Itemized Quote, No Surprises</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>Get Your Free Estimate</span><span>100+ Fiberglass Pool Models</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p><p>Get a clear, itemized quote after a free site visit. No surprises on the final bill.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-cost/financing</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Models &amp; Shapes</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pools/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (15)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fiberglass pool models&quot;</span><span class="kw ph">&quot;fiberglass pool shapes&quot;</span><span class="kw ph">&quot;fiberglass pool sizes&quot;</span><span class="kw ph">&quot;fiberglass pool sizes and prices&quot;</span><span class="kw ph">&quot;fiberglass pool designs&quot;</span><span class="kw ph">&quot;fiberglass pool styles&quot;</span><span class="kw ph">&quot;rectangle fiberglass pool&quot;</span><span class="kw ph">&quot;freeform fiberglass pool&quot;</span><span class="kw ph">&quot;fiberglass pool colors&quot;</span><span class="kw ph">&quot;fiberglass lap pool&quot;</span><span class="kw ph">&quot;fiberglass pool with bench&quot;</span><span class="kw ph">&quot;fiberglass pool with beach entry&quot;</span>
+        <span class="kw ex">[fiberglass pool models]</span><span class="kw ex">[fiberglass pool sizes]</span><span class="kw ex">[fiberglass pool shapes]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pool Shapes</span><span>Fiberglass Pool Sizes</span><span>Rectangle &amp; Freeform Pools</span><span>Browse 100+ Pool Designs</span><span>Find the Shape for Your Yard</span><span>Pool Colors &amp; Finishes</span><span>100+ Fiberglass Pool Models</span><span>See It in Your Backyard</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>25-Year Structural Warranty</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Browse 100+ San Juan fiberglass pools and spas. Filter by type, shape and size.</p><p>Try our Pool Simulator: drop a real San Juan model onto your own backyard, to scale.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/100-models</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Tanning Ledge Pools</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pools/?type=Tanning+Ledge</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (8)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;tanning ledge pool&quot;</span><span class="kw ph">&quot;pool with tanning ledge&quot;</span><span class="kw ph">&quot;fiberglass pool with tanning ledge&quot;</span><span class="kw ph">&quot;tanning ledge fiberglass pool&quot;</span><span class="kw ph">&quot;baja shelf pool&quot;</span><span class="kw ph">&quot;sun shelf pool&quot;</span>
+        <span class="kw ex">[tanning ledge pool]</span><span class="kw ex">[pool with tanning ledge]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pools With Tanning Ledges</span><span>Tanning Ledge Fiberglass Pools</span><span>Lounge in the Shallow End</span><span>Tanning Ledge Pool Models</span><span>Sun Shelf Pools, Columbus</span><span>Filter Models by Ledge</span><span>100+ Fiberglass Pool Models</span><span>See It in Your Backyard</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>25-Year Structural Warranty</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>San Juan fiberglass pools with built-in tanning ledges. Browse the models that have one.</p><p>Try our Pool Simulator: drop a real San Juan model onto your own backyard, to scale.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/tanning-ledge/pools</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Plunge &amp; Small Pools</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pools/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (14)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;plunge pool installation&quot;</span><span class="kw ph">&quot;fiberglass plunge pool&quot;</span><span class="kw ph">&quot;plunge pool near me&quot;</span><span class="kw ph">&quot;plunge pool columbus ohio&quot;</span><span class="kw ph">&quot;prefab plunge pool&quot;</span><span class="kw ph">&quot;small inground pool&quot;</span><span class="kw ph">&quot;small fiberglass pool&quot;</span><span class="kw ph">&quot;small fiberglass pools for small yards&quot;</span><span class="kw ph">&quot;inground pools for small yards&quot;</span><span class="kw ph">&quot;small backyard pool&quot;</span><span class="kw ph">&quot;cocktail pool&quot;</span>
+        <span class="kw ex">[plunge pool]</span><span class="kw ex">[fiberglass plunge pool]</span><span class="kw ex">[small inground pool]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Plunge Pools</span><span>Small Inground Pools</span><span>Pools for Small Backyards</span><span>Compact Fiberglass Models</span><span>Plunge Pools in Columbus</span><span>Small Yard, Real Pool</span><span>See It in Your Backyard</span><span>100+ Fiberglass Pool Models</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>25-Year Structural Warranty</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Compact San Juan fiberglass models sized for smaller Central Ohio backyards.</p><p>Try our Pool Simulator: drop a real San Juan model onto your own backyard, to scale.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/small-pools/plunge</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool &amp; Spa Combos</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pools/?type=Spa</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (13)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool and spa combo&quot;</span><span class="kw ph">&quot;pool with spa&quot;</span><span class="kw ph">&quot;fiberglass pool with spa&quot;</span><span class="kw ph">&quot;inground spa&quot;</span><span class="kw ph">&quot;fiberglass spa&quot;</span><span class="kw ph">&quot;inground fiberglass spa&quot;</span><span class="kw ph">&quot;spillover spa&quot;</span><span class="kw ph">&quot;inground hot tub&quot;</span><span class="kw ph">&quot;fiberglass hot tub&quot;</span><span class="kw ph">&quot;inground spa installation&quot;</span>
+        <span class="kw ex">[pool with spa]</span><span class="kw ex">[inground spa]</span><span class="kw ex">[fiberglass spa]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pool &amp; Spa Combos</span><span>Inground Fiberglass Spas</span><span>Add a Spa to Your Pool</span><span>Spillover Spa Models</span><span>Inground Hot Tub, Fiberglass</span><span>San Juan Spas, Installed</span><span>100+ Fiberglass Pool Models</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>25-Year Structural Warranty</span><span>Built for Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>San Juan fiberglass spas and pool-and-spa combos, installed in-house by Maxima Pools.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-and-spa/fiberglass</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool &amp; Backyard Design-Build</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/outdoor-living/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (11)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool and patio contractor&quot;</span><span class="kw ph">&quot;pool and patio builders&quot;</span><span class="kw ph">&quot;pool and outdoor kitchen&quot;</span><span class="kw ph">&quot;pool and outdoor living&quot;</span><span class="kw ph">&quot;backyard pool and patio&quot;</span><span class="kw ph">&quot;pool landscaping design&quot;</span><span class="kw ph">&quot;backyard pool design&quot;</span><span class="kw ph">&quot;pool and hardscape contractor&quot;</span><span class="kw ph">&quot;outdoor living pools and patio&quot;</span>
+        <span class="kw ex">[pool and patio contractor]</span><span class="kw ex">[backyard pool design]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pool &amp; Patio, One Team</span><span>Pool + Outdoor Living Builder</span><span>Outdoor Kitchens by the Pool</span><span>Fire Features &amp; Shade</span><span>Designed Around Your Pool</span><span>One Team, One Timeline</span><span>Authorized San Juan Dealer</span><span>Our Own Crews Do the Work</span><span>Family-Owned, Delaware OH</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100% Hand-Laid Fiberglass</span><span>Installed in Days, Not Weeks</span><span>See It in Your Backyard</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Your pool and the outdoor living around it, designed and built by one in-house team.</p><p>Kitchens, fire features, shade and lighting, integrated with your fiberglass pool.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-and-patio/outdoor-living</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Fiberglass vs Gunite</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/why-fiberglass-pools-make-sense/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (11)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fiberglass vs gunite pool&quot;</span><span class="kw ph">&quot;fiberglass vs concrete pool&quot;</span><span class="kw ph">&quot;gunite vs fiberglass pool&quot;</span><span class="kw ph">&quot;concrete vs fiberglass pool&quot;</span><span class="kw ph">&quot;gunite pool cost&quot;</span><span class="kw ph">&quot;concrete pool cost&quot;</span><span class="kw ph">&quot;best type of inground pool&quot;</span><span class="kw ph">&quot;fiberglass pool pros and cons&quot;</span><span class="kw ph">&quot;are fiberglass pools good&quot;</span>
+        <span class="kw ex">[fiberglass vs gunite]</span><span class="kw ex">[fiberglass vs concrete pool]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass vs. Gunite Pools</span><span>Why Fiberglass Makes Sense</span><span>17x Stronger Than Concrete</span><span>No Replastering, No Acid Wash</span><span>Installed in Days, Not Months</span><span>See the Side-by-Side Table</span><span>Under 1 Hour of Upkeep a Week</span><span>Built for Ohio Winters</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Compare fiberglass, gunite and vinyl side by side: durability, upkeep, repairs, install.</p><p>No acid washes, no replastering, no liner swaps. Under 1 hour of upkeep a week.</p><p>Fiberglass flexes with Ohio freeze-thaw instead of cracking. 25-year structural warranty.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/fiberglass/vs-gunite</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Luxury Pools</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/fiberglass-pool-gallery/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (9)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;luxury pool builders&quot;</span><span class="kw ph">&quot;luxury pool builders near me&quot;</span><span class="kw ph">&quot;luxury inground pools&quot;</span><span class="kw ph">&quot;luxury fiberglass pools&quot;</span><span class="kw ph">&quot;high end pool builders&quot;</span><span class="kw ph">&quot;luxury pool builders columbus&quot;</span><span class="kw ph">&quot;resort style pool&quot;</span>
+        <span class="kw ex">[luxury pool builders]</span><span class="kw ex">[luxury pool]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Luxury Fiberglass Pools</span><span>Luxury Pool Builder, Columbus</span><span>See 60+ Real Installs</span><span>Resort-Style Backyard Pools</span><span>Pools With Spas &amp; Ledges</span><span>Premium San Juan Pools</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>100+ Fiberglass Pool Models</span><span>Our Own Crews Do the Work</span><span>See It in Your Backyard</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>25-Year Structural Warranty</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Browse 60+ photos of real Maxima installations, then design yours with a free estimate.</p><p>Spas, tanning ledges, water features and outdoor living, built by one in-house team.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/luxury-pools/gallery</span></div>
+      
+    </div>
+  </div>
+  <h4 class="subhead">🎯 Competitors <span class="tag grey">$8/day</span> <span class="tag blue">2 ad groups</span></h4>
+  
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Competitors — Local Builders</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/why-maxima/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (22)</div>
+      <div class="kws">
+        
+        <span class="kw ex">[patterson pools]</span><span class="kw ex">[patterson pools columbus ohio]</span><span class="kw ex">[easy living pools]</span><span class="kw ex">[serenity pools]</span><span class="kw ex">[marzetti pools]</span><span class="kw ex">[marzetti pools columbus ohio]</span><span class="kw ex">[mallory pools]</span><span class="kw ex">[waters edge pools]</span><span class="kw ex">[water's edge pools marysville ohio]</span><span class="kw ex">[moore brothers pools]</span><span class="kw ex">[chevron pools]</span><span class="kw ex">[premier pools]</span><span class="kw ex">[premier pool company]</span><span class="kw ex">[hidden creek landscaping]</span><span class="kw ex">[hidden creek pools]</span><span class="kw ex">[omniscapes]</span><span class="kw ex">[inception custom pools]</span><span class="kw ex">[backyard oasis pools]</span><span class="kw ex">[zaber pools]</span><span class="kw ex">[luxury pools and living]</span><span class="kw ex">[aquatic creations]</span><span class="kw ex">[the pool people]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Comparing Pool Builders?</span><span>Get a Second Pool Quote</span><span>See Why Families Pick Maxima</span><span>Compare Before You Sign</span><span>Buy From the People Who Build</span><span>Maxima Pools — Free Estimate</span><span>Itemized Quote, No Surprises</span><span>Our Own Crews Do the Work</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Family-Owned, Delaware OH</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Comparing pool builders? Get an itemized quote from the crew that does the work itself.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Phone consult, site visit, itemized quote. We handle the permits and drawings for you.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/why-maxima/compare</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Competitors — Fiberglass Brands</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/san-juan-fiberglass-pools/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (13)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fiberglass pool manufacturers&quot;</span><span class="kw ph">&quot;best fiberglass pool brand&quot;</span><span class="kw ph">&quot;fiberglass pool brands&quot;</span><span class="kw ph">&quot;best fiberglass pool manufacturer&quot;</span><span class="kw ph">&quot;latham fiberglass pools&quot;</span>
+        <span class="kw ex">[latham pools]</span><span class="kw ex">[latham pool]</span><span class="kw ex">[river pools]</span><span class="kw ex">[river pools fiberglass]</span><span class="kw ex">[leisure pools]</span><span class="kw ex">[thursday pools]</span><span class="kw ex">[viking pools]</span><span class="kw ex">[barrier reef pools]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Compare Fiberglass Brands</span><span>Hand-Laid vs. Sprayed Shells</span><span>See the 10-Point Comparison</span><span>Why We Install San Juan</span><span>No Sprayed Chop in Our Pools</span><span>Vinyl Ester Resin Throughout</span><span>32-Mil Gel Coat Finish</span><span>Authorized San Juan Dealer</span><span>San Juan Pools Since 1958</span><span>100% Hand-Laid Fiberglass</span><span>100+ Fiberglass Pool Models</span><span>Our Own Crews Do the Work</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Not all fiberglass pools are built the same. See how hand-laid San Juan shells compare.</p><p>100% hand-laid sheets, vinyl ester throughout, 5+ layers. No coring, no fillers.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Fiberglass flexes with Ohio freeze-thaw instead of cracking. 25-year structural warranty.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/san-juan/vs-others</span></div>
+      
+    </div>
+  </div>
+  <h4 class="subhead">🧰 Pool Service &amp; Upgrades <span class="tag grey">$6/day</span> <span class="tag blue">5 ad groups</span></h4>
+  <p class="legend" style="margin:-4px 0 10px"><span class="lang-en">Seasonal groups: Pool Opening &amp; Closing, Pool Cleaning are switched on only in season.</span><span class="lang-pt">Grupos sazonais: Pool Opening &amp; Closing (ativo 1/mar–31/mai e 15/ago–15/nov); Pool Cleaning (ativo 15/abr–30/set).</span></p>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Repair</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pool-repair/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (21)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool repair near me&quot;</span><span class="kw ph">&quot;pool repair columbus ohio&quot;</span><span class="kw ph">&quot;pool equipment repair&quot;</span><span class="kw ph">&quot;pool pump repair&quot;</span><span class="kw ph">&quot;pool heater repair&quot;</span><span class="kw ph">&quot;pool heater repair near me&quot;</span><span class="kw ph">&quot;pool heat pump repair&quot;</span><span class="kw ph">&quot;salt cell replacement&quot;</span><span class="kw ph">&quot;salt cell repair&quot;</span><span class="kw ph">&quot;pool light repair&quot;</span><span class="kw ph">&quot;pool automation repair&quot;</span><span class="kw ph">&quot;pool filter repair&quot;</span><span class="kw ph">&quot;pool repair service&quot;</span><span class="kw ph">&quot;aquacal repair&quot;</span><span class="kw ph">&quot;aquacal service&quot;</span><span class="kw ph">&quot;hayward heater repair&quot;</span><span class="kw ph">&quot;pool coping repair&quot;</span>
+        <span class="kw ex">[pool repair near me]</span><span class="kw ex">[pool heater repair]</span><span class="kw ex">[pool pump repair]</span><span class="kw ex">[pool equipment repair]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pool Repair in Columbus</span><span>Pool Heater Repair</span><span>Pool Pump Repair</span><span>Salt Cell &amp; Chlorinator Fix</span><span>Pool Lights &amp; Automation</span><span>$250 Diagnostic Trip</span><span>We Find What Actually Failed</span><span>Coping &amp; Pool Patio Repair</span><span>Gas Heaters &amp; Heat Pumps</span><span>Book a Diagnostic Visit</span><span>Call (614) 384-5081</span><span>Family-Owned, Delaware OH</span><span>Serving Central Ohio</span><span>Labor Quoted Before We Fix</span><span>Maxima Pools Service</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Pumps, heaters, salt cells, chlorinators, lights and automation. $250 diagnostic trip.</p><p>We find what actually failed, then quote the fix. Parts and labor quoted separately.</p><p>Coping and pool patio repair quoted after a site visit. No flat guess over the phone.</p><p>Family-owned pool company in Delaware, OH, serving Central Ohio. Call (614) 384-5081.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-repair/columbus</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Opening &amp; Closing</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pool-closing/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (15)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool closing near me&quot;</span><span class="kw ph">&quot;pool closing service&quot;</span><span class="kw ph">&quot;pool winterization&quot;</span><span class="kw ph">&quot;pool winterization near me&quot;</span><span class="kw ph">&quot;winterize inground pool&quot;</span><span class="kw ph">&quot;pool opening near me&quot;</span><span class="kw ph">&quot;pool opening service&quot;</span><span class="kw ph">&quot;pool opening and closing&quot;</span><span class="kw ph">&quot;pool closing columbus ohio&quot;</span><span class="kw ph">&quot;pool opening columbus ohio&quot;</span><span class="kw ph">&quot;inground pool closing&quot;</span><span class="kw ph">&quot;inground pool opening&quot;</span>
+        <span class="kw ex">[pool closing near me]</span><span class="kw ex">[pool opening near me]</span><span class="kw ex">[pool winterization]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pool Closing &amp; Winterizing</span><span>Pool Opening Service</span><span>Winterize Your Pool Right</span><span>8-Step Winterization</span><span>Prevent Freeze Damage</span><span>Starting at $450</span><span>500+ Pools Winterized</span><span>Easy Spring Opening</span><span>Book Early in the Fall</span><span>Lines Blown Out &amp; Capped</span><span>Pool Opening &amp; Closing</span><span>Call (614) 384-5081</span><span>Family-Owned, Delaware OH</span><span>Serving Central Ohio</span><span>Maxima Pools Service</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Pool closing and opening from $450. Lines blown out, returns capped, cover installed.</p><p>Protect plumbing and equipment from Ohio freeze-thaw, and open clean in the spring.</p><p>8-step winterization by experienced technicians. Schedule early to avoid delays.</p><p>Family-owned pool company in Delaware, OH, serving Central Ohio. Call (614) 384-5081.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-closing/opening</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Cleaning</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pool-cleaning/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (16)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool cleaning service&quot;</span><span class="kw ph">&quot;pool cleaning near me&quot;</span><span class="kw ph">&quot;pool cleaners near me&quot;</span><span class="kw ph">&quot;pool cleaning columbus ohio&quot;</span><span class="kw ph">&quot;weekly pool service&quot;</span><span class="kw ph">&quot;pool maintenance service&quot;</span><span class="kw ph">&quot;pool maintenance near me&quot;</span><span class="kw ph">&quot;pool service near me&quot;</span><span class="kw ph">&quot;pool service columbus ohio&quot;</span><span class="kw ph">&quot;inground pool cleaning&quot;</span><span class="kw ph">&quot;fiberglass pool cleaning&quot;</span><span class="kw ph">&quot;residential pool service&quot;</span><span class="kw ph">&quot;pool water testing near me&quot;</span>
+        <span class="kw ex">[pool cleaning near me]</span><span class="kw ex">[pool service near me]</span><span class="kw ex">[pool cleaning service]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pool Cleaning Service</span><span>One-Time Cleaning From $250</span><span>Regular Pool Service</span><span>7-Panel Water Test</span><span>Gelcoat-Safe Cleaning</span><span>Filter &amp; Salt Cell Checked</span><span>Fiberglass Pool Cleaning</span><span>Weekly or One-Time Service</span><span>Crystal-Clear Water</span><span>Brush, Net &amp; Vacuum</span><span>Call (614) 384-5081</span><span>Family-Owned, Delaware OH</span><span>Serving Central Ohio</span><span>Book a Pool Cleaning</span><span>Maxima Pools Service</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>One-time cleaning from $250, or regular service 2–3 trips a month. Gelcoat-safe methods.</p><p>7-panel water test, baskets, filter and salt cell checked, chemicals added and retested.</p><p>We run what your equipment calls for and tell you what we found on every visit.</p><p>Family-owned pool company in Delaware, OH, serving Central Ohio. Call (614) 384-5081.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-cleaning/service</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Automatic Pool Covers</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/auto-cover-pool/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (14)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;automatic pool cover&quot;</span><span class="kw ph">&quot;automatic pool covers&quot;</span><span class="kw ph">&quot;automatic pool cover installation&quot;</span><span class="kw ph">&quot;auto pool cover&quot;</span><span class="kw ph">&quot;automatic safety pool cover&quot;</span><span class="kw ph">&quot;automatic pool cover cost&quot;</span><span class="kw ph">&quot;coverstar automatic pool cover&quot;</span><span class="kw ph">&quot;coverstar dealer&quot;</span><span class="kw ph">&quot;pool cover installation near me&quot;</span><span class="kw ph">&quot;automatic pool covers for inground pools&quot;</span><span class="kw ph">&quot;inground pool safety cover&quot;</span>
+        <span class="kw ex">[automatic pool cover]</span><span class="kw ex">[automatic pool cover installation]</span><span class="kw ex">[auto pool cover]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Automatic Pool Covers</span><span>Opens &amp; Closes in Under 60s</span><span>ASTM Safety Certified</span><span>70% Less Evaporation</span><span>50% Less Chemical Use</span><span>Child &amp; Pet Safe Cover</span><span>Hidden Under-Track System</span><span>Auto Cover Installation</span><span>Extend Your Swim Season</span><span>Call (614) 384-5081</span><span>Family-Owned, Delaware OH</span><span>Serving Central Ohio</span><span>Get Your Free Estimate</span><span>Authorized San Juan Dealer</span><span>Free Auto Cover Quote</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Motorized cover that seals your pool with one touch, in under 60 seconds. ASTM certified.</p><p>Keeps heat in and debris out: up to 70% less evaporation and 50% less chemical use.</p><p>Under-track system hides the mechanism inside the pool wall. Free quote from Maxima.</p><p>Family-owned pool company in Delaware, OH, serving Central Ohio. Call (614) 384-5081.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/auto-cover/pools</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Heaters, Lighting &amp; Upgrades</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/pool-accessories-and-extras/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (13)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool heater installation&quot;</span><span class="kw ph">&quot;pool heat pump installation&quot;</span><span class="kw ph">&quot;pool heater installers near me&quot;</span><span class="kw ph">&quot;pool lighting installation&quot;</span><span class="kw ph">&quot;led pool light installation&quot;</span><span class="kw ph">&quot;pool automation installation&quot;</span><span class="kw ph">&quot;pool waterfall installation&quot;</span><span class="kw ph">&quot;add waterfall to pool&quot;</span><span class="kw ph">&quot;pool water features&quot;</span><span class="kw ph">&quot;pool upgrades&quot;</span>
+        <span class="kw ex">[pool heater installation]</span><span class="kw ex">[pool heat pump installation]</span><span class="kw ex">[pool lighting installation]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pool Heater Installation</span><span>Gas Heaters &amp; Heat Pumps</span><span>LED Pool Lighting</span><span>Waterfalls &amp; Deck Jets</span><span>Pool Automation From Phone</span><span>Extend Your Swim Season</span><span>Installed In-House</span><span>20+ Accessory Types</span><span>Upgrade Your Pool</span><span>Call (614) 384-5081</span><span>Family-Owned, Delaware OH</span><span>Serving Central Ohio</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>One Team, Start to Finish</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Heaters, LED lighting, water features, covers and automation, installed by our own team.</p><p>Gas heaters for fast heat, heat pumps for efficient warming. Swim from spring to fall.</p><p>Control lights, heat, pumps and chemistry from your phone. Free estimate.</p><p>Family-owned pool company in Delaware, OH, serving Central Ohio. Call (614) 384-5081.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pool-upgrades/install</span></div>
+      
+    </div>
+  </div>
+  <h4 class="subhead">🔓 Discovery (Broad) <span class="tag grey">$8/day</span> <span class="tag blue">1 ad group</span></h4>
+  
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Broad — Discovery</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (6)</div>
+      <div class="kws">
+        
+        
+        <span class="kw br">pool installation</span><span class="kw br">inground pool</span><span class="kw br">fiberglass pool</span><span class="kw br">pool builder</span><span class="kw br">swimming pool contractor</span><span class="kw br">backyard pool</span>
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pool Installation</span><span>Inground Pools in Columbus</span><span>Local Pool Builder Near You</span><span>Backyard Pool Installation</span><span>Maxima Pools — Free Estimate</span><span>Browse 100+ Pool Designs</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>See It in Your Backyard</span><span>Serving 33 Central Ohio Towns</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Fiberglass pool installs in Central Ohio, from excavation to first swim. Free estimate.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/fiberglass/pools</span></div>
+      
+      <div class="lbl"><span class="lang-en">Blocked in this campaign only</span><span class="lang-pt">Bloqueado só nesta campanha</span></div>
+      <div class="kws"><span class="kw ng">hot tub</span><span class="kw ng">hot tubs</span><span class="kw ng">swim spa</span><span class="kw ng">service</span><span class="kw ng">services</span><span class="kw ng">cleaning</span><span class="kw ng">repair</span><span class="kw ng">closing</span><span class="kw ng">opening</span><span class="kw ng">maintenance</span><span class="kw ng">patterson</span><span class="kw ng">easy living</span><span class="kw ng">serenity pools</span><span class="kw ng">marzetti</span><span class="kw ng">mallory</span><span class="kw ng">waters edge</span><span class="kw ng">water's edge</span><span class="kw ng">moore brothers</span><span class="kw ng">chevron pools</span><span class="kw ng">premier pools</span><span class="kw ng">hidden creek</span><span class="kw ng">omniscapes</span><span class="kw ng">zaber</span><span class="kw ng">latham</span><span class="kw ng">river pools</span><span class="kw ng">leisure pools</span><span class="kw ng">leisure time</span><span class="kw ng">wet and wild</span><span class="kw ng">abc pools</span><span class="kw ng">knickerbocker</span><span class="kw ng">clearwater pools</span><span class="kw ng">pools plus</span><span class="kw ng">poseidon</span><span class="kw ng">dodds</span><span class="kw ng">pacific pools</span><span class="kw ng">gc pools</span><span class="kw ng">outdoor fx</span><span class="kw ng">rainbow pools</span><span class="kw ng">quality pools</span><span class="kw ng">pool people</span></div>
+    </div>
+  </div>
+    
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the keywords, competitor names, ad wording or pages</span><span class="lang-pt">Algo sobre as keywords, nomes de concorrentes, texto dos anúncios ou páginas</span></label>
+      <textarea class="note-input note-block" data-note="sec-detail" data-label="Anything about the keywords, competitor names, ad wording or pages" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 7 · Perguntas ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">❓</div><div>
+    <h3><span class="lang-en">5 · Four questions before we build</span><span class="lang-pt">5 · Quatro perguntas antes de montar</span></h3>
+    <div class="sub"><span class="lang-en">Your answers change what goes in</span><span class="lang-pt">Suas respostas mudam o que entra</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="tw"><table>
+      <thead><tr><th style="width:34%"><span class="lang-en">Question</span><span class="lang-pt">Pergunta</span></th><th><span class="lang-en">Why it matters</span><span class="lang-pt">Por que importa</span></th><th class="note-col"><span class="lang-en">Your answer</span><span class="lang-pt">Sua resposta</span></th></tr></thead>
+      <tbody><tr>
+        <td><strong><span class="lang-en">Which hot tub brand do you sell, and is there a page for it?</span><span class="lang-pt">Qual marca de hot tub vocês vendem, e existe uma página para ela?</span></strong></td>
+        <td style="color:var(--text2)"><span class="lang-en">If there is a brand and a page, it gets its own ad group and comes off the block list. If not, hot tub searches go only to the discovery campaign.</span><span class="lang-pt">Se houver marca e página, ela ganha grupo próprio e sai da lista de bloqueio. Se não, buscas de hot tub ficam só para a campanha de descoberta.</span></td>
+        <td class="note-col"><textarea class="note-input" data-note="q-hottub" rows="2"></textarea></td>
+      </tr><tr>
+        <td><strong><span class="lang-en">Could someone tag each call for the first 30 days: pool install, service, hot tub, or other?</span><span class="lang-pt">Alguém poderia marcar cada ligação nos primeiros 30 dias: instalação, serviço, hot tub ou outro?</span></strong></td>
+        <td style="color:var(--text2)"><span class="lang-en">It is how we will know how many leads from the new campaigns are pool installations, not just how many leads there are.</span><span class="lang-pt">É como vamos saber quantos leads das campanhas novas são instalação de piscina, e não só quantos leads existem.</span></td>
+        <td class="note-col"><textarea class="note-input" data-note="q-calls" rows="2"></textarea></td>
+      </tr><tr>
+        <td><strong><span class="lang-en">Do you service and repair pools you did not install — and vinyl or gunite pools?</span><span class="lang-pt">Vocês fazem serviço e reparo em piscinas que não instalaram — e em piscinas de vinil ou gunite?</span></strong></td>
+        <td style="color:var(--text2)"><span class="lang-en">Your cleaning page talks about fiberglass specifically. The answer decides whether service ads say “fiberglass pools” or stay general.</span><span class="lang-pt">A sua página de limpeza fala especificamente de fibra. A resposta decide se os anúncios de serviço dizem “fiberglass pools” ou ficam gerais.</span></td>
+        <td class="note-col"><textarea class="note-input" data-note="q-service" rows="2"></textarea></td>
+      </tr><tr>
+        <td><strong><span class="lang-en">Is the structural warranty 25 years or 50?</span><span class="lang-pt">A garantia estrutural é de 25 ou de 50 anos?</span></strong></td>
+        <td style="color:var(--text2)"><span class="lang-en">Your Warranty page says 25 years; the Freezable Pools page says 50. The ads use 25 until you confirm, and one of the two pages needs fixing.</span><span class="lang-pt">A página Warranty diz 25 anos; a página Freezable Pools diz 50. Os anúncios usam 25 até você confirmar, e uma das duas páginas precisa de correção.</span></td>
+        <td class="note-col"><textarea class="note-input" data-note="q-warranty" rows="2"></textarea></td>
+      </tr></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ 8 · Onda 2 ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🗓️</div><div>
+    <h3><span class="lang-en">6 · Later, not now</span><span class="lang-pt">6 · Depois, não agora</span></h3>
+    <div class="sub"><span class="lang-en">1 campaign, +$8/day, after 30–45 days</span><span class="lang-pt">1 campanha, +$8/dia, após 30–45 dias</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">Geo by City uses your /locations/ pages — the tailored-by-location pages you asked about. It waits until the main structure is stable, so we can tell whether a city page beats the general page for the same search. It starts with six towns: Columbus, Delaware, Dublin, Westerville, Lewis Center and Marysville.</span><span class="lang-pt">Geo by City usa as suas páginas /locations/ — as páginas sob medida por local que você perguntou. Espera a estrutura principal estabilizar, para sabermos se a página da cidade ganha da página geral para a mesma busca. Começa por seis cidades: Columbus, Delaware, Dublin, Westerville, Lewis Center e Marysville.</span></p>
+    <div class="tw"><table>
+      <thead><tr><th style="width:40px;text-align:center">OK</th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Budget</span><span class="lang-pt">Orçamento</span></th><th class="num"><span class="lang-en">Groups</span><span class="lang-pt">Grupos</span></th><th class="num"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></th><th><span class="lang-en">What it covers</span><span class="lang-pt">O que cobre</span></th><th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th></tr></thead>
+      <tbody><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="wave2"></td>
+    <td><strong>📍 Geo by City</strong></td>
+    <td class="num"><strong>$8</strong>/day</td>
+    <td class="num">6</td>
+    <td class="num">28</td>
+    <td><span class="lang-en">One ad group per city, using your /locations/ pages</span><span class="lang-pt">Um grupo por cidade, usando as páginas /locations/</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="wave2-16" rows="1"></textarea></td>
+  </tr></tbody>
+    </table></div>
+    <h4 class="subhead"><span class="lang-en">What Wave 2 would contain</span><span class="lang-pt">O que a Onda 2 conteria</span></h4>
+    
+  <div class="mt-legend">
+    <span><span class="kw ph">&quot;like this&quot;</span> &nbsp;<span class="lang-en">phrase match — searches that contain this meaning</span><span class="lang-pt">phrase — buscas que contêm esse significado</span></span>
+    <span><span class="kw ex">[like this]</span> &nbsp;<span class="lang-en">exact match — this search and very close variants</span><span class="lang-pt">exact — essa busca e variações muito próximas</span></span>
+    <span><span class="kw br">like this</span> &nbsp;<span class="lang-en">broad match — discovery campaign only</span><span class="lang-pt">broad — só na campanha de descoberta</span></span>
+    <span><span class="kw ng">like this</span> &nbsp;<span class="lang-en">blocked</span><span class="lang-pt">bloqueado</span></span>
+  </div>
+    
+  <h4 class="subhead">📍 Geo by City <span class="tag grey">$8/day</span> <span class="tag blue">6 ad groups</span></h4>
+  
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Columbus</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/columbus/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (5)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders columbus&quot;</span><span class="kw ph">&quot;fiberglass pool installation columbus&quot;</span><span class="kw ph">&quot;inground pools columbus&quot;</span><span class="kw ph">&quot;pool installation columbus&quot;</span>
+        <span class="kw ex">[pool builders columbus]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pools in Columbus</span><span>Columbus Pool Builder</span><span>Pool Installation, Columbus</span><span>Serving Columbus Homeowners</span><span>Inground Pools in Columbus</span><span>Your Columbus Pool Team</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Premium San Juan fiberglass pool installation in Columbus, from excavation to first swim.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/columbus</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Delaware</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/delaware/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (5)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders delaware ohio&quot;</span><span class="kw ph">&quot;fiberglass pools delaware ohio&quot;</span><span class="kw ph">&quot;pool installation delaware ohio&quot;</span><span class="kw ph">&quot;inground pools delaware ohio&quot;</span>
+        <span class="kw ex">[pool builders delaware ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pools in Delaware</span><span>Delaware OH Pool Builder</span><span>Pool Installation, Delaware</span><span>Based Right Here in Delaware</span><span>Inground Pools in Delaware</span><span>Your Delaware Pool Team</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Serving Central Ohio</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Fiberglass pool installation in Delaware, Ohio — our home base on State Route 37.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/delaware</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Dublin</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/dublin/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (5)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders dublin ohio&quot;</span><span class="kw ph">&quot;fiberglass pools dublin ohio&quot;</span><span class="kw ph">&quot;pool installation dublin ohio&quot;</span><span class="kw ph">&quot;inground pools dublin ohio&quot;</span>
+        <span class="kw ex">[pool builders dublin ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pools in Dublin</span><span>Dublin Pool Builder</span><span>Pool Installation in Dublin</span><span>Serving Dublin Homeowners</span><span>Inground Pools in Dublin</span><span>Your Dublin Pool Team</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Premium San Juan fiberglass pool installation in Dublin, from excavation to first swim.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/dublin</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Westerville</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/westerville/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (5)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders westerville&quot;</span><span class="kw ph">&quot;fiberglass pools westerville&quot;</span><span class="kw ph">&quot;pool installation westerville&quot;</span><span class="kw ph">&quot;inground pools westerville&quot;</span>
+        <span class="kw ex">[pool builders westerville]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Westerville Fiberglass Pools</span><span>Westerville Pool Builder</span><span>Pool Installs in Westerville</span><span>Serving Westerville Homes</span><span>Inground Pools, Westerville</span><span>Your Westerville Pool Team</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>San Juan fiberglass pool installation in Westerville, from excavation to first swim.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/westerville</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Lewis Center</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/lewis-center/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders lewis center&quot;</span><span class="kw ph">&quot;fiberglass pools lewis center&quot;</span><span class="kw ph">&quot;pool installation lewis center&quot;</span>
+        <span class="kw ex">[pool builders lewis center]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Lewis Center Fiberglass Pools</span><span>Lewis Center Pool Builder</span><span>Pool Installs, Lewis Center</span><span>Serving Lewis Center Homes</span><span>Inground Pools, Lewis Center</span><span>Minutes From Our Office</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Fiberglass pool installation in Lewis Center, minutes from our Delaware, OH office.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/lewis-center</span></div>
+      
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Marysville</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/locations/marysville/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pool builders marysville ohio&quot;</span><span class="kw ph">&quot;fiberglass pools marysville ohio&quot;</span><span class="kw ph">&quot;pool installation marysville ohio&quot;</span>
+        <span class="kw ex">[pool builders marysville ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Fiberglass Pools, Marysville</span><span>Marysville Pool Builder</span><span>Pool Installs in Marysville</span><span>Serving Marysville Homes</span><span>Inground Pools, Marysville</span><span>Your Marysville Pool Team</span><span>Authorized San Juan Dealer</span><span>100% Hand-Laid Fiberglass</span><span>Our Own Crews Do the Work</span><span>Installed in Days, Not Weeks</span><span>25-Year Structural Warranty</span><span>Get Your Free Estimate</span><span>Financing Up to 30 Years</span><span>100+ Fiberglass Pool Models</span><span>Family-Owned, Delaware OH</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>San Juan fiberglass pool installation in Marysville, from excavation to first swim.</p><p>Authorized San Juan Pools dealer. 100% hand-laid fiberglass, 5+ layers, 32-mil gel coat.</p><p>Family-owned in Delaware, OH. Our own crews dig, set, plumb and finish your pool.</p><p>Pool financing through Lyon Financial: loans up to $250K, terms up to 30 years.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximapools.com/pools/marysville</span></div>
+      
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ══ 9 · Cronograma ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">✅</div><div>
+    <h3><span class="lang-en">7 · How we roll it out</span><span class="lang-pt">7 · Como vamos executar</span></h3>
+    <div class="sub"><span class="lang-en">Nothing switches over in a single day</span><span class="lang-pt">Nada troca de uma vez só</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="steps">
+    <div class="step"><div class="step-body"><span class="when"><span class="lang-en">Days 1–2</span><span class="lang-pt">Dias 1–2</span></span><h4><span class="lang-en">Build the new campaigns, paused</span><span class="lang-pt">Montar as campanhas novas, pausadas</span></h4><p><span class="lang-en">Everything is imported, reviewed and checked before a single ad goes live: block lists in place, AI Max off, open keywords off outside discovery.</span><span class="lang-pt">Tudo importado, revisado e conferido antes de qualquer anúncio ir ao ar: listas de bloqueio no lugar, AI Max desligado, keyword aberta desligada fora da descoberta.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Days 3–5</span><span class="lang-pt">Dias 3–5</span></span><h4><span class="lang-en">Switch Brand and Pool Installation first</span><span class="lang-pt">Ligar Brand e Pool Installation primeiro</span></h4><p><span class="lang-en">The core of the account goes live first, so it starts learning right away.</span><span class="lang-pt">O núcleo da conta entra primeiro, para começar a aprender logo.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 6</span><span class="lang-pt">Dia 6</span></span><h4><span class="lang-en">Then Competitors and Pool Service</span><span class="lang-pt">Depois Competitors e Pool Service</span></h4><p><span class="lang-en">Competitors with the names you confirm. Pool Service with only the in-season groups on: repair, covers and upgrades now; opening and closing again from March; cleaning from mid-April.</span><span class="lang-pt">Competitors com os nomes que você confirmar. Pool Service só com os grupos da estação: reparo, capas e acessórios agora; abertura e fechamento de novo a partir de março; limpeza a partir de meados de abril.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 10</span><span class="lang-pt">Dia 10</span></span><h4><span class="lang-en">Turn on the discovery campaign last</span><span class="lang-pt">Ligar a campanha de descoberta por último</span></h4><p><span class="lang-en">It needs the other campaigns' keywords in place first, and a weekly search term review on the calendar.</span><span class="lang-pt">Ela precisa das keywords das outras no lugar, e da revisão semanal de termos na agenda.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 30–45</span><span class="lang-pt">Dia 30–45</span></span><h4><span class="lang-en">Report back and decide on Wave 2</span><span class="lang-pt">Reportar e decidir a Onda 2</span></h4><p><span class="lang-en">Thirty days of the new structure: cost per lead by campaign, and how many leads were pool installations, from your call tags.</span><span class="lang-pt">Trinta dias de estrutura nova: custo por lead por campanha, e quantos leads foram instalação de piscina, pela marcação das ligações.</span></p></div></div>
+    </div>
+    <div class="callout blue" style="margin-top:18px">
+      <strong><span class="lang-en">What we will measure:</span><span class="lang-pt">O que vamos medir:</span></strong>
+      <span class="lang-en">two numbers per campaign: cost per lead, and how many of the leads are pool installations, from your call tags.</span><span class="lang-pt">dois números por campanha: custo por lead, e quantos dos leads são instalação de piscina, pela marcação das ligações.</span>
+    </div>
+    
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the timing or the rollout</span><span class="lang-pt">Algo sobre o cronograma ou a execução</span></label>
+      <textarea class="note-input note-block" data-note="sec-rollout" data-label="Anything about the timing or the rollout" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <p><span class="lang-en">Leads means phone calls and form submissions only. Every claim in the ads comes from maximapools.com. Monthly budget is the daily budget × 30.4. Prepared by Igor Stutz, October 2026.</span><span class="lang-pt">Leads são apenas ligações e envios de formulário. Toda afirmação dos anúncios vem de maximapools.com. Orçamento mensal = diário × 30,4. Preparado por Igor Stutz, outubro de 2026.</span></p>
+</div>
+
+</div>
+
+<div class="approval-bar">
+  <div class="count"><span id="approved-count">0</span> / <span id="total-actions">0</span> <span class="lang-en">approved</span><span class="lang-pt">aprovados</span> · <span class="notes-count" id="notes-count">0</span> <span class="lang-en">notes</span><span class="lang-pt">notas</span></div>
+  <div class="spacer"></div>
+  <button onclick="selectAll()"><span class="lang-en">Approve all</span><span class="lang-pt">Aprovar todas</span></button>
+  <button onclick="deselectAll()"><span class="lang-en">Clear all</span><span class="lang-pt">Limpar todas</span></button>
+  <button class="btn-export" onclick="exportApproved()"><span class="lang-en">Download my answers</span><span class="lang-pt">Baixar minhas respostas</span></button>
+</div>
+
+<script>
+const PLACEHOLDERS = { en: 'Agree, disagree, or your idea…', pt: 'Concordo, discordo, ou sua ideia…' };
+
+const API_URL   = 'https://script.google.com/macros/s/AKfycbyRmxBUAAXn5Qnlf1fk2kDoPJwo9Zf0XW9FvR8E0ccVy0fExvZGzSU-i3CW-xIE99W6/exec';
+const REPORT_ID = 'pools11';
+const REMOTE    = /^https:\/\//.test(API_URL);
+const LANG_KEY  = 'maxima-lang';
+const CACHE_KEY = 'maxima-cache-pools11';
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+}
+
+const checkboxes = document.querySelectorAll('.approval-check');
+const notes = document.querySelectorAll('.note-input');
+const countEl = document.getElementById('approved-count');
+const totalEl = document.getElementById('total-actions');
+const notesCountEl = document.getElementById('notes-count');
+totalEl.textContent = checkboxes.length;
+
+checkboxes.forEach((cb, i) => { const tr = cb.closest('tr'); const n = tr && tr.querySelector('.note-input'); cb._key = n ? ('chk_' + n.dataset.note) : ('chk_' + i); });
+
+const syncEl = document.createElement('span');
+syncEl.id = 'sync-status';
+syncEl.style.cssText = 'font-size:12px; margin-left:10px; white-space:nowrap; font-weight:500;';
+if (countEl && countEl.parentNode) countEl.parentNode.insertBefore(syncEl, countEl.nextSibling);
+function setSync(text, color) { syncEl.textContent = text; syncEl.style.color = color || 'var(--text3)'; }
+setSync(REMOTE ? '☁ shared' : '', REMOTE ? 'var(--g-green-dark)' : 'var(--text3)');
+
+checkboxes.forEach(cb => cb.addEventListener('change', () => {
+  cb.closest('tr').classList.toggle('approved', cb.checked);
+  updateCount();
+  remoteSave('approval', cb._key, cb.checked ? '1' : '0');
+}));
+const noteTimers = {};
+notes.forEach(n => n.addEventListener('input', () => {
+  n.classList.toggle('filled', n.value.trim().length > 0);
+  updateCount();
+  clearTimeout(noteTimers[n.dataset.note]);
+  noteTimers[n.dataset.note] = setTimeout(() => remoteSave('note', n.dataset.note, n.value), 700);
+}));
+
+function updateCount() {
+  countEl.textContent = document.querySelectorAll('.approval-check:checked').length;
+  notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
+}
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '1' }))); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '0' }))); }
+
+function rowLabel(tr) {
+  return Array.from(tr.querySelectorAll('td'))
+    .filter(td => !td.querySelector('.approval-check') && !td.querySelector('.note-input'))
+    .map(c => c.textContent.trim().replace(/\s+/g, ' '))
+    .filter(Boolean).join(' | ');
+}
+
+function exportApproved() {
+  const approved = [];
+  document.querySelectorAll('.approval-check:checked').forEach(cb => {
+    const tr = cb.closest('tr');
+    const noteEl = tr.querySelector('.note-input');
+    approved.push({ action: cb.dataset.action, values: rowLabel(tr), note: noteEl ? noteEl.value.trim() : '' });
+  });
+  const comments = [];
+  notes.forEach(n => {
+    const val = n.value.trim(); if (!val) return;
+    const tr = n.closest('tr');
+    const cb = tr ? tr.querySelector('.approval-check') : null;
+    if (cb && cb.checked) return;
+    comments.push({ label: tr ? rowLabel(tr) : (n.dataset.label || n.dataset.note), note: val });
+  });
+  if (!approved.length && !comments.length) {
+    alert('No actions approved and no notes written yet.\nNenhuma ação aprovada e nenhuma nota escrita ainda.');
+    return;
+  }
+  let t = 'MAXIMA POOLS — ACCOUNT REBUILD: APPROVED ACTIONS & NOTES (October 2026)\n';
+  t += '='.repeat(72) + '\n';
+  const labels = {"decision":"DECISION — CLOSED KEYWORDS + DISCOVERY","campaign":"CAMPAIGNS APPROVED TO LAUNCH NOW","wave2":"WAVE 2 CAMPAIGNS (LATER)","negative":"NEGATIVE KEYWORD LISTS","ads":"AD COPY"};
+  if (approved.length) {
+    t += '\n### APPROVED (' + approved.length + ') ###\n';
+    const groups = {};
+    approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i); });
+    Object.keys(groups).forEach(a => {
+      t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n';
+      groups[a].forEach(i => { t += '  [x] ' + i.values + '\n'; if (i.note) t += '        note: ' + i.note + '\n'; });
+    });
+  }
+  if (comments.length) {
+    t += '\n### NOTES & COMMENTS (' + comments.length + ') ###\n' + '-'.repeat(40) + '\n';
+    comments.forEach(c => { t += '  • ' + c.label + '\n        note: ' + c.note + '\n'; });
+  }
+  t += '\n' + '='.repeat(72) + '\n';
+  t += 'Summary: ' + approved.length + ' items approved, ' + comments.length + ' additional notes.\n';
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_pools_rebuild_approval.txt'; a.click();
+}
+
+function cacheGet() { try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}'); } catch (e) { return {}; } }
+function cachePut(kind, key, value) { try { const c = cacheGet(); const b = kind === 'note' ? 'notes' : 'approvals'; c[b] = c[b] || {}; c[b][key] = value; localStorage.setItem(CACHE_KEY, JSON.stringify(c)); } catch (e) {} }
+function applyState(d) {
+  if (!d) return;
+  if (d.notes) notes.forEach(n => { const v = d.notes[n.dataset.note]; if (v != null) { n.value = v; n.classList.toggle('filled', String(v).trim().length > 0); } });
+  if (d.approvals) checkboxes.forEach(cb => { const v = d.approvals[cb._key]; if (v != null) { const on = (v === '1' || v === 1 || v === true); cb.checked = on; cb.closest('tr').classList.toggle('approved', on); } });
+  updateCount();
+}
+async function loadAll() {
+  applyState(cacheGet());
+  if (!REMOTE) return;
+  try {
+    setSync('☁ syncing…');
+    const r = await fetch(API_URL + '?report=' + encodeURIComponent(REPORT_ID), { method: 'GET' });
+    const d = await r.json();
+    applyState(d);
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(d)); } catch (e) {}
+    setSync('☁ shared', 'var(--g-green-dark)');
+  } catch (e) { setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'); }
+}
+function remoteSave(kind, key, value) {
+  cachePut(kind, key, value);
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, kind: kind, key: key, value: value }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+function remoteBatch(kind, entries) {
+  entries.forEach(e => cachePut(kind, e.key, e.value));
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, items: entries.map(e => ({ kind: kind, key: e.key, value: e.value })) }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadAll(); });
+
+let saved = 'en';
+try { saved = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) {}
+setLang(saved);
+loadAll();
+</script>
+
+</body>
+</html>
