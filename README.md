@@ -21,6 +21,7 @@ Single-page interactive report analyzing **Maxima Pools'** digital presence, ide
 - **`index.html`** — latest report: **Report 05 · June 2026 (Monthly, May→June comparison)**
 - **`report-04-jun8.html`** — Report 04 (Weekly, May 25–31 vs Jun 1–7)
 - **`report-03-may13.html`** — Report 03 (Mar 28 – May 13)
+- **`metaads/plan-01/`** — Meta Ads Campaign Plan · Phase 1 (launch & warm-up, from Nov 2, 2026)
 
 ## 🚀 Viewing
 
