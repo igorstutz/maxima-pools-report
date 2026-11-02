@@ -349,6 +349,13 @@ td.ok{color:var(--good)}
 .gallery.five figure .frame{aspect-ratio:4/5}
 .gallery.five.vids figure .frame{aspect-ratio:9/16}
 .goal h3{margin-top:2px}
+.roadmap.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:900px){.roadmap.four{grid-template-columns:1fr}}
+.goals.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.goals.four{grid-template-columns:1fr}}
+.split-sub{display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.split-sub .split-bar{height:12px}
+.lib-head h3 .tag{font-size:10.5px}
 </style>
 </head>
 <body>
@@ -402,11 +409,11 @@ td.ok{color:var(--good)}
         <div class="chips">
           <span class="chip"><span class="en">Start</span><span class="pt">Início</span> <b><span class="en">Nov 2, 2026</span><span class="pt">2 nov 2026</span></b></span>
           <span class="chip"><b><span class="en">30-day cycle</span><span class="pt">Ciclo de 30 dias</span></b></span>
-          <span class="chip"><b>2</b> <span class="en">campaigns</span><span class="pt">campanhas</span> · <b>15</b> <span class="en">creatives</span><span class="pt">criativos</span></span>
+          <span class="chip"><b>3</b> <span class="en">campaigns</span><span class="pt">campanhas</span> · <b>19</b> <span class="en">creatives</span><span class="pt">criativos</span></span>
           <span class="chip"><b>USD</b></span>
         </div>
-        <p class="lede en">Maxima Pools has never advertised on Meta. This plan starts from zero with <strong>at least $8 a day</strong>: install the Meta pixel, bring Central Ohio homeowners to the website and start building the audiences we will later ask for a consultation. It runs <strong>15 new creatives</strong> built from real Maxima installations.</p>
-        <p class="lede pt">A Maxima Pools nunca anunciou na Meta. Este plano começa do zero com <strong>no mínimo US$ 8 por dia</strong>: instalar o pixel da Meta, levar donos de casa da região central de Ohio ao site e começar a formar os públicos a quem depois vamos pedir uma consulta. Ele roda <strong>15 criativos novos</strong>, feitos a partir de instalações reais da Maxima.</p>
+        <p class="lede en">Maxima Pools has never advertised on Meta. This plan starts from zero with <strong>$13 a day</strong> across three campaigns. Two work on pool installation: install the Meta pixel, bring Central Ohio homeowners to the website and build the audiences we will later ask for a consultation. The third fills <strong>pool closing</strong> dates in season, with Meta’s 30% of the $500 a month set aside for closings. It runs <strong>19 new creatives</strong> built from real Maxima work.</p>
+        <p class="lede pt">A Maxima Pools nunca anunciou na Meta. Este plano começa do zero com <strong>US$ 13 por dia</strong> em três campanhas. Duas trabalham a instalação de piscina: instalar o pixel da Meta, levar donos de casa da região central de Ohio ao site e formar os públicos a quem depois vamos pedir uma consulta. A terceira preenche a agenda de <strong>fechamento de piscina</strong> na temporada, com os 30% da Meta nos US$ 500 por mês separados para fechamento. Ele roda <strong>19 criativos novos</strong>, feitos a partir de trabalhos reais da Maxima.</p>
       </div>
       <div class="fan" aria-hidden="true">
         <img class="f1" src="assets/p01.jpg" alt="" width="800" height="533">
@@ -416,10 +423,10 @@ td.ok{color:var(--good)}
     </div>
 
     <div class="hero-stats">
-      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-dollar"/></svg><span class="en">Daily budget</span><span class="pt">Verba diária</span></span><span class="v">$8</span><span class="s"><span class="en">Minimum, both campaigns</span><span class="pt">Mínimo, nas duas campanhas</span></span></div>
-      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-calendar"/></svg><span class="en">30-day budget</span><span class="pt">Verba em 30 dias</span></span><span class="v">$240</span><span class="s"><span class="en">Nov 2 – Dec 1, 2026</span><span class="pt">2 nov – 1 dez 2026</span></span></div>
-      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-grid"/></svg><span class="en">Creatives</span><span class="pt">Criativos</span></span><span class="v">15</span><span class="s"><span class="en">12 images · 3 videos</span><span class="pt">12 imagens · 3 vídeos</span></span></div>
-      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-layers"/></svg><span class="en">Campaigns</span><span class="pt">Campanhas</span></span><span class="v">2</span><span class="s"><span class="en">Traffic + retargeting</span><span class="pt">Tráfego + remarketing</span></span></div>
+      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-dollar"/></svg><span class="en">Daily budget</span><span class="pt">Verba diária</span></span><span class="v">$13</span><span class="s"><span class="en">$8 installation + $5 closing</span><span class="pt">US$ 8 instalação + US$ 5 fechamento</span></span></div>
+      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-calendar"/></svg><span class="en">30-day budget</span><span class="pt">Verba em 30 dias</span></span><span class="v">$390</span><span class="s"><span class="en">Nov 2 – Dec 1, 2026</span><span class="pt">2 nov – 1 dez 2026</span></span></div>
+      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-grid"/></svg><span class="en">Creatives</span><span class="pt">Criativos</span></span><span class="v">19</span><span class="s"><span class="en">15 installation · 4 closing</span><span class="pt">15 instalação · 4 fechamento</span></span></div>
+      <div class="hstat"><span class="l"><svg class="ic"><use href="#i-layers"/></svg><span class="en">Campaigns</span><span class="pt">Campanhas</span></span><span class="v">3</span><span class="s"><span class="en">Traffic, retargeting, pool closing</span><span class="pt">Tráfego, remarketing, fechamento</span></span></div>
     </div>
   </div>
 </header>
@@ -431,8 +438,8 @@ td.ok{color:var(--good)}
     <div class="sec-head">
       <span class="eyebrow"><span class="en">Phase 1 · Launch &amp; warm-up</span><span class="pt">Fase 1 · Lançamento e aquecimento</span></span>
       <h2><span class="en">Starting from zero, not from scratch</span><span class="pt">Começando do zero, mas não do nada</span></h2>
-      <p class="en">Meta’s delivery system learns from data, and a new account has none. So month one pays for signal (website visits, pixel events, warm audiences) before asking for consultations. What Maxima Concrete learned on Meta in the same region, and what Google Ads shows for Pools, tells us where to start.</p>
-      <p class="pt">O sistema de entrega da Meta aprende com dados, e uma conta nova não tem nenhum. Por isso o primeiro mês investe em sinal (visitas ao site, eventos no pixel, públicos quentes) antes de pedir consultas. O que a Maxima Concrete aprendeu na Meta na mesma região, e o que o Google Ads mostra para a Pools, indica por onde começar.</p>
+      <p class="en">Meta’s delivery system learns from data, and a new account has none. So month one pays for signal (website visits, pixel events, warm audiences) before asking for consultations. What Maxima Concrete learned on Meta in the same region, and what Google Ads shows for Pools, tells us where to start. Pool closing is the exception: people book it within days, so its campaign sends them straight to the page where they book.</p>
+      <p class="pt">O sistema de entrega da Meta aprende com dados, e uma conta nova não tem nenhum. Por isso o primeiro mês investe em sinal (visitas ao site, eventos no pixel, públicos quentes) antes de pedir consultas. O que a Maxima Concrete aprendeu na Meta na mesma região, e o que o Google Ads mostra para a Pools, indica por onde começar. O fechamento de piscina é a exceção: a pessoa agenda em poucos dias, então a campanha dele leva direto para a página onde se agenda.</p>
     </div>
     <div class="phases">
       <div class="ph now"><span class="dot"></span><span class="when"><span class="en">Nov – Dec · This plan</span><span class="pt">Nov – Dez · Este plano</span></span><h3><span class="en">1 · Launch &amp; warm-up</span><span class="pt">1 · Lançamento e aquecimento</span></h3><p class="en">Pixel live, traffic to the website, first audiences, 15 creatives tested.</p><p class="pt">Pixel no ar, tráfego para o site, primeiros públicos, 15 criativos testados.</p></div>
@@ -452,11 +459,11 @@ td.ok{color:var(--good)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow"><span class="en">Before launch</span><span class="pt">Antes de lançar</span></span>
-      <h2><span class="en">Tracking comes first</span><span class="pt">Primeiro, o rastreamento</span></h2>
+      <h2><span class="en">Tracking and pages come first</span><span class="pt">Primeiro, rastreamento e páginas</span></h2>
       <p class="en">We found no Meta pixel in the code of the new maximapools.com. Without it, Meta can’t see who visits the site, can’t build retargeting audiences and can’t tell which ads lead to a consultation request. This is step one.</p>
       <p class="pt">Não encontramos o pixel da Meta no código do novo maximapools.com. Sem ele, a Meta não vê quem visita o site, não forma públicos de remarketing e não sabe quais anúncios levam a um pedido de consulta. Este é o primeiro passo.</p>
     </div>
-    <div class="goals">
+    <div class="goals four">
       <div class="goal">
         <span class="badge"><svg class="ic"><use href="#i-code"/></svg></span>
         <h3><span class="en">Pixel + Conversions API</span><span class="pt">Pixel + API de Conversões</span></h3>
@@ -466,14 +473,20 @@ td.ok{color:var(--good)}
       <div class="goal">
         <span class="badge"><svg class="ic"><use href="#i-pulse"/></svg></span>
         <h3><span class="en">The events we track</span><span class="pt">Os eventos que medimos</span></h3>
-        <p class="en">Page views, pool model views, Pool Simulator use, phone clicks and the free-estimate form (thank-you page). These are what Meta learns from.</p>
-        <p class="pt">Visitas às páginas, visualização de modelos de piscina, uso do Pool Simulator, cliques no telefone e o formulário de orçamento (página de agradecimento). É com isso que a Meta aprende.</p>
+        <p class="en">Page views, pool model views, Pool Simulator use, phone clicks, the free-estimate form (thank-you page) and “Book Now” clicks on the pool closing page, plus paid bookings once online booking is live. These are what Meta learns from.</p>
+        <p class="pt">Visitas às páginas, visualização de modelos de piscina, uso do Pool Simulator, cliques no telefone, o formulário de orçamento (página de agradecimento) e cliques em “Book Now” na página de fechamento, mais as reservas pagas quando o agendamento online estiver no ar. É com isso que a Meta aprende.</p>
       </div>
       <div class="goal">
         <span class="badge"><svg class="ic"><use href="#i-link"/></svg></span>
         <h3><span class="en">Accounts connected</span><span class="pt">Contas conectadas</span></h3>
         <p class="en">Facebook page, Instagram account and ad account linked in one Business Manager, with the maximapools.com domain verified.</p>
         <p class="pt">Página do Facebook, conta do Instagram e conta de anúncios ligadas num único Business Manager, com o domínio maximapools.com verificado.</p>
+      </div>
+      <div class="goal">
+        <span class="badge"><svg class="ic"><use href="#i-calendar"/></svg></span>
+        <h3><span class="en">Pool closing page ready to book</span><span class="pt">Página de fechamento pronta para agendar</span></h3>
+        <p class="en">Every “Book Now” on maximapools.com/pool-closing/ becomes the booking button: the contact form for now, marked as a pool closing request, and online booking as soon as it is live. The Pool Simulator button at the top becomes “Call”, and the September–October note is updated for late season.</p>
+        <p class="pt">Todo “Book Now” de maximapools.com/pool-closing/ vira o botão de agendamento: por enquanto o formulário de contato, marcando o pedido como fechamento, e o agendamento online assim que estiver no ar. O botão do Pool Simulator no topo vira “Ligar”, e o aviso de setembro–outubro é atualizado para o fim da temporada.</p>
       </div>
     </div>
   </div>
@@ -483,28 +496,40 @@ td.ok{color:var(--good)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow"><span class="en">Budget</span><span class="pt">Verba</span></span>
-      <h2><span class="en">$8 a day, split two ways</span><span class="pt">US$ 8 por dia, divididos em duas frentes</span></h2>
-      <p class="en">Most of the budget goes to traffic, which feeds the pixel and builds the audiences. Retargeting starts small because the warm audience starts small.</p>
-      <p class="pt">A maior parte da verba vai para o tráfego, que alimenta o pixel e forma os públicos. O remarketing começa pequeno porque o público quente também começa pequeno.</p>
+      <h2><span class="en">$13 a day, split three ways</span><span class="pt">US$ 13 por dia, divididos em três frentes</span></h2>
+      <p class="en">Installation gets $8: most of it goes to traffic, which feeds the pixel and builds the audiences, and retargeting starts small because the warm audience starts small. Pool closing gets $5, which is Meta’s 30% of the $500 a month set aside for closings. The other 70% goes to Google Ads.</p>
+      <p class="pt">A instalação fica com US$ 8: a maior parte vai para o tráfego, que alimenta o pixel e forma os públicos, e o remarketing começa pequeno porque o público quente também começa pequeno. O fechamento fica com US$ 5, que são os 30% da Meta nos US$ 500 por mês separados para fechamento. Os outros 70% vão para o Google Ads.</p>
     </div>
     <div class="budget-grid">
       <div class="split" style="margin-bottom:0">
-        <div class="split-top"><h3><span class="en">Split by campaign</span><span class="pt">Divisão por campanha</span></h3><span class="sub"><span class="en">Total $8 / day</span><span class="pt">Total US$ 8 / dia</span></span></div>
-        <div class="split-bar" role="img" aria-label="Traffic 75%, Retargeting 25%"><div style="width:75%;background:var(--seg-1)"></div><div style="width:25%;background:var(--seg-2)"></div></div>
+        <div class="split-top"><h3><span class="en">Split by campaign</span><span class="pt">Divisão por campanha</span></h3><span class="sub"><span class="en">Total $13 / day</span><span class="pt">Total US$ 13 / dia</span></span></div>
+        <div class="split-bar" role="img" aria-label="Traffic $6, Retargeting $2, Pool closing $5"><div style="width:46.15%;background:var(--seg-1)"></div><div style="width:15.38%;background:var(--seg-2)"></div><div style="width:38.47%;background:var(--seg-3)"></div></div>
         <div class="legend">
-          <span><i style="background:var(--seg-1)"></i><span class="en">Traffic</span><span class="pt">Tráfego</span> <b>$6 · 75%</b></span>
-          <span><i style="background:var(--seg-2)"></i><span class="en">Retargeting</span><span class="pt">Remarketing</span> <b>$2 · 25%</b></span>
+          <span><i style="background:var(--seg-1)"></i><span class="en">Traffic</span><span class="pt">Tráfego</span> <b>$6</b></span>
+          <span><i style="background:var(--seg-2)"></i><span class="en">Retargeting</span><span class="pt">Remarketing</span> <b>$2</b></span>
+          <span><i style="background:var(--seg-3)"></i><span class="en">Pool closing</span><span class="pt">Fechamento</span> <b>$5</b></span>
         </div>
         <p class="sub"><span class="en">If the warm audience is still too small for Meta to deliver at launch, the $2 goes to traffic until it fills up. We check this at the day-14 review.</span><span class="pt">Se o público quente ainda for pequeno demais para a Meta entregar no lançamento, os US$ 2 vão para o tráfego até ele crescer. Isso é conferido na revisão do dia 14.</span></p>
+        <div class="split-sub">
+          <div class="split-top"><span class="sub"><b><span class="en">Pool closing budget, both platforms</span><span class="pt">Verba de fechamento, nas duas plataformas</span></b></span><span class="sub"><span class="en">$500 / month</span><span class="pt">US$ 500 / mês</span></span></div>
+          <div class="split-bar" role="img" aria-label="Google Ads 70%, Meta Ads 30%"><div style="width:70%;background:var(--muted-bar)"></div><div style="width:30%;background:var(--seg-3)"></div></div>
+          <div class="legend">
+            <span><i style="background:var(--muted-bar)"></i>Google Ads <b>$350 · 70%</b></span>
+            <span><i style="background:var(--seg-3)"></i>Meta Ads <b>$150 · 30%</b></span>
+          </div>
+        </div>
       </div>
       <div class="table-wrap slim">
         <table>
-          <thead><tr><th><span class="en">Campaign</span><span class="pt">Campanha</span></th><th><span class="en">Per day</span><span class="pt">Por dia</span></th><th><span class="en">30 days</span><span class="pt">30 dias</span></th><th><span class="en">Share</span><span class="pt">Fatia</span></th></tr></thead>
+          <thead><tr><th><span class="en">Campaign</span><span class="pt">Campanha</span></th><th><span class="en">Per day</span><span class="pt">Por dia</span></th><th><span class="en">30 days</span><span class="pt">30 dias</span></th></tr></thead>
           <tbody>
-            <tr><td><span class="en">Traffic</span><span class="pt">Tráfego</span></td><td>$6.00</td><td>$180.00</td><td>75%</td></tr>
-            <tr><td><span class="en">Retargeting</span><span class="pt">Remarketing</span></td><td>$2.00</td><td>$60.00</td><td>25%</td></tr>
+            <tr class="group"><td colspan="3"><i style="background:var(--seg-1)"></i><span class="en">Pool installation</span><span class="pt">Instalação de piscina</span></td></tr>
+            <tr><td><span class="en">Traffic</span><span class="pt">Tráfego</span></td><td>$6.00</td><td>$180.00</td></tr>
+            <tr><td><span class="en">Retargeting</span><span class="pt">Remarketing</span></td><td>$2.00</td><td>$60.00</td></tr>
+            <tr class="group"><td colspan="3"><i style="background:var(--seg-3)"></i><span class="en">Pool closing · in season</span><span class="pt">Fechamento de piscina · na temporada</span></td></tr>
+            <tr><td><span class="en">Pool closing</span><span class="pt">Fechamento</span></td><td>$5.00</td><td>$150.00</td></tr>
           </tbody>
-          <tfoot><tr><td>Total</td><td>$8.00</td><td>$240.00</td><td>100%</td></tr></tfoot>
+          <tfoot><tr><td>Total</td><td>$13.00</td><td>$390.00</td></tr></tfoot>
         </table>
       </div>
     </div>
@@ -516,10 +541,10 @@ td.ok{color:var(--good)}
     <div class="sec-head">
       <span class="eyebrow"><span class="en">Campaigns</span><span class="pt">Campanhas</span></span>
       <h2><span class="en">What each campaign does</span><span class="pt">O que cada campanha faz</span></h2>
-      <p class="en">One campaign finds new people and brings them to the website. The other follows up with the people who already showed interest. Each has a single ad set with the full creative library.</p>
-      <p class="pt">Uma campanha encontra gente nova e leva ao site. A outra volta a falar com quem já demonstrou interesse. Cada uma tem um único conjunto de anúncios com a biblioteca completa de criativos.</p>
+      <p class="en">For pool installation, one campaign finds new people and brings them to the website, and the other follows up with the people who already showed interest. The third fills pool closing dates while the season is open. Each has a single ad set with its own creatives.</p>
+      <p class="pt">Na instalação, uma campanha encontra gente nova e leva ao site, e a outra volta a falar com quem já demonstrou interesse. A terceira preenche a agenda de fechamento enquanto a temporada está aberta. Cada uma tem um único conjunto de anúncios com seus criativos.</p>
     </div>
-    <div class="camps two">
+    <div class="camps">
       <article class="camp" style="--c:var(--seg-1)">
         <div class="camp-head">
           <div class="camp-top"><h3><svg class="ic"><use href="#i-globe"/></svg><span class="en">Traffic</span><span class="pt">Tráfego</span></h3><span class="tag good"><span class="en">Launch</span><span class="pt">Lançar</span></span></div>
@@ -551,6 +576,22 @@ td.ok{color:var(--good)}
         </dl>
         <p class="note"><span class="en">Once the pixel is live, people who arrive from Google Ads also join this audience. Meta can then follow up for a few dollars with people Maxima already paid $8 a click to reach. No lead count is promised in month one.</span><span class="pt">Com o pixel no ar, quem chega pelo Google Ads também entra neste público. A Meta passa a falar de novo, por poucos dólares, com gente que a Maxima já pagou US$ 8 por clique para alcançar. Não prometemos número de leads no primeiro mês.</span></p>
       </article>
+      <article class="camp" style="--c:var(--seg-3)">
+        <div class="camp-head">
+          <div class="camp-top"><h3><svg class="ic"><use href="#i-snow"/></svg><span class="en">Pool Closing</span><span class="pt">Fechamento</span></h3><span class="tag warn"><span class="en">Seasonal</span><span class="pt">Sazonal</span></span></div>
+          <span class="obj"><span class="en">Goal: landing page views · pool owners in Central Ohio</span><span class="pt">Objetivo: visitas à página · donos de piscina na região central de Ohio</span></span>
+        </div>
+        <div class="camp-hero"><span class="big"><span class="en">Bookings</span><span class="pt">Reservas</span></span><span class="cap"><span class="en">through visits to the</span><span class="pt">por visitas à página com o</span><b><span class="en">booking button</span><span class="pt">botão de agendar</span></b></span></div>
+        <dl>
+          <dt><span class="en">Budget</span><span class="pt">Verba</span></dt><dd><span class="en">$5/day · $150/month</span><span class="pt">US$ 5/dia · US$ 150/mês</span></dd>
+          <dt><span class="en">Season</span><span class="pt">Temporada</span></dt><dd><span class="en">Aug 15 – Nov 30, paused the rest of the year</span><span class="pt">15 ago – 30 nov, pausada no resto do ano</span></dd>
+          <dt><span class="en">Audience</span><span class="pt">Público</span></dt><dd><span class="en">Broad (Advantage+), plus past service customers if Paul shares the list</span><span class="pt">Aberto (Advantage+), mais clientes antigos de serviço se o Paul enviar a lista</span></dd>
+          <dt><span class="en">Ads</span><span class="pt">Anúncios</span></dt><dd><span class="en">The 4 closing creatives, one ad set</span><span class="pt">Os 4 criativos de fechamento, um conjunto</span></dd>
+          <dt><span class="en">Page</span><span class="pt">Página</span></dt><dd><span class="en">Pool closing page now, online booking once it is live</span><span class="pt">Página de fechamento agora, agendamento online quando estiver no ar</span></dd>
+          <dt><span class="en">Main metric</span><span class="pt">Métrica principal</span></dt><dd><span class="en">Cost per visit and “Book Now” clicks</span><span class="pt">Custo por visita e cliques em “Book Now”</span></dd>
+        </dl>
+        <p class="note"><span class="en">Ads link to maximapools.com/pool-closing/, whose “Book Now” opens the contact form for now. Once online booking is live, the same button opens it with no change to the campaign; after testing, the ads link straight to booking. $150 a month is too little for Meta to learn from bookings, so it optimizes for visits, and every request and paid booking is still reported with its cost.</span><span class="pt">Os anúncios levam para maximapools.com/pool-closing/, cujo “Book Now” abre o formulário de contato por enquanto. Com o agendamento online no ar, o mesmo botão passa a abri-lo, sem mudar a campanha; depois de testado, os anúncios levam direto para o agendamento. US$ 150 por mês é pouco para a Meta aprender com reservas, então ela otimiza para visitas, e cada pedido e reserva paga continua sendo reportado com o custo.</span></p>
+      </article>
     </div>
   </div>
 </section>
@@ -559,12 +600,12 @@ td.ok{color:var(--good)}
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow"><span class="en">Creatives</span><span class="pt">Criativos</span></span>
-      <h2><span class="en">15 creatives, real Maxima pools</span><span class="pt">15 criativos, piscinas reais da Maxima</span></h2>
-      <p class="en">Meta’s delivery system picks which ad each person sees, and it works best with many different creatives in the same ad set. Every creative below starts from a real photo or video on maximapools.com, and each one tells a different reason to choose Maxima.</p>
-      <p class="pt">O sistema de entrega da Meta escolhe qual anúncio cada pessoa vê, e funciona melhor com muitos criativos diferentes no mesmo conjunto. Cada criativo abaixo parte de uma foto ou vídeo real do maximapools.com, e cada um mostra um motivo diferente para escolher a Maxima.</p>
+      <h2><span class="en">19 creatives, real Maxima work</span><span class="pt">19 criativos, trabalhos reais da Maxima</span></h2>
+      <p class="en">Meta’s delivery system picks which ad each person sees, and it works best with many different creatives in the same ad set. The 15 installation creatives start from real photos and videos on maximapools.com, each with a different reason to choose Maxima. The 4 closing creatives are shot at real Maxima closings.</p>
+      <p class="pt">O sistema de entrega da Meta escolhe qual anúncio cada pessoa vê, e funciona melhor com muitos criativos diferentes no mesmo conjunto. Os 15 criativos de instalação partem de fotos e vídeos reais do maximapools.com, cada um com um motivo diferente para escolher a Maxima. Os 4 de fechamento são feitos em fechamentos reais da Maxima.</p>
     </div>
 
-    <div class="lib-head"><h3><b>12</b><span class="en">Images</span><span class="pt">Imagens</span></h3><span class="sub"><span class="en">Base photo · headline · angle</span><span class="pt">Foto base · título · ângulo</span></span></div>
+    <div class="lib-head"><h3><b>12</b><span class="en">Images</span><span class="pt">Imagens</span><span class="tag meta"><span class="en">Installation</span><span class="pt">Instalação</span></span></h3><span class="sub"><span class="en">Base photo · headline · angle</span><span class="pt">Foto base · título · ângulo</span></span></div>
     <div class="gallery five">
       <figure><div class="frame"><img src="assets/p01.jpg" alt="Finished backyard pool with gazebo and lounge chairs" loading="lazy" width="800" height="533"></div><figcaption><span class="tag meta">I01 · <span class="en">Dream result</span><span class="pt">Resultado</span></span><b>Dive into luxury</b><span><span class="en">A finished backyard, ready to swim.</span><span class="pt">Um quintal pronto para nadar.</span></span></figcaption></figure>
       <figure><div class="frame"><img src="assets/p02.jpg" alt="Fiberglass pool shell being set by crane" loading="lazy" width="800" height="800"></div><figcaption><span class="tag meta">I02 · <span class="en">Speed</span><span class="pt">Rapidez</span></span><b>Installed in days, not weeks</b><span><span class="en">The shell going in by crane.</span><span class="pt">A piscina sendo colocada por guindaste.</span></span></figcaption></figure>
@@ -580,16 +621,45 @@ td.ok{color:var(--good)}
       <figure><div class="frame"><img src="assets/p12.jpg" alt="Maxima team in front of the Delaware, Ohio headquarters" loading="lazy" width="800" height="450"></div><figcaption><span class="tag meta">I12 · <span class="en">Local team</span><span class="pt">Time local</span></span><b>Family-owned in Delaware, OH</b><span><span class="en">Our own crews, no subcontractors.</span><span class="pt">Equipe própria, sem terceirizados.</span></span></figcaption></figure>
     </div>
 
-    <div class="lib-head sp"><h3><b>3</b><span class="en">Videos</span><span class="pt">Vídeos</span></h3><span class="sub"><span class="en">Vertical, sound off friendly, captions on</span><span class="pt">Verticais, funcionam sem som, com legenda</span></span></div>
+    <div class="lib-head sp"><h3><b>3</b><span class="en">Videos</span><span class="pt">Vídeos</span><span class="tag meta"><span class="en">Installation</span><span class="pt">Instalação</span></span></h3><span class="sub"><span class="en">Vertical, sound off friendly, captions on</span><span class="pt">Verticais, funcionam sem som, com legenda</span></span></div>
     <div class="gallery five vids">
       <figure><div class="frame"><img src="assets/v1.jpg" alt="Drone view of a pool with gazebo and fence" loading="lazy" width="675" height="1200"></div><figcaption><span class="tag warn">V01 · 15 s</span><b>Backyard reveal</b><span><span class="en">Drone shot from the website video, cut to 15 seconds.</span><span class="pt">Tomada de drone do vídeo do site, cortada para 15 segundos.</span></span></figcaption></figure>
       <figure><div class="frame"><img src="assets/v2.jpg" alt="Finished rectangular pool with paver deck, from the Maxima story video" loading="lazy" width="800" height="450"></div><figcaption><span class="tag warn">V02 · 30 s</span><b>The Maxima story</b><span><span class="en">A real Central Ohio install, cut from the 2-minute video and reframed vertical.</span><span class="pt">Uma instalação real em Ohio, cortada do vídeo de 2 minutos e reenquadrada na vertical.</span></span></figcaption></figure>
       <figure><div class="frame new"><div><svg class="ic"><use href="#i-plus"/></svg><span class="en">To be recorded</span><span class="pt">A gravar</span></div></div><figcaption><span class="tag warn">V03 · 20 s</span><b>Pool Simulator in 20 seconds</b><span><span class="en">Phone screen recording: type an address, drop in a pool.</span><span class="pt">Gravação de tela no celular: digitar um endereço, colocar a piscina.</span></span></figcaption></figure>
     </div>
 
+    <div class="lib-head sp"><h3><b>4</b><span class="en">Closing</span><span class="pt">Fechamento</span><span class="tag warn"><span class="en">Pool closing</span><span class="pt">Fechamento</span></span></h3><span class="sub"><span class="en">Shot at real Maxima closings</span><span class="pt">Feitos em fechamentos reais da Maxima</span></span></div>
+    <div class="concepts">
+      <div class="concept">
+        <div class="concept-top"><span class="n">C01 · <span class="en">Image</span><span class="pt">Imagem</span></span><span class="badge"><svg class="ic"><use href="#i-snow"/></svg></span></div>
+        <b>Close it before the freeze</b>
+        <p><span class="en">A pool under its winter cover. Protect plumbing and equipment from Ohio freeze-thaw. From $450.</span><span class="pt">Uma piscina sob a capa de inverno. Proteger encanamento e equipamento do congela-descongela de Ohio. A partir de US$ 450.</span></p>
+        <span class="tag warn"><span class="en">Photo to take</span><span class="pt">Foto a fazer</span></span>
+      </div>
+      <div class="concept">
+        <div class="concept-top"><span class="n">C02 · <span class="en">Carousel</span><span class="pt">Carrossel</span></span><span class="badge"><svg class="ic"><use href="#i-layers"/></svg></span></div>
+        <b>8 steps, done right</b>
+        <p><span class="en">One card per step from the page: lines blown out, returns capped, equipment drained, cover installed…</span><span class="pt">Um card por passo da página: linhas sopradas, retornos tampados, equipamento drenado, capa instalada…</span></p>
+        <span class="tag warn"><span class="en">Photos to take</span><span class="pt">Fotos a fazer</span></span>
+      </div>
+      <div class="concept">
+        <div class="concept-top"><span class="n">C03 · <span class="en">Image</span><span class="pt">Imagem</span></span><span class="badge"><svg class="ic"><use href="#i-calendar"/></svg></span></div>
+        <b>500+ pools winterized</b>
+        <p><span class="en">Experience, plus a clear call to book. The button text changes to “Book online” once booking is live.</span><span class="pt">Experiência, mais um chamado claro para agendar. O texto do botão muda para “Book online” quando o agendamento estiver no ar.</span></p>
+        <span class="tag warn"><span class="en">Photo to take</span><span class="pt">Foto a fazer</span></span>
+      </div>
+      <div class="concept vid">
+        <div class="concept-top"><span class="n">C04 · <span class="en">Video</span><span class="pt">Vídeo</span> 15 s</span><span class="badge"><svg class="ic"><use href="#i-play"/></svg></span></div>
+        <b>A Maxima closing in 15 seconds</b>
+        <p><span class="en">Time-lapse of a crew closing a pool, vertical, captions on. Recorded at one of this year’s last closings.</span><span class="pt">Time-lapse de uma equipe fechando uma piscina, vertical, com legenda. Gravado num dos últimos fechamentos deste ano.</span></p>
+        <span class="tag warn"><span class="en">To be recorded</span><span class="pt">A gravar</span></span>
+      </div>
+    </div>
+
+
     <div class="creative-notes">
       <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-layers"/></svg></span><div><b><span class="en">Different, not similar</span><span class="pt">Diferentes, não parecidos</span></b><span class="en">Meta groups look-alike ads together. Each creative has its own photo and its own reason to buy: speed, quality, price, season, lifestyle.</span><span class="pt">A Meta agrupa anúncios parecidos. Cada criativo tem foto própria e um motivo de compra próprio: rapidez, qualidade, preço, estação, estilo de vida.</span></div></div>
-      <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-image"/></svg></span><div><b><span class="en">Real pools only</span><span class="pt">Só piscinas reais</span></b><span class="en">All photos and videos come from maximapools.com. Nothing is generated, which matters when people are spending this much on a backyard.</span><span class="pt">Todas as fotos e vídeos vêm do maximapools.com. Nada é gerado, o que pesa quando a pessoa vai gastar tanto num quintal.</span></div></div>
+      <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-image"/></svg></span><div><b><span class="en">Real pools only</span><span class="pt">Só piscinas reais</span></b><span class="en">All photos and videos come from maximapools.com or from real Maxima jobs. Nothing is generated, which matters when people are spending this much on a backyard.</span><span class="pt">Todas as fotos e vídeos vêm do maximapools.com ou de trabalhos reais da Maxima. Nada é gerado, o que pesa quando a pessoa vai gastar tanto num quintal.</span></div></div>
       <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-check"/></svg></span><div><b><span class="en">Claims from the website</span><span class="pt">Afirmações do próprio site</span></b><span class="en">Every headline uses facts already on maximapools.com. Warranty length and “#1 rated” stay out until confirmed.</span><span class="pt">Todo título usa fatos que já estão no maximapools.com. Prazo de garantia e “#1 rated” ficam de fora até serem confirmados.</span></div></div>
     </div>
   </div>
@@ -604,10 +674,10 @@ td.ok{color:var(--good)}
       <p class="pt">Uma conta nova começa na fase de aprendizado da Meta, então as duas primeiras semanas ficam sem mexer. Os ajustes acontecem na revisão do dia 14.</p>
     </div>
     <div class="phases four">
-      <div class="ph next"><span class="dot"></span><span class="when"><span class="en">Oct 28 – Nov 1</span><span class="pt">28 out – 1 nov</span></span><h3><span class="en">Set up</span><span class="pt">Preparação</span></h3><p class="en">Install the pixel, connect the accounts, produce the 15 creatives, build the audiences and the form.</p><p class="pt">Instalar o pixel, conectar as contas, produzir os 15 criativos, montar públicos e formulário.</p></div>
-      <div class="ph"><span class="dot"></span><span class="when"><span class="en">Nov 2 – 15</span><span class="pt">2 – 15 nov</span></span><h3><span class="en">Launch &amp; learn</span><span class="pt">Lançar e aprender</span></h3><p class="en">Both campaigns live with all 15 creatives. No edits, so Meta can learn. Leads answered the same day.</p><p class="pt">As duas campanhas no ar com os 15 criativos. Sem edições, para a Meta aprender. Leads respondidos no mesmo dia.</p></div>
+      <div class="ph next"><span class="dot"></span><span class="when"><span class="en">Oct 28 – Nov 1</span><span class="pt">28 out – 1 nov</span></span><h3><span class="en">Set up</span><span class="pt">Preparação</span></h3><p class="en">Install the pixel, connect the accounts, produce the creatives, build the audiences and the form, get the pool closing page ready.</p><p class="pt">Instalar o pixel, conectar as contas, produzir os criativos, montar públicos e formulário, deixar a página de fechamento pronta.</p></div>
+      <div class="ph"><span class="dot"></span><span class="when"><span class="en">Nov 2 – 15</span><span class="pt">2 – 15 nov</span></span><h3><span class="en">Launch &amp; learn</span><span class="pt">Lançar e aprender</span></h3><p class="en">All three campaigns live. No edits, so Meta can learn. Leads answered the same day. Pool closing runs until the last date the crews can take one.</p><p class="pt">As três campanhas no ar. Sem edições, para a Meta aprender. Leads respondidos no mesmo dia. O fechamento roda até a última data que as equipes aceitarem.</p></div>
       <div class="ph"><span class="dot"></span><span class="when"><span class="en">Nov 16</span><span class="pt">16 nov</span></span><h3><span class="en">Day-14 review</span><span class="pt">Revisão do dia 14</span></h3><p class="en">Check pixel events and audience sizes, turn off clear losers, confirm the retargeting budget.</p><p class="pt">Conferir eventos do pixel e tamanho dos públicos, desligar os claramente fracos, confirmar a verba do remarketing.</p></div>
-      <div class="ph"><span class="dot"></span><span class="when"><span class="en">Dec 1 – 3</span><span class="pt">1 – 3 dez</span></span><h3><span class="en">Report 01</span><span class="pt">Relatório 01</span></h3><p class="en">First results by creative, audience sizes and the plan for phase 2.</p><p class="pt">Primeiros resultados por criativo, tamanho dos públicos e o plano da fase 2.</p></div>
+      <div class="ph"><span class="dot"></span><span class="when"><span class="en">Dec 1 – 3</span><span class="pt">1 – 3 dez</span></span><h3><span class="en">Report 01</span><span class="pt">Relatório 01</span></h3><p class="en">First results by creative, audience sizes, closing requests and their cost, and the plan for phase 2.</p><p class="pt">Primeiros resultados por criativo, tamanho dos públicos, pedidos de fechamento e o custo deles, e o plano da fase 2.</p></div>
     </div>
     <div class="table-wrap slim">
       <table>
@@ -619,6 +689,8 @@ td.ok{color:var(--good)}
           <tr><td><span class="en">Frequency (traffic / retargeting)</span><span class="pt">Frequência (tráfego / remarketing)</span></td><td>—</td><td>≤ 2.5 / ≤ 5</td></tr>
           <tr><td><span class="en">Pixel events firing</span><span class="pt">Eventos do pixel funcionando</span></td><td><span class="en">No pixel</span><span class="pt">Sem pixel</span></td><td><span class="en">All, from day 1</span><span class="pt">Todos, desde o dia 1</span></td></tr>
           <tr><td><span class="en">Consultation requests</span><span class="pt">Pedidos de consulta</span></td><td>—</td><td><span class="en">Tracked, with cost per lead</span><span class="pt">Medidos, com custo por lead</span></td></tr>
+          <tr><td><span class="en">Cost per visit to the closing page (pool closing)</span><span class="pt">Custo por visita à página de fechamento (pool closing)</span></td><td>$0.36 <span class="sub">(Concrete)</span></td><td>≤ $0.50</td></tr>
+          <tr><td><span class="en">“Book Now” clicks and closing requests (pool closing)</span><span class="pt">Cliques em “Book Now” e pedidos de fechamento (pool closing)</span></td><td>—</td><td><span class="en">Tracked, with cost per request</span><span class="pt">Medidos, com custo por pedido</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -636,6 +708,8 @@ td.ok{color:var(--good)}
       <div class="finding"><span class="kv">Nov 27<small><span class="en">Black Friday</span><span class="pt">Black Friday</span></small></span><h3><span class="en">Holiday ad costs</span><span class="pt">Custos de fim de ano</span></h3><p class="en">Ad prices on Meta usually rise from Thanksgiving through December. The cost-per-visit target allows for it.</p><p class="pt">O preço dos anúncios na Meta costuma subir do Thanksgiving até dezembro. A meta de custo por visita já considera isso.</p></div>
       <div class="finding"><span class="kv"><span class="en">Month 1</span><span class="pt">Mês 1</span><small><span class="en">is for signal</span><span class="pt">é de sinal</span></small></span><h3><span class="en">A big decision takes time</span><span class="pt">Uma decisão grande leva tempo</span></h3><p class="en">Few people ask for a pool consultation on their first visit. Month one is judged on visits, pixel events and audience size, not on leads.</p><p class="pt">Pouca gente pede consulta de piscina na primeira visita. O primeiro mês é avaliado por visitas, eventos no pixel e tamanho dos públicos, e não por leads.</p></div>
       <div class="finding"><span class="kv"><span class="en">Same day</span><span class="pt">Mesmo dia</span><small><span class="en">lead reply</span><span class="pt">resposta ao lead</span></small></span><h3><span class="en">Speed of follow-up</span><span class="pt">Velocidade do retorno</span></h3><p class="en">Form leads go cold fast. A quick call back matters as much as the ad itself.</p><p class="pt">Leads de formulário esfriam rápido. Ligar de volta logo pesa tanto quanto o próprio anúncio.</p></div>
+      <div class="finding"><span class="kv"><span class="en">Nov</span><span class="pt">Nov</span><small><span class="en">late for closings</span><span class="pt">tarde para fechar</span></small></span><h3><span class="en">A short closing season this year</span><span class="pt">Pouca temporada de fechamento este ano</span></h3><p class="en">The closing page says dates fill fast in September and October, so in November the closing campaign has only a few weeks. It stops on the last date the crews can take a closing and comes back on August 15, 2027.</p><p class="pt">A página de fechamento diz que as datas acabam rápido em setembro e outubro, então em novembro a campanha de fechamento tem só algumas semanas. Ela para na última data em que as equipes aceitarem fechamento e volta em 15 de agosto de 2027.</p></div>
+      <div class="finding"><span class="kv">2027<small><span class="en">online booking</span><span class="pt">agendamento online</span></small></span><h3><span class="en">Next fall starts ready</span><span class="pt">O próximo outono já começa pronto</span></h3><p class="en">The online booking proposal targets the 2027 opening season. By next fall, closing ads can link straight to booking, with photos and video shot at this year’s last closings.</p><p class="pt">A proposta de agendamento online prevê a temporada de aberturas de 2027. No próximo outono, os anúncios de fechamento já podem levar direto para o agendamento, com fotos e vídeo feitos nos últimos fechamentos deste ano.</p></div>
     </div>
   </div>
 </section>
@@ -646,12 +720,12 @@ td.ok{color:var(--good)}
       <span class="eyebrow"><span class="en">To launch on Nov 2</span><span class="pt">Para lançar em 2 nov</span></span>
       <h2><span class="en">Decisions before launch</span><span class="pt">Decisões antes de lançar</span></h2>
     </div>
-    <div class="roadmap">
+    <div class="roadmap four">
       <div class="rstep">
         <span class="badge"><svg class="ic"><use href="#i-check"/></svg></span>
         <h3><span class="en">Approve the budget</span><span class="pt">Aprovar a verba</span></h3>
-        <p class="en">At least $8 a day, $240 for the 30-day cycle (Nov 2 – Dec 1): $6 for traffic and $2 for retargeting.</p>
-        <p class="pt">No mínimo US$ 8 por dia, US$ 240 no ciclo de 30 dias (2 nov – 1 dez): US$ 6 para tráfego e US$ 2 para remarketing.</p>
+        <p class="en">$13 a day, $390 for the 30-day cycle (Nov 2 – Dec 1): $6 for traffic, $2 for retargeting and $5 for pool closing, the Meta share of the $500 closing budget.</p>
+        <p class="pt">US$ 13 por dia, US$ 390 no ciclo de 30 dias (2 nov – 1 dez): US$ 6 para tráfego, US$ 2 para remarketing e US$ 5 para fechamento, a parte da Meta na verba de US$ 500 do fechamento.</p>
       </div>
       <div class="rstep">
         <span class="badge"><svg class="ic"><use href="#i-code"/></svg></span>
@@ -665,6 +739,12 @@ td.ok{color:var(--good)}
         <p class="en">Confirm the free in-home consultation, spring install availability and the warranty to quote, and who receives form leads.</p>
         <p class="pt">Confirmar a consulta grátis em casa, a agenda de instalação na primavera e a garantia a citar, e quem recebe os leads do formulário.</p>
       </div>
+      <div class="rstep">
+        <span class="badge"><svg class="ic"><use href="#i-snow"/></svg></span>
+        <h3><span class="en">Pool closing</span><span class="pt">Fechamento de piscina</span></h3>
+        <p class="en">The last date crews can take a closing this year, whether the $500 also covers spring openings, photos or a visit to a closing for the creatives, and, optionally, a list of past service customers.</p>
+        <p class="pt">A última data em que as equipes aceitam fechamento este ano, se os US$ 500 também valem para a abertura na primavera, fotos ou uma visita a um fechamento para os criativos e, se possível, a lista de clientes antigos de serviço.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -673,8 +753,8 @@ td.ok{color:var(--good)}
 
 <footer>
   <div class="wrap">
-    <p class="en">Budget: at least $8 a day, $240 per 30-day cycle. Amounts in USD. Maxima Pools has no Meta Ads history, so this plan sets targets, not forecasts.</p>
-    <p class="pt">Verba: no mínimo US$ 8 por dia, US$ 240 por ciclo de 30 dias. Valores em US$. A Maxima Pools não tem histórico na Meta, então este plano define metas, e não previsões.</p>
+    <p class="en">Budget: $13 a day, $390 per 30-day cycle: $8 for pool installation and $5 for pool closing. Pool closing has $500 a month in season, split 70% Google Ads ($350, $11.50 a day) and 30% Meta Ads ($150, $5 a day). Amounts in USD. Maxima Pools has no Meta Ads history, so this plan sets targets, not forecasts.</p>
+    <p class="pt">Verba: US$ 13 por dia, US$ 390 por ciclo de 30 dias: US$ 8 para instalação de piscina e US$ 5 para fechamento. O fechamento tem US$ 500 por mês na temporada, divididos em 70% Google Ads (US$ 350, US$ 11,50 por dia) e 30% Meta Ads (US$ 150, US$ 5 por dia). Valores em US$. A Maxima Pools não tem histórico na Meta, então este plano define metas, e não previsões.</p>
     <p class="en">References: Maxima Concrete Meta Ads Report 01 (Aug 1 – Sep 25, 2026, Central Ohio) and Maxima Pools Google Ads campaign report (Sep 1 – 30, 2026). Photos and videos: maximapools.com.</p>
     <p class="pt">Referências: Relatório 01 de Meta Ads da Maxima Concrete (1 ago – 25 set 2026, região central de Ohio) e relatório de campanhas do Google Ads da Maxima Pools (1 – 30 set 2026). Fotos e vídeos: maximapools.com.</p>
     <div class="sig"><img src="assets/meta-logo.svg" alt="" width="22" height="15"><span>Maxima Pools · Meta Ads · <span class="en">Campaign plan · Phase 1</span><span class="pt">Plano de campanha · Fase 1</span></span></div>
