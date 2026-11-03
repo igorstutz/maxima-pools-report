@@ -356,6 +356,37 @@ td.ok{color:var(--good)}
 .split-sub{display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid var(--line-soft)}
 .split-sub .split-bar{height:12px}
 .lib-head h3 .tag{font-size:10.5px}
+
+/* ---------- FEEDBACK (notes and answers, saved for the team) ---------- */
+body{padding-bottom:76px}
+.fb-howto{padding-top:40px}
+.fb-intro{display:flex;gap:16px;align-items:flex-start;background:var(--paper);border:1px solid var(--line-soft);border-left:4px solid var(--orange);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow)}
+.fb-intro .badge{background:var(--warn-soft);color:var(--orange)}
+.fb-intro b{display:block;font-family:var(--display);font-size:19px;font-weight:700;line-height:1.2;margin-bottom:6px}
+.fb-intro p{color:var(--ink-2);font-size:14.5px}
+.fb{margin-top:28px;background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.fb-l{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--meta)}
+.note-input{display:block;width:100%;min-height:72px;resize:vertical;font:inherit;font-size:15px;line-height:1.5;color:var(--ink);background:var(--band);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.note-input:focus{outline:none;border-color:var(--meta);box-shadow:0 0 0 3px var(--meta-soft);background:var(--paper)}
+.note-input.filled{border-color:var(--orange);background:var(--paper)}
+.note-input::placeholder{color:var(--ink-3)}
+.fb-ok{display:inline-flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;color:var(--ink);cursor:pointer;align-self:flex-start}
+.fb-ok input{width:20px;height:20px;margin:0;accent-color:var(--good);cursor:pointer}
+.fb.ok{border-style:solid;border-color:var(--good);background:var(--good-soft)}
+.camp .fb{margin:auto 20px 20px;padding:14px}
+.camp .note-input{min-height:60px}
+.rstep .fb{margin-top:auto;padding:14px;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.24)}
+.rstep .fb-l{color:var(--on-navy-2)}
+.rstep .fb-ok{color:#fff}
+.rstep .note-input{min-height:96px;color:#fff;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
+.rstep .note-input::placeholder{color:var(--on-navy-2)}
+.rstep .note-input:focus,.rstep .note-input.filled{background:rgba(255,255,255,.12);border-color:var(--orange);box-shadow:none}
+.rstep .fb.ok{background:rgba(82,199,139,.14);border-color:#52c78b}
+.fb-bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px);background:var(--navy);color:var(--on-navy-2);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 18px;font-family:var(--mono);font-size:12.5px;box-shadow:0 8px 24px rgba(0,0,0,.28);white-space:nowrap}
+.fb-bar b{color:#fff;font-weight:500}
+.fb-bar .sync{color:#7fd3a5}
+.fb-bar .sync.off{color:var(--orange)}
+@media (max-width:520px){.fb-bar{gap:10px;padding:8px 14px;font-size:11.5px}.fb-intro{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -433,6 +464,8 @@ td.ok{color:var(--good)}
 
 <main>
 
+<section class="fb-howto"><div class="wrap"><div class="fb-intro"><span class="badge"><svg class="ic"><use href="#i-check"/></svg></span><div><b><span class="en">You can reply right on this page</span><span class="pt">Você pode responder direto nesta página</span></b><p class="en">Every section ends with a box for your notes, each campaign has a box to approve it, and each decision at the end has a box for your answer. Type in any box: it saves by itself and our team sees it. Come back any time to add more.</p><p class="pt">Cada seção termina com uma caixa para suas notas, cada campanha tem uma caixa para aprová-la e cada decisão no fim tem uma caixa para sua resposta. Escreva em qualquer caixa: ela salva sozinha e a nossa equipe vê. Volte quando quiser para acrescentar mais.</p></div></div></div></section>
+
 <section class="band first">
   <div class="wrap">
     <div class="sec-head">
@@ -452,6 +485,7 @@ td.ok{color:var(--good)}
       <div class="finding"><span class="kv">$71<small><span class="en">per lead</span><span class="pt">por lead</span></small></span><h3><span class="en">Don’t ask strangers first</span><span class="pt">Não pedir lead a desconhecidos</span></h3><p class="en">Maxima Concrete’s lead campaign aimed at people who had never heard of it paid $71 for its only lead. Pools asks for consultations only from people who already know Maxima.</p><p class="pt">A campanha de leads da Maxima Concrete, voltada a quem nunca tinha ouvido falar dela, pagou US$ 71 pelo único lead. A Pools só pede consulta a quem já conhece a Maxima.</p></div>
       <div class="finding"><span class="kv">$8.15<small><span class="en">per Google click</span><span class="pt">por clique no Google</span></small></span><h3><span class="en">Meta works earlier</span><span class="pt">A Meta atua antes</span></h3><p class="en">Average Google Ads click for Maxima Pools in September 2026. Google catches people already searching. Meta reaches them earlier and keeps Maxima in front of them until they are ready.</p><p class="pt">Clique médio do Google Ads da Maxima Pools em setembro de 2026. O Google pega quem já está buscando. A Meta chega antes e mantém a Maxima na frente da pessoa até ela estar pronta.</p></div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-phase-1-launch-warm-up"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-phase-1-launch-warm-up" data-note="sec-phase-1-launch-warm-up" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -489,6 +523,7 @@ td.ok{color:var(--good)}
         <p class="pt">Todo “Book Now” de maximapools.com/pool-closing/ vira o botão de agendamento: por enquanto o formulário de contato, marcando o pedido como fechamento, e o agendamento online assim que estiver no ar. O botão do Pool Simulator no topo vira “Ligar”, e o aviso de setembro–outubro é atualizado para o fim da temporada.</p>
       </div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-before-launch"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-before-launch" data-note="sec-before-launch" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -533,6 +568,7 @@ td.ok{color:var(--good)}
         </table>
       </div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-budget"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-budget" data-note="sec-budget" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -560,6 +596,7 @@ td.ok{color:var(--good)}
           <dt><span class="en">Main metric</span><span class="pt">Métrica principal</span></dt><dd><span class="en">Cost per website visit</span><span class="pt">Custo por visita ao site</span></dd>
         </dl>
         <p class="note"><span class="en">Each ad links to the page that matches its message: the simulator ad opens the Pool Simulator, the financing ad opens the financing page. If Pools pays close to Concrete’s $0.36, $180 brings about 500 visits.</span><span class="pt">Cada anúncio leva à página que combina com a mensagem: o do simulador abre o Pool Simulator, o de financiamento abre a página de financiamento. Se a Pools pagar perto dos US$ 0,36 da Concrete, US$ 180 trazem cerca de 500 visitas.</span></p>
+        <div class="fb"><label class="fb-ok"><input type="checkbox" class="approval-check" data-key="chk_camp-traffic"><span class="en">I approve this campaign</span><span class="pt">Aprovo esta campanha</span></label><label class="fb-l" for="fb-camp-traffic"><span class="en">Your notes on this campaign</span><span class="pt">Suas notas sobre esta campanha</span></label><textarea class="note-input" id="fb-camp-traffic" data-note="camp-traffic" data-kind="note" rows="2"></textarea></div>
       </article>
       <article class="camp" style="--c:var(--seg-2)">
         <div class="camp-head">
@@ -575,6 +612,7 @@ td.ok{color:var(--good)}
           <dt><span class="en">Main metric</span><span class="pt">Métrica principal</span></dt><dd><span class="en">Cost per consultation request</span><span class="pt">Custo por pedido de consulta</span></dd>
         </dl>
         <p class="note"><span class="en">Once the pixel is live, people who arrive from Google Ads also join this audience. Meta can then follow up for a few dollars with people Maxima already paid $8 a click to reach. No lead count is promised in month one.</span><span class="pt">Com o pixel no ar, quem chega pelo Google Ads também entra neste público. A Meta passa a falar de novo, por poucos dólares, com gente que a Maxima já pagou US$ 8 por clique para alcançar. Não prometemos número de leads no primeiro mês.</span></p>
+        <div class="fb"><label class="fb-ok"><input type="checkbox" class="approval-check" data-key="chk_camp-retargeting"><span class="en">I approve this campaign</span><span class="pt">Aprovo esta campanha</span></label><label class="fb-l" for="fb-camp-retargeting"><span class="en">Your notes on this campaign</span><span class="pt">Suas notas sobre esta campanha</span></label><textarea class="note-input" id="fb-camp-retargeting" data-note="camp-retargeting" data-kind="note" rows="2"></textarea></div>
       </article>
       <article class="camp" style="--c:var(--seg-3)">
         <div class="camp-head">
@@ -591,8 +629,10 @@ td.ok{color:var(--good)}
           <dt><span class="en">Main metric</span><span class="pt">Métrica principal</span></dt><dd><span class="en">Cost per visit and “Book Now” clicks</span><span class="pt">Custo por visita e cliques em “Book Now”</span></dd>
         </dl>
         <p class="note"><span class="en">Ads link to maximapools.com/pool-closing/, whose “Book Now” opens the contact form for now. Once online booking is live, the same button opens it with no change to the campaign; after testing, the ads link straight to booking. $350 a month is still too little for Meta to learn from bookings, so it optimizes for visits, and every request and paid booking is still reported with its cost.</span><span class="pt">Os anúncios levam para maximapools.com/pool-closing/, cujo “Book Now” abre o formulário de contato por enquanto. Com o agendamento online no ar, o mesmo botão passa a abri-lo, sem mudar a campanha; depois de testado, os anúncios levam direto para o agendamento. US$ 350 por mês ainda é pouco para a Meta aprender com reservas, então ela otimiza para visitas, e cada pedido e reserva paga continua sendo reportado com o custo.</span></p>
+        <div class="fb"><label class="fb-ok"><input type="checkbox" class="approval-check" data-key="chk_camp-pool-closing"><span class="en">I approve this campaign</span><span class="pt">Aprovo esta campanha</span></label><label class="fb-l" for="fb-camp-pool-closing"><span class="en">Your notes on this campaign</span><span class="pt">Suas notas sobre esta campanha</span></label><textarea class="note-input" id="fb-camp-pool-closing" data-note="camp-pool-closing" data-kind="note" rows="2"></textarea></div>
       </article>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-campaigns"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-campaigns" data-note="sec-campaigns" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -662,6 +702,7 @@ td.ok{color:var(--good)}
       <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-image"/></svg></span><div><b><span class="en">Real pools only</span><span class="pt">Só piscinas reais</span></b><span class="en">All photos and videos come from maximapools.com or from real Maxima jobs. Nothing is generated, which matters when people are spending this much on a backyard.</span><span class="pt">Todas as fotos e vídeos vêm do maximapools.com ou de trabalhos reais da Maxima. Nada é gerado, o que pesa quando a pessoa vai gastar tanto num quintal.</span></div></div>
       <div class="cnote"><span class="badge"><svg class="ic"><use href="#i-check"/></svg></span><div><b><span class="en">Claims from the website</span><span class="pt">Afirmações do próprio site</span></b><span class="en">Every headline uses facts already on maximapools.com. Warranty length and “#1 rated” stay out until confirmed.</span><span class="pt">Todo título usa fatos que já estão no maximapools.com. Prazo de garantia e “#1 rated” ficam de fora até serem confirmados.</span></div></div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-creatives"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-creatives" data-note="sec-creatives" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -694,6 +735,7 @@ td.ok{color:var(--good)}
         </tbody>
       </table>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-timeline-targets"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-timeline-targets" data-note="sec-timeline-targets" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -711,6 +753,7 @@ td.ok{color:var(--good)}
       <div class="finding"><span class="kv"><span class="en">Nov</span><span class="pt">Nov</span><small><span class="en">late for closings</span><span class="pt">tarde para fechar</span></small></span><h3><span class="en">A short closing season this year</span><span class="pt">Pouca temporada de fechamento este ano</span></h3><p class="en">The closing page says dates fill fast in September and October, so in November the closing campaign has only a few weeks. It stops on the last date the crews can take a closing and comes back on August 15, 2027.</p><p class="pt">A página de fechamento diz que as datas acabam rápido em setembro e outubro, então em novembro a campanha de fechamento tem só algumas semanas. Ela para na última data em que as equipes aceitarem fechamento e volta em 15 de agosto de 2027.</p></div>
       <div class="finding"><span class="kv">2027<small><span class="en">online booking</span><span class="pt">agendamento online</span></small></span><h3><span class="en">Next fall starts ready</span><span class="pt">O próximo outono já começa pronto</span></h3><p class="en">The online booking proposal targets the 2027 opening season. By next fall, closing ads can link straight to booking, with photos and video shot at this year’s last closings.</p><p class="pt">A proposta de agendamento online prevê a temporada de aberturas de 2027. No próximo outono, os anúncios de fechamento já podem levar direto para o agendamento, com fotos e vídeo feitos nos últimos fechamentos deste ano.</p></div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-things-to-keep-in-mind"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-things-to-keep-in-mind" data-note="sec-things-to-keep-in-mind" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -726,26 +769,31 @@ td.ok{color:var(--good)}
         <h3><span class="en">Approve the budget</span><span class="pt">Aprovar a verba</span></h3>
         <p class="en">$19.50 a day, $585 for the 30-day cycle (Nov 2 – Dec 1): $6 for traffic, $2 for retargeting and $11.50 for pool closing, Meta’s 70% of the $500 closing budget.</p>
         <p class="pt">US$ 19,50 por dia, US$ 585 no ciclo de 30 dias (2 nov – 1 dez): US$ 6 para tráfego, US$ 2 para remarketing e US$ 11,50 para fechamento, os 70% da Meta na verba de US$ 500 do fechamento.</p>
+        <div class="fb"><label class="fb-ok"><input type="checkbox" class="approval-check" data-key="chk_q-approve-the-budget"><span class="en">I approve the budget</span><span class="pt">Aprovo a verba</span></label><label class="fb-l" for="fb-q-approve-the-budget"><span class="en">Your answer</span><span class="pt">Sua resposta</span></label><textarea class="note-input" id="fb-q-approve-the-budget" data-note="q-approve-the-budget" data-kind="answer" rows="3"></textarea></div>
       </div>
       <div class="rstep">
         <span class="badge"><svg class="ic"><use href="#i-code"/></svg></span>
         <h3><span class="en">Pixel and access</span><span class="pt">Pixel e acessos</span></h3>
         <p class="en">OK to install the Meta pixel on maximapools.com, plus admin access to the Facebook page, Instagram and the ad account to use.</p>
         <p class="pt">Autorizar a instalação do pixel da Meta no maximapools.com, mais acesso de administrador à página do Facebook, ao Instagram e à conta de anúncios a usar.</p>
+        <div class="fb"><label class="fb-ok"><input type="checkbox" class="approval-check" data-key="chk_q-pixel-and-access"><span class="en">OK to install the pixel</span><span class="pt">Pode instalar o pixel</span></label><label class="fb-l" for="fb-q-pixel-and-access"><span class="en">Your answer</span><span class="pt">Sua resposta</span></label><textarea class="note-input" id="fb-q-pixel-and-access" data-note="q-pixel-and-access" data-kind="answer" rows="3"></textarea></div>
       </div>
       <div class="rstep">
         <span class="badge"><svg class="ic"><use href="#i-tag"/></svg></span>
         <h3><span class="en">Offer and lead contact</span><span class="pt">Oferta e contato para leads</span></h3>
         <p class="en">Confirm the free in-home consultation, spring install availability and the warranty to quote, and who receives form leads.</p>
         <p class="pt">Confirmar a consulta grátis em casa, a agenda de instalação na primavera e a garantia a citar, e quem recebe os leads do formulário.</p>
+        <div class="fb"><label class="fb-l" for="fb-q-offer-and-lead-contact"><span class="en">Your answer</span><span class="pt">Sua resposta</span></label><textarea class="note-input" id="fb-q-offer-and-lead-contact" data-note="q-offer-and-lead-contact" data-kind="answer" rows="3"></textarea></div>
       </div>
       <div class="rstep">
         <span class="badge"><svg class="ic"><use href="#i-snow"/></svg></span>
         <h3><span class="en">Pool closing</span><span class="pt">Fechamento de piscina</span></h3>
         <p class="en">The last date crews can take a closing this year, whether the $500 also covers spring openings, photos or a visit to a closing for the creatives, and, optionally, a list of past service customers.</p>
         <p class="pt">A última data em que as equipes aceitam fechamento este ano, se os US$ 500 também valem para a abertura na primavera, fotos ou uma visita a um fechamento para os criativos e, se possível, a lista de clientes antigos de serviço.</p>
+        <div class="fb"><label class="fb-l" for="fb-q-pool-closing"><span class="en">Your answer</span><span class="pt">Sua resposta</span></label><textarea class="note-input" id="fb-q-pool-closing" data-note="q-pool-closing" data-kind="answer" rows="3"></textarea></div>
       </div>
     </div>
+    <div class="fb"><label class="fb-l" for="fb-sec-to-launch-on-nov-2"><span class="en">Your notes on this section</span><span class="pt">Suas notas sobre esta seção</span></label><textarea class="note-input" id="fb-sec-to-launch-on-nov-2" data-note="sec-to-launch-on-nov-2" data-kind="note" rows="3"></textarea></div>
   </div>
 </section>
 
@@ -778,6 +826,66 @@ td.ok{color:var(--good)}
   if(/[?&]lang=pt\b/.test(location.search)||location.hash==='#pt'){initial='pt'}
   else{try{initial=localStorage.getItem(LANG_KEY)||'en'}catch(e){}}
   setLang(initial);
+})();
+</script>
+<div class="fb-bar" role="status" aria-live="polite"><span>✎ <b id="fb-notes">0</b> <span class="en">notes</span><span class="pt">notas</span></span><span>✓ <b id="fb-approved">0</b> <span class="en">approved</span><span class="pt">aprovadas</span></span><span class="sync" id="fb-sync"></span></div>
+<script>
+/* Notes, answers and approvals: saved for the team in the same backend as the Google Ads plans. */
+(function(){
+  var API_URL='https://script.google.com/macros/s/AKfycbyRmxBUAAXn5Qnlf1fk2kDoPJwo9Zf0XW9FvR8E0ccVy0fExvZGzSU-i3CW-xIE99W6/exec';
+  var REPORT_ID='pools-meta-plan01';
+  var CACHE_KEY='maxima-cache-'+REPORT_ID;
+  var PH={en:{note:'Type your notes here. They save automatically.',answer:'Type your answer here. It saves automatically.'},
+          pt:{note:'Escreva suas notas aqui. Elas salvam sozinhas.',answer:'Escreva sua resposta aqui. Ela salva sozinha.'}};
+  var T={en:{loading:'loading notes…',shared:'saved for the team',saving:'saving…',saved:'saved',off:'offline: kept here'},
+         pt:{loading:'carregando notas…',shared:'salvo para a equipe',saving:'salvando…',saved:'salvo',off:'offline: guardado aqui'}};
+  var root=document.documentElement;
+  var notes=[].slice.call(document.querySelectorAll('.note-input'));
+  var checks=[].slice.call(document.querySelectorAll('.approval-check'));
+  var nEl=document.getElementById('fb-notes'),aEl=document.getElementById('fb-approved'),sEl=document.getElementById('fb-sync');
+  var state='loading',pending={},timers={};
+  function lang(){return root.getAttribute('data-lang')==='pt'?'pt':'en'}
+  function sync(s){state=s;sEl.textContent=(s==='off'?'⚠ ':'☁ ')+T[lang()][s];sEl.classList.toggle('off',s==='off')}
+  function texts(){var l=lang();notes.forEach(function(n){n.placeholder=PH[l][n.dataset.kind]||PH[l].note});sync(state)}
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',texts)});
+  function count(){
+    nEl.textContent=notes.filter(function(n){return n.value.trim()}).length;
+    aEl.textContent=checks.filter(function(c){return c.checked}).length;
+  }
+  function mark(c){var fb=c.closest('.fb');if(fb)fb.classList.toggle('ok',c.checked)}
+  function cacheGet(){try{return JSON.parse(localStorage.getItem(CACHE_KEY)||'{}')}catch(e){return{}}}
+  function cachePut(kind,key,value){try{var c=cacheGet(),b=kind==='note'?'notes':'approvals';c[b]=c[b]||{};c[b][key]=value;localStorage.setItem(CACHE_KEY,JSON.stringify(c))}catch(e){}}
+  function save(kind,key,value){
+    cachePut(kind,key,value);sync('saving');
+    fetch(API_URL,{method:'POST',body:JSON.stringify({report:REPORT_ID,kind:kind,key:key,value:value})})
+      .then(function(){pending[key]=false;sync('saved')})
+      .catch(function(){sync('off')});
+  }
+  notes.forEach(function(n){n.addEventListener('input',function(){
+    var k=n.dataset.note;pending[k]=true;
+    n.classList.toggle('filled',!!n.value.trim());count();
+    clearTimeout(timers[k]);timers[k]=setTimeout(function(){save('note',k,n.value)},700);
+  })});
+  checks.forEach(function(c){c.addEventListener('change',function(){
+    mark(c);count();save('approval',c.dataset.key,c.checked?'1':'0');
+  })});
+  function apply(d){
+    if(!d)return;
+    if(d.notes)notes.forEach(function(n){var k=n.dataset.note,v=d.notes[k];
+      if(v!=null&&!pending[k]&&document.activeElement!==n){n.value=v;n.classList.toggle('filled',!!String(v).trim())}});
+    if(d.approvals)checks.forEach(function(c){var v=d.approvals[c.dataset.key];
+      if(v!=null){c.checked=(v==='1'||v===1||v===true);mark(c)}});
+    count();
+  }
+  function load(){
+    apply(cacheGet());
+    fetch(API_URL+'?report='+encodeURIComponent(REPORT_ID))
+      .then(function(r){return r.json()})
+      .then(function(d){apply(d);try{localStorage.setItem(CACHE_KEY,JSON.stringify(d))}catch(e){}if(state!=='saving')sync('shared')})
+      .catch(function(){sync('off')});
+  }
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)load()});
+  texts();load();
 })();
 </script>
 </body>
